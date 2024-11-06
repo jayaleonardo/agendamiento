@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234549"
+  },
+  "applications": "*",
+  "documentation": "The HorarioConsulta entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "fecha del horario",
+      "fieldName": "fechaHorario",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "hora de inicio",
+      "fieldName": "horaInicio",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "duración en minutos",
+      "fieldName": "duracionMinutos",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "día de la semana",
+      "fieldName": "diaSemana",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "indica si es horario de atención",
+      "fieldName": "esHorarioAtencion",
+      "fieldType": "Boolean"
+    },
+    {
+      "documentation": "estado del horario",
+      "fieldName": "estado",
+      "fieldType": "String"
+    }
+  ],
+  "name": "HorarioConsulta",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "documentation": "HorarioConsulta relacionado con Programacion",
+      "otherEntityName": "programacion",
+      "relationshipName": "programacion",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

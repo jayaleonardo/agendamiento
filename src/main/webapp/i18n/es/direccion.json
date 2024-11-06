@@ -1,0 +1,38 @@
+{
+  "agendamientoApp": {
+    "direccion": {
+      "home": {
+        "title": "Direccions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Direccion",
+        "createOrEditLabel": "Crear o editar Direccion",
+        "notFound": "Ningún Direccions encontrado"
+      },
+      "created": "Un nuevo Direccion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Direccion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Direccion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Direccion {{ id }}?"
+      },
+      "detail": {
+        "title": "Direccion"
+      },
+      "id": "ID",
+      "idDireccion": "Id Direccion",
+      "pais": "Pais",
+      "provincia": "Provincia",
+      "ciudad": "Ciudad",
+      "calles": "Calles",
+      "nroDomicilio": "Nro Domicilio",
+      "sujeto": "Sujeto",
+      "help": {
+        "idDireccion": "identificador de dirección",
+        "pais": "país de la dirección",
+        "provincia": "provincia de la dirección",
+        "ciudad": "ciudad de la dirección",
+        "calles": "calles de la dirección",
+        "nroDomicilio": "número de domicilio"
+      }
+    }
+  }
+}

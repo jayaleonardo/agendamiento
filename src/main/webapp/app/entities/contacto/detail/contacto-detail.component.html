@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (contacto(); as contactoRef) {
+      <div>
+        <h2 data-cy="contactoDetailsHeading"><span jhiTranslate="agendamientoApp.contacto.detail.title">Contacto</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ contactoRef.id }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.contacto.help.telefono' | translate" jhiTranslate="agendamientoApp.contacto.telefono"
+              >Telefono</span
+            >
+          </dt>
+          <dd>
+            <span>{{ contactoRef.telefono }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.contacto.help.correo' | translate" jhiTranslate="agendamientoApp.contacto.correo"
+              >Correo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ contactoRef.correo }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.contacto.help.codigoPais' | translate" jhiTranslate="agendamientoApp.contacto.codigoPais"
+              >Codigo Pais</span
+            >
+          </dt>
+          <dd>
+            <span>{{ contactoRef.codigoPais }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.contacto.help.celular' | translate" jhiTranslate="agendamientoApp.contacto.celular"
+              >Celular</span
+            >
+          </dt>
+          <dd>
+            <span>{{ contactoRef.celular }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.contacto.sujeto">Sujeto</span></dt>
+          <dd>
+            @if (contacto()!.sujeto) {
+              <div>
+                <a [routerLink]="['/sujeto', contacto()!.sujeto?.id, 'view']">{{ contactoRef.sujeto?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/contacto', contactoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

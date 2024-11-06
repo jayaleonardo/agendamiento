@@ -1,0 +1,146 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-especialista-heading"
+        data-cy="EspecialistaCreateUpdateHeading"
+        jhiTranslate="agendamientoApp.especialista.home.createOrEditLabel"
+      >
+        Crear o editar Especialista
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.especialista.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let especialidadRef = editForm.get('especialidad')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_especialidad"
+            [ngbTooltip]="'agendamientoApp.especialista.help.especialidad' | translate"
+            jhiTranslate="agendamientoApp.especialista.especialidad"
+            >Especialidad</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="especialidad"
+            id="field_especialidad"
+            data-cy="especialidad"
+            formControlName="especialidad"
+          />
+          @if (especialidadRef.invalid && (especialidadRef.dirty || especialidadRef.touched)) {
+            <div>
+              @if (editForm.get('especialidad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codigoDoctorRef = editForm.get('codigoDoctor')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_codigoDoctor"
+            [ngbTooltip]="'agendamientoApp.especialista.help.codigoDoctor' | translate"
+            jhiTranslate="agendamientoApp.especialista.codigoDoctor"
+            >Codigo Doctor</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoDoctor"
+            id="field_codigoDoctor"
+            data-cy="codigoDoctor"
+            formControlName="codigoDoctor"
+          />
+          @if (codigoDoctorRef.invalid && (codigoDoctorRef.dirty || codigoDoctorRef.touched)) {
+            <div>
+              @if (editForm.get('codigoDoctor')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let nroConsultorioRef = editForm.get('nroConsultorio')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nroConsultorio"
+            [ngbTooltip]="'agendamientoApp.especialista.help.nroConsultorio' | translate"
+            jhiTranslate="agendamientoApp.especialista.nroConsultorio"
+            >Nro Consultorio</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nroConsultorio"
+            id="field_nroConsultorio"
+            data-cy="nroConsultorio"
+            formControlName="nroConsultorio"
+          />
+          @if (nroConsultorioRef.invalid && (nroConsultorioRef.dirty || nroConsultorioRef.touched)) {
+            <div>
+              @if (editForm.get('nroConsultorio')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fotoUrl"
+            [ngbTooltip]="'agendamientoApp.especialista.help.fotoUrl' | translate"
+            jhiTranslate="agendamientoApp.especialista.fotoUrl"
+            >Foto Url</label
+          >
+          <input type="text" class="form-control" name="fotoUrl" id="field_fotoUrl" data-cy="fotoUrl" formControlName="fotoUrl" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sujeto" jhiTranslate="agendamientoApp.especialista.sujeto">Sujeto</label>
+          <select
+            class="form-control"
+            id="field_sujeto"
+            data-cy="sujeto"
+            name="sujeto"
+            formControlName="sujeto"
+            [compareWith]="compareSujeto"
+          >
+            <option [ngValue]="null"></option>
+            @for (sujetoOption of sujetosCollection; track $index) {
+              <option [ngValue]="sujetoOption">{{ sujetoOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

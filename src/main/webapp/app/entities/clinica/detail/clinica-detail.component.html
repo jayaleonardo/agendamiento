@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (clinica(); as clinicaRef) {
+      <div>
+        <h2 data-cy="clinicaDetailsHeading"><span jhiTranslate="agendamientoApp.clinica.detail.title">Clinica</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ clinicaRef.id }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.clinica.help.nombre' | translate" jhiTranslate="agendamientoApp.clinica.nombre"
+              >Nombre</span
+            >
+          </dt>
+          <dd>
+            <span>{{ clinicaRef.nombre }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.clinica.help.telefono' | translate" jhiTranslate="agendamientoApp.clinica.telefono"
+              >Telefono</span
+            >
+          </dt>
+          <dd>
+            <span>{{ clinicaRef.telefono }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.clinica.help.correo' | translate" jhiTranslate="agendamientoApp.clinica.correo"
+              >Correo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ clinicaRef.correo }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.clinica.help.horarioAtencion' | translate"
+              jhiTranslate="agendamientoApp.clinica.horarioAtencion"
+              >Horario Atencion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ clinicaRef.horarioAtencion }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/clinica', clinicaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

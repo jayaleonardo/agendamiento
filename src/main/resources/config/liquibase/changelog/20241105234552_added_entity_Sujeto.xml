@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Sujeto.
+    -->
+    <changeSet id="20241105234552-1" author="jhipster">
+        <createTable tableName="sujeto" remarks="The Sujeto entity.">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nombre" type="varchar(255)" remarks="nombre del sujeto">
+                <constraints nullable="false" />
+            </column>
+            <column name="segundo_nombre" type="varchar(255)" remarks="segundo nombre del sujeto">
+                <constraints nullable="true" />
+            </column>
+            <column name="apellido" type="varchar(255)" remarks="apellido del sujeto">
+                <constraints nullable="false" />
+            </column>
+            <column name="segundo_apellido" type="varchar(255)" remarks="segundo apellido del sujeto">
+                <constraints nullable="true" />
+            </column>
+            <column name="documento_identidad" type="varchar(255)" remarks="documento de identidad del sujeto">
+                <constraints nullable="false" />
+            </column>
+            <column name="estado" type="varchar(255)" remarks="estado del sujeto">
+                <constraints nullable="true" />
+            </column>
+            <column name="sexo" type="varchar(255)" remarks="sexo del sujeto">
+                <constraints nullable="true" />
+            </column>
+            <column name="fecha_nacimiento" type="date" remarks="fecha de nacimiento del sujeto">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20241105234552-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/sujeto.csv"
+                  separator=";"
+                  tableName="sujeto"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="nombre" type="string"/>
+            <column name="segundo_nombre" type="string"/>
+            <column name="apellido" type="string"/>
+            <column name="segundo_apellido" type="string"/>
+            <column name="documento_identidad" type="string"/>
+            <column name="estado" type="string"/>
+            <column name="sexo" type="string"/>
+            <column name="fecha_nacimiento" type="date"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234547"
+  },
+  "applications": "*",
+  "documentation": "The Direccion entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "identificador de dirección",
+      "fieldName": "idDireccion",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "país de la dirección",
+      "fieldName": "pais",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "provincia de la dirección",
+      "fieldName": "provincia",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "ciudad de la dirección",
+      "fieldName": "ciudad",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "calles de la dirección",
+      "fieldName": "calles",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "número de domicilio",
+      "fieldName": "nroDomicilio",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Direccion",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "documentation": "Direccion relacionada con Sujeto",
+      "otherEntityName": "sujeto",
+      "relationshipName": "sujeto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

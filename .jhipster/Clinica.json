@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234545"
+  },
+  "applications": "*",
+  "documentation": "The Clinica entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "nombre de la clínica",
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "teléfono de la clínica",
+      "fieldName": "telefono",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "correo de la clínica",
+      "fieldName": "correo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "horario de atención",
+      "fieldName": "horarioAtencion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Clinica",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

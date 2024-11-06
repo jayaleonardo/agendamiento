@@ -1,0 +1,100 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234544"
+  },
+  "applications": "*",
+  "documentation": "The Cita entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "fecha de la cita",
+      "fieldName": "fechaCita",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "hora de inicio",
+      "fieldName": "horaInicio",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "duración en minutos",
+      "fieldName": "duracionMinutos",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "estado",
+      "fieldName": "estado",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "tipo de visita",
+      "fieldName": "tipoVisita",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "canal de atención",
+      "fieldName": "canalAtencion",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "observación",
+      "fieldName": "observacion",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "recordatorio",
+      "fieldName": "recordatorio",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "motivo de consulta",
+      "fieldName": "motivoConsulta",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "detalle de consulta virtual",
+      "fieldName": "detalleConsultaVirtual",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "indica si es virtual",
+      "fieldName": "virtual",
+      "fieldType": "Boolean"
+    },
+    {
+      "documentation": "información de reserva",
+      "fieldName": "informacionReserva",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Cita",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "documentation": "Cita relacionadas con Especialista",
+      "otherEntityName": "especialista",
+      "relationshipName": "especialista",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "documentation": "Cita relacionadas con TipoTerapia",
+      "otherEntityName": "tipoTerapia",
+      "relationshipName": "tipoTerapia",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "documentation": "Cita relacionadas con Paciente",
+      "otherEntityName": "paciente",
+      "relationshipName": "paciente",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

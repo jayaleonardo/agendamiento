@@ -1,0 +1,35 @@
+{
+  "agendamientoApp": {
+    "especialista": {
+      "home": {
+        "title": "Especialistas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Especialista",
+        "createOrEditLabel": "Crear o editar Especialista",
+        "notFound": "Ningún Especialistas encontrado"
+      },
+      "created": "Un nuevo Especialista ha sido creado con el identificador {{ param }}",
+      "updated": "Un Especialista ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Especialista ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Especialista {{ id }}?"
+      },
+      "detail": {
+        "title": "Especialista"
+      },
+      "id": "ID",
+      "especialidad": "Especialidad",
+      "codigoDoctor": "Codigo Doctor",
+      "nroConsultorio": "Nro Consultorio",
+      "fotoUrl": "Foto Url",
+      "sujeto": "Sujeto",
+      "horarioConsulta": "Horario Consulta",
+      "help": {
+        "especialidad": "especialidad del especialista",
+        "codigoDoctor": "código del doctor",
+        "nroConsultorio": "número de consultorio",
+        "fotoUrl": "foto del especialista"
+      }
+    }
+  }
+}

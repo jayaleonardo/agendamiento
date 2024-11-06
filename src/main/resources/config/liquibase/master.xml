@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="floatType" value="float4" dbms="postgresql"/>
+    <property name="clobType" value="clob" dbms="postgresql"/>
+    <property name="blobType" value="blob" dbms="postgresql"/>
+    <property name="uuidType" value="uuid" dbms="postgresql"/>
+    <property name="datetimeType" value="datetime" dbms="postgresql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234544_added_entity_Cita.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234545_added_entity_Clinica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234546_added_entity_Contacto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234547_added_entity_Direccion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234548_added_entity_Especialista.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234549_added_entity_HorarioConsulta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234550_added_entity_Paciente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234551_added_entity_Programacion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234552_added_entity_Sujeto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234553_added_entity_TipoTerapia.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20241105234544_added_entity_constraints_Cita.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234546_added_entity_constraints_Contacto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234547_added_entity_constraints_Direccion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234548_added_entity_constraints_Especialista.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234549_added_entity_constraints_HorarioConsulta.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234550_added_entity_constraints_Paciente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20241105234551_added_entity_constraints_Programacion.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

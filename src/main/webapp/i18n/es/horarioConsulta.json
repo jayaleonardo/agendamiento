@@ -1,0 +1,39 @@
+{
+  "agendamientoApp": {
+    "horarioConsulta": {
+      "home": {
+        "title": "Horario Consultas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Horario Consulta",
+        "createOrEditLabel": "Crear o editar Horario Consulta",
+        "notFound": "Ningún Horario Consultas encontrado"
+      },
+      "created": "Un nuevo Horario Consulta ha sido creado con el identificador {{ param }}",
+      "updated": "Un Horario Consulta ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Horario Consulta ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Horario Consulta {{ id }}?"
+      },
+      "detail": {
+        "title": "Horario Consulta"
+      },
+      "id": "ID",
+      "fechaHorario": "Fecha Horario",
+      "horaInicio": "Hora Inicio",
+      "duracionMinutos": "Duracion Minutos",
+      "diaSemana": "Dia Semana",
+      "esHorarioAtencion": "Es Horario Atencion",
+      "estado": "Estado",
+      "programacion": "Programacion",
+      "especialista": "Especialista",
+      "help": {
+        "fechaHorario": "fecha del horario",
+        "horaInicio": "hora de inicio",
+        "duracionMinutos": "duración en minutos",
+        "diaSemana": "día de la semana",
+        "esHorarioAtencion": "indica si es horario de atención",
+        "estado": "estado del horario"
+      }
+    }
+  }
+}

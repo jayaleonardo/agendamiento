@@ -1,0 +1,150 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (cita(); as citaRef) {
+      <div>
+        <h2 data-cy="citaDetailsHeading"><span jhiTranslate="agendamientoApp.cita.detail.title">Cita</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ citaRef.id }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.fechaCita' | translate" jhiTranslate="agendamientoApp.cita.fechaCita"
+              >Fecha Cita</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.fechaCita | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.horaInicio' | translate" jhiTranslate="agendamientoApp.cita.horaInicio"
+              >Hora Inicio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.horaInicio | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.duracionMinutos' | translate" jhiTranslate="agendamientoApp.cita.duracionMinutos"
+              >Duracion Minutos</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.duracionMinutos }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.estado' | translate" jhiTranslate="agendamientoApp.cita.estado">Estado</span>
+          </dt>
+          <dd>
+            <span>{{ citaRef.estado }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.tipoVisita' | translate" jhiTranslate="agendamientoApp.cita.tipoVisita"
+              >Tipo Visita</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.tipoVisita }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.canalAtencion' | translate" jhiTranslate="agendamientoApp.cita.canalAtencion"
+              >Canal Atencion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.canalAtencion }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.observacion' | translate" jhiTranslate="agendamientoApp.cita.observacion"
+              >Observacion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.observacion }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.recordatorio' | translate" jhiTranslate="agendamientoApp.cita.recordatorio"
+              >Recordatorio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.recordatorio }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.motivoConsulta' | translate" jhiTranslate="agendamientoApp.cita.motivoConsulta"
+              >Motivo Consulta</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.motivoConsulta }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.cita.help.detalleConsultaVirtual' | translate"
+              jhiTranslate="agendamientoApp.cita.detalleConsultaVirtual"
+              >Detalle Consulta Virtual</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.detalleConsultaVirtual }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.cita.help.virtual' | translate" jhiTranslate="agendamientoApp.cita.virtual">Virtual</span>
+          </dt>
+          <dd>
+            <span>{{ citaRef.virtual }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.cita.help.informacionReserva' | translate"
+              jhiTranslate="agendamientoApp.cita.informacionReserva"
+              >Informacion Reserva</span
+            >
+          </dt>
+          <dd>
+            <span>{{ citaRef.informacionReserva }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.cita.especialista">Especialista</span></dt>
+          <dd>
+            @if (cita()!.especialista) {
+              <div>
+                <a [routerLink]="['/especialista', cita()!.especialista?.id, 'view']">{{ citaRef.especialista?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.cita.tipoTerapia">Tipo Terapia</span></dt>
+          <dd>
+            @if (cita()!.tipoTerapia) {
+              <div>
+                <a [routerLink]="['/tipo-terapia', cita()!.tipoTerapia?.id, 'view']">{{ citaRef.tipoTerapia?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.cita.paciente">Paciente</span></dt>
+          <dd>
+            @if (cita()!.paciente) {
+              <div>
+                <a [routerLink]="['/paciente', cita()!.paciente?.id, 'view']">{{ citaRef.paciente?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cita', citaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (programacion(); as programacionRef) {
+      <div>
+        <h2 data-cy="programacionDetailsHeading"><span jhiTranslate="agendamientoApp.programacion.detail.title">Programacion</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ programacionRef.id }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.programacion.help.fechaDesde' | translate"
+              jhiTranslate="agendamientoApp.programacion.fechaDesde"
+              >Fecha Desde</span
+            >
+          </dt>
+          <dd>
+            <span>{{ programacionRef.fechaDesde | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.programacion.help.fechaHasta' | translate"
+              jhiTranslate="agendamientoApp.programacion.fechaHasta"
+              >Fecha Hasta</span
+            >
+          </dt>
+          <dd>
+            <span>{{ programacionRef.fechaHasta | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.programacion.help.duracionMinutos' | translate"
+              jhiTranslate="agendamientoApp.programacion.duracionMinutos"
+              >Duracion Minutos</span
+            >
+          </dt>
+          <dd>
+            <span>{{ programacionRef.duracionMinutos }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.programacion.help.desdeHoraAlmuerzo' | translate"
+              jhiTranslate="agendamientoApp.programacion.desdeHoraAlmuerzo"
+              >Desde Hora Almuerzo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ programacionRef.desdeHoraAlmuerzo | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.programacion.help.hastaHoraAlmuerzo' | translate"
+              jhiTranslate="agendamientoApp.programacion.hastaHoraAlmuerzo"
+              >Hasta Hora Almuerzo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ programacionRef.hastaHoraAlmuerzo | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.programacion.help.diasSemana' | translate"
+              jhiTranslate="agendamientoApp.programacion.diasSemana"
+              >Dias Semana</span
+            >
+          </dt>
+          <dd>
+            <span>{{ programacionRef.diasSemana }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.programacion.horarioConsulta">Horario Consulta</span></dt>
+          <dd>
+            @if (programacion()!.horarioConsulta) {
+              <div>
+                <a [routerLink]="['/horario-consulta', programacion()!.horarioConsulta?.id, 'view']">{{
+                  programacionRef.horarioConsulta?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/programacion', programacionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

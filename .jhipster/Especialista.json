@@ -1,0 +1,53 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234548"
+  },
+  "applications": "*",
+  "documentation": "The Especialista entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "especialidad del especialista",
+      "fieldName": "especialidad",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "código del doctor",
+      "fieldName": "codigoDoctor",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "número de consultorio",
+      "fieldName": "nroConsultorio",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "foto del especialista",
+      "fieldName": "fotoUrl",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Especialista",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "documentation": "Especialista relacionado con Sujeto",
+      "otherEntityName": "sujeto",
+      "relationshipName": "sujeto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "documentation": "Especialista y sus horarios de consulta",
+      "otherEntityName": "horarioConsulta",
+      "relationshipName": "horarioConsulta",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (especialista(); as especialistaRef) {
+      <div>
+        <h2 data-cy="especialistaDetailsHeading"><span jhiTranslate="agendamientoApp.especialista.detail.title">Especialista</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ especialistaRef.id }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.especialista.help.especialidad' | translate"
+              jhiTranslate="agendamientoApp.especialista.especialidad"
+              >Especialidad</span
+            >
+          </dt>
+          <dd>
+            <span>{{ especialistaRef.especialidad }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.especialista.help.codigoDoctor' | translate"
+              jhiTranslate="agendamientoApp.especialista.codigoDoctor"
+              >Codigo Doctor</span
+            >
+          </dt>
+          <dd>
+            <span>{{ especialistaRef.codigoDoctor }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.especialista.help.nroConsultorio' | translate"
+              jhiTranslate="agendamientoApp.especialista.nroConsultorio"
+              >Nro Consultorio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ especialistaRef.nroConsultorio }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.especialista.help.fotoUrl' | translate" jhiTranslate="agendamientoApp.especialista.fotoUrl"
+              >Foto Url</span
+            >
+          </dt>
+          <dd>
+            <span>{{ especialistaRef.fotoUrl }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.especialista.sujeto">Sujeto</span></dt>
+          <dd>
+            @if (especialista()!.sujeto) {
+              <div>
+                <a [routerLink]="['/sujeto', especialista()!.sujeto?.id, 'view']">{{ especialistaRef.sujeto?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/especialista', especialistaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

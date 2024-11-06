@@ -1,0 +1,52 @@
+{
+  "agendamientoApp": {
+    "cita": {
+      "home": {
+        "title": "Citas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Cita",
+        "createOrEditLabel": "Crear o editar Cita",
+        "notFound": "Ningún Citas encontrado"
+      },
+      "created": "Un nuevo Cita ha sido creado con el identificador {{ param }}",
+      "updated": "Un Cita ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Cita ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Cita {{ id }}?"
+      },
+      "detail": {
+        "title": "Cita"
+      },
+      "id": "ID",
+      "fechaCita": "Fecha Cita",
+      "horaInicio": "Hora Inicio",
+      "duracionMinutos": "Duracion Minutos",
+      "estado": "Estado",
+      "tipoVisita": "Tipo Visita",
+      "canalAtencion": "Canal Atencion",
+      "observacion": "Observacion",
+      "recordatorio": "Recordatorio",
+      "motivoConsulta": "Motivo Consulta",
+      "detalleConsultaVirtual": "Detalle Consulta Virtual",
+      "virtual": "Virtual",
+      "informacionReserva": "Informacion Reserva",
+      "especialista": "Especialista",
+      "tipoTerapia": "Tipo Terapia",
+      "paciente": "Paciente",
+      "help": {
+        "fechaCita": "fecha de la cita",
+        "horaInicio": "hora de inicio",
+        "duracionMinutos": "duración en minutos",
+        "estado": "estado",
+        "tipoVisita": "tipo de visita",
+        "canalAtencion": "canal de atención",
+        "observacion": "observación",
+        "recordatorio": "recordatorio",
+        "motivoConsulta": "motivo de consulta",
+        "detalleConsultaVirtual": "detalle de consulta virtual",
+        "virtual": "indica si es virtual",
+        "informacionReserva": "información de reserva"
+      }
+    }
+  }
+}

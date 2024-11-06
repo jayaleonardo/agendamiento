@@ -1,0 +1,160 @@
+<div>
+  <h2 id="page-heading" data-cy="ProgramacionHeading">
+    <span jhiTranslate="agendamientoApp.programacion.home.title">Programacions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="agendamientoApp.programacion.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-programacion"
+        [routerLink]="['/programacion/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="agendamientoApp.programacion.home.createLabel">Crear nuevo Programacion</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (programacions?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="agendamientoApp.programacion.home.notFound">Ningún Programacions encontrado</span>
+    </div>
+  }
+
+  @if (programacions && programacions.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaDesde">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.fechaDesde">Fecha Desde</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaHasta">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.fechaHasta">Fecha Hasta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="duracionMinutos">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.duracionMinutos">Duracion Minutos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="desdeHoraAlmuerzo">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.desdeHoraAlmuerzo">Desde Hora Almuerzo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hastaHoraAlmuerzo">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.hastaHoraAlmuerzo">Hasta Hora Almuerzo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diasSemana">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.diasSemana">Dias Semana</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="horarioConsulta.id">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.programacion.horarioConsulta">Horario Consulta</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (programacion of programacions; track trackId(programacion)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/programacion', programacion.id, 'view']">{{ programacion.id }}</a>
+              </td>
+              <td>{{ programacion.fechaDesde | formatMediumDate }}</td>
+              <td>{{ programacion.fechaHasta | formatMediumDate }}</td>
+              <td>{{ programacion.duracionMinutos }}</td>
+              <td>{{ programacion.desdeHoraAlmuerzo | formatMediumDatetime }}</td>
+              <td>{{ programacion.hastaHoraAlmuerzo | formatMediumDatetime }}</td>
+              <td>{{ programacion.diasSemana }}</td>
+              <td>
+                @if (programacion.horarioConsulta) {
+                  <div>
+                    <a [routerLink]="['/horario-consulta', programacion.horarioConsulta.id, 'view']">{{
+                      programacion.horarioConsulta.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/programacion', programacion.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/programacion', programacion.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(programacion)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (programacions && programacions.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

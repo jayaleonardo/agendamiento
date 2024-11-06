@@ -1,0 +1,213 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-programacion-heading"
+        data-cy="ProgramacionCreateUpdateHeading"
+        jhiTranslate="agendamientoApp.programacion.home.createOrEditLabel"
+      >
+        Crear o editar Programacion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.programacion.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let fechaDesdeRef = editForm.get('fechaDesde')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fechaDesde"
+            [ngbTooltip]="'agendamientoApp.programacion.help.fechaDesde' | translate"
+            jhiTranslate="agendamientoApp.programacion.fechaDesde"
+            >Fecha Desde</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaDesde"
+              data-cy="fechaDesde"
+              type="text"
+              class="form-control"
+              name="fechaDesde"
+              ngbDatepicker
+              #fechaDesdeDp="ngbDatepicker"
+              formControlName="fechaDesde"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDesdeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (fechaDesdeRef.invalid && (fechaDesdeRef.dirty || fechaDesdeRef.touched)) {
+            <div>
+              @if (editForm.get('fechaDesde')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let fechaHastaRef = editForm.get('fechaHasta')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fechaHasta"
+            [ngbTooltip]="'agendamientoApp.programacion.help.fechaHasta' | translate"
+            jhiTranslate="agendamientoApp.programacion.fechaHasta"
+            >Fecha Hasta</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaHasta"
+              data-cy="fechaHasta"
+              type="text"
+              class="form-control"
+              name="fechaHasta"
+              ngbDatepicker
+              #fechaHastaDp="ngbDatepicker"
+              formControlName="fechaHasta"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaHastaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (fechaHastaRef.invalid && (fechaHastaRef.dirty || fechaHastaRef.touched)) {
+            <div>
+              @if (editForm.get('fechaHasta')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let duracionMinutosRef = editForm.get('duracionMinutos')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_duracionMinutos"
+            [ngbTooltip]="'agendamientoApp.programacion.help.duracionMinutos' | translate"
+            jhiTranslate="agendamientoApp.programacion.duracionMinutos"
+            >Duracion Minutos</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="duracionMinutos"
+            id="field_duracionMinutos"
+            data-cy="duracionMinutos"
+            formControlName="duracionMinutos"
+          />
+          @if (duracionMinutosRef.invalid && (duracionMinutosRef.dirty || duracionMinutosRef.touched)) {
+            <div>
+              @if (editForm.get('duracionMinutos')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('duracionMinutos')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_desdeHoraAlmuerzo"
+            [ngbTooltip]="'agendamientoApp.programacion.help.desdeHoraAlmuerzo' | translate"
+            jhiTranslate="agendamientoApp.programacion.desdeHoraAlmuerzo"
+            >Desde Hora Almuerzo</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_desdeHoraAlmuerzo"
+              data-cy="desdeHoraAlmuerzo"
+              type="datetime-local"
+              class="form-control"
+              name="desdeHoraAlmuerzo"
+              formControlName="desdeHoraAlmuerzo"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_hastaHoraAlmuerzo"
+            [ngbTooltip]="'agendamientoApp.programacion.help.hastaHoraAlmuerzo' | translate"
+            jhiTranslate="agendamientoApp.programacion.hastaHoraAlmuerzo"
+            >Hasta Hora Almuerzo</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_hastaHoraAlmuerzo"
+              data-cy="hastaHoraAlmuerzo"
+              type="datetime-local"
+              class="form-control"
+              name="hastaHoraAlmuerzo"
+              formControlName="hastaHoraAlmuerzo"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_diasSemana"
+            [ngbTooltip]="'agendamientoApp.programacion.help.diasSemana' | translate"
+            jhiTranslate="agendamientoApp.programacion.diasSemana"
+            >Dias Semana</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="diasSemana"
+            id="field_diasSemana"
+            data-cy="diasSemana"
+            formControlName="diasSemana"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_horarioConsulta" jhiTranslate="agendamientoApp.programacion.horarioConsulta"
+            >Horario Consulta</label
+          >
+          <select
+            class="form-control"
+            id="field_horarioConsulta"
+            data-cy="horarioConsulta"
+            name="horarioConsulta"
+            formControlName="horarioConsulta"
+            [compareWith]="compareHorarioConsulta"
+          >
+            <option [ngValue]="null"></option>
+            @for (horarioConsultaOption of horarioConsultasSharedCollection; track $index) {
+              <option [ngValue]="horarioConsultaOption">{{ horarioConsultaOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

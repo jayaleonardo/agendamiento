@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (sujeto(); as sujetoRef) {
+      <div>
+        <h2 data-cy="sujetoDetailsHeading"><span jhiTranslate="agendamientoApp.sujeto.detail.title">Sujeto</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ sujetoRef.id }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.sujeto.help.nombre' | translate" jhiTranslate="agendamientoApp.sujeto.nombre">Nombre</span>
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.nombre }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.sujeto.help.segundoNombre' | translate" jhiTranslate="agendamientoApp.sujeto.segundoNombre"
+              >Segundo Nombre</span
+            >
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.segundoNombre }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.sujeto.help.apellido' | translate" jhiTranslate="agendamientoApp.sujeto.apellido"
+              >Apellido</span
+            >
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.apellido }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.sujeto.help.segundoApellido' | translate"
+              jhiTranslate="agendamientoApp.sujeto.segundoApellido"
+              >Segundo Apellido</span
+            >
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.segundoApellido }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.sujeto.help.documentoIdentidad' | translate"
+              jhiTranslate="agendamientoApp.sujeto.documentoIdentidad"
+              >Documento Identidad</span
+            >
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.documentoIdentidad }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.sujeto.help.estado' | translate" jhiTranslate="agendamientoApp.sujeto.estado">Estado</span>
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.estado }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.sujeto.help.sexo' | translate" jhiTranslate="agendamientoApp.sujeto.sexo">Sexo</span>
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.sexo }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.sujeto.help.fechaNacimiento' | translate"
+              jhiTranslate="agendamientoApp.sujeto.fechaNacimiento"
+              >Fecha Nacimiento</span
+            >
+          </dt>
+          <dd>
+            <span>{{ sujetoRef.fechaNacimiento | formatMediumDate }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/sujeto', sujetoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

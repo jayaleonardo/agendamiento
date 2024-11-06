@@ -1,0 +1,54 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234550"
+  },
+  "applications": "*",
+  "documentation": "The Paciente entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "número de historia clínica",
+      "fieldName": "nroHistoria",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "nombre del representante",
+      "fieldName": "nombreRepresentante",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "parentesco del representante",
+      "fieldName": "parentescoRepresentante",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "correo electrónico del representante",
+      "fieldName": "correoRepresentante",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "celular del representante",
+      "fieldName": "celularRepresentante",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "dirección del representante",
+      "fieldName": "direccionRepresentante",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Paciente",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "documentation": "Paciente relacionado con Sujeto",
+      "otherEntityName": "sujeto",
+      "relationshipName": "sujeto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

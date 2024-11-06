@@ -1,0 +1,58 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234552"
+  },
+  "applications": "*",
+  "documentation": "The Sujeto entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "nombre del sujeto",
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "segundo nombre del sujeto",
+      "fieldName": "segundoNombre",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "apellido del sujeto",
+      "fieldName": "apellido",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "segundo apellido del sujeto",
+      "fieldName": "segundoApellido",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "documento de identidad del sujeto",
+      "fieldName": "documentoIdentidad",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "estado del sujeto",
+      "fieldName": "estado",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "sexo del sujeto",
+      "fieldName": "sexo",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "fecha de nacimiento del sujeto",
+      "fieldName": "fechaNacimiento",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Sujeto",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-contacto-heading" data-cy="ContactoCreateUpdateHeading" jhiTranslate="agendamientoApp.contacto.home.createOrEditLabel">
+        Crear o editar Contacto
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.contacto.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_telefono"
+            [ngbTooltip]="'agendamientoApp.contacto.help.telefono' | translate"
+            jhiTranslate="agendamientoApp.contacto.telefono"
+            >Telefono</label
+          >
+          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+        </div>
+
+        @let correoRef = editForm.get('correo')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_correo"
+            [ngbTooltip]="'agendamientoApp.contacto.help.correo' | translate"
+            jhiTranslate="agendamientoApp.contacto.correo"
+            >Correo</label
+          >
+          <input type="text" class="form-control" name="correo" id="field_correo" data-cy="correo" formControlName="correo" />
+          @if (correoRef.invalid && (correoRef.dirty || correoRef.touched)) {
+            <div>
+              @if (editForm.get('correo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codigoPaisRef = editForm.get('codigoPais')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_codigoPais"
+            [ngbTooltip]="'agendamientoApp.contacto.help.codigoPais' | translate"
+            jhiTranslate="agendamientoApp.contacto.codigoPais"
+            >Codigo Pais</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codigoPais"
+            id="field_codigoPais"
+            data-cy="codigoPais"
+            formControlName="codigoPais"
+          />
+          @if (codigoPaisRef.invalid && (codigoPaisRef.dirty || codigoPaisRef.touched)) {
+            <div>
+              @if (editForm.get('codigoPais')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_celular"
+            [ngbTooltip]="'agendamientoApp.contacto.help.celular' | translate"
+            jhiTranslate="agendamientoApp.contacto.celular"
+            >Celular</label
+          >
+          <input type="text" class="form-control" name="celular" id="field_celular" data-cy="celular" formControlName="celular" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sujeto" jhiTranslate="agendamientoApp.contacto.sujeto">Sujeto</label>
+          <select
+            class="form-control"
+            id="field_sujeto"
+            data-cy="sujeto"
+            name="sujeto"
+            formControlName="sujeto"
+            [compareWith]="compareSujeto"
+          >
+            <option [ngValue]="null"></option>
+            @for (sujetoOption of sujetosCollection; track $index) {
+              <option [ngValue]="sujetoOption">{{ sujetoOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

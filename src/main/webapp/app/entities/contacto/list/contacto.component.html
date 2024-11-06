@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="ContactoHeading">
+    <span jhiTranslate="agendamientoApp.contacto.home.title">Contactos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="agendamientoApp.contacto.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contacto"
+        [routerLink]="['/contacto/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="agendamientoApp.contacto.home.createLabel">Crear nuevo Contacto</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (contactos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="agendamientoApp.contacto.home.notFound">Ningún Contactos encontrado</span>
+    </div>
+  }
+
+  @if (contactos && contactos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefono">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.contacto.telefono">Telefono</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="correo">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.contacto.correo">Correo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codigoPais">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.contacto.codigoPais">Codigo Pais</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="celular">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.contacto.celular">Celular</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sujeto.id">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.contacto.sujeto">Sujeto</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (contacto of contactos; track trackId(contacto)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/contacto', contacto.id, 'view']">{{ contacto.id }}</a>
+              </td>
+              <td>{{ contacto.telefono }}</td>
+              <td>{{ contacto.correo }}</td>
+              <td>{{ contacto.codigoPais }}</td>
+              <td>{{ contacto.celular }}</td>
+              <td>
+                @if (contacto.sujeto) {
+                  <div>
+                    <a [routerLink]="['/sujeto', contacto.sujeto.id, 'view']">{{ contacto.sujeto.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/contacto', contacto.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/contacto', contacto.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(contacto)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (contactos && contactos.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

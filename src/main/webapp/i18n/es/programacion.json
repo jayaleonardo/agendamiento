@@ -1,0 +1,38 @@
+{
+  "agendamientoApp": {
+    "programacion": {
+      "home": {
+        "title": "Programacions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Programacion",
+        "createOrEditLabel": "Crear o editar Programacion",
+        "notFound": "Ningún Programacions encontrado"
+      },
+      "created": "Un nuevo Programacion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Programacion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Programacion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Programacion {{ id }}?"
+      },
+      "detail": {
+        "title": "Programacion"
+      },
+      "id": "ID",
+      "fechaDesde": "Fecha Desde",
+      "fechaHasta": "Fecha Hasta",
+      "duracionMinutos": "Duracion Minutos",
+      "desdeHoraAlmuerzo": "Desde Hora Almuerzo",
+      "hastaHoraAlmuerzo": "Hasta Hora Almuerzo",
+      "diasSemana": "Dias Semana",
+      "horarioConsulta": "Horario Consulta",
+      "help": {
+        "fechaDesde": "fecha desde",
+        "fechaHasta": "fecha hasta",
+        "duracionMinutos": "duración en minutos",
+        "desdeHoraAlmuerzo": "desde hora del almuerzo",
+        "hastaHoraAlmuerzo": "hasta hora del almuerzo",
+        "diasSemana": "días de la semana"
+      }
+    }
+  }
+}

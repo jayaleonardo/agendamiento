@@ -1,0 +1,232 @@
+<div>
+  <h2 id="page-heading" data-cy="CitaHeading">
+    <span jhiTranslate="agendamientoApp.cita.home.title">Citas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="agendamientoApp.cita.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cita"
+        [routerLink]="['/cita/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="agendamientoApp.cita.home.createLabel">Crear nuevo Cita</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (citas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="agendamientoApp.cita.home.notFound">Ningún Citas encontrado</span>
+    </div>
+  }
+
+  @if (citas && citas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaCita">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.fechaCita">Fecha Cita</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="horaInicio">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.horaInicio">Hora Inicio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="duracionMinutos">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.duracionMinutos">Duracion Minutos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estado">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.estado">Estado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoVisita">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.tipoVisita">Tipo Visita</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="canalAtencion">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.canalAtencion">Canal Atencion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observacion">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.observacion">Observacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="recordatorio">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.recordatorio">Recordatorio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="motivoConsulta">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.motivoConsulta">Motivo Consulta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detalleConsultaVirtual">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.detalleConsultaVirtual">Detalle Consulta Virtual</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="virtual">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.virtual">Virtual</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="informacionReserva">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.informacionReserva">Informacion Reserva</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="especialista.id">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.especialista">Especialista</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoTerapia.id">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.tipoTerapia">Tipo Terapia</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="paciente.id">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.paciente">Paciente</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (cita of citas; track trackId(cita)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/cita', cita.id, 'view']">{{ cita.id }}</a>
+              </td>
+              <td>{{ cita.fechaCita | formatMediumDate }}</td>
+              <td>{{ cita.horaInicio | formatMediumDatetime }}</td>
+              <td>{{ cita.duracionMinutos }}</td>
+              <td>{{ cita.estado }}</td>
+              <td>{{ cita.tipoVisita }}</td>
+              <td>{{ cita.canalAtencion }}</td>
+              <td>{{ cita.observacion }}</td>
+              <td>{{ cita.recordatorio }}</td>
+              <td>{{ cita.motivoConsulta }}</td>
+              <td>{{ cita.detalleConsultaVirtual }}</td>
+              <td>{{ cita.virtual }}</td>
+              <td>{{ cita.informacionReserva }}</td>
+              <td>
+                @if (cita.especialista) {
+                  <div>
+                    <a [routerLink]="['/especialista', cita.especialista.id, 'view']">{{ cita.especialista.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (cita.tipoTerapia) {
+                  <div>
+                    <a [routerLink]="['/tipo-terapia', cita.tipoTerapia.id, 'view']">{{ cita.tipoTerapia.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (cita.paciente) {
+                  <div>
+                    <a [routerLink]="['/paciente', cita.paciente.id, 'view']">{{ cita.paciente.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/cita', cita.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/cita', cita.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(cita)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (citas && citas.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

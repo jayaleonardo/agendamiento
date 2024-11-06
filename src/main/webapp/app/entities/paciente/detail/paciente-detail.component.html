@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (paciente(); as pacienteRef) {
+      <div>
+        <h2 data-cy="pacienteDetailsHeading"><span jhiTranslate="agendamientoApp.paciente.detail.title">Paciente</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ pacienteRef.id }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.paciente.help.nroHistoria' | translate" jhiTranslate="agendamientoApp.paciente.nroHistoria"
+              >Nro Historia</span
+            >
+          </dt>
+          <dd>
+            <span>{{ pacienteRef.nroHistoria }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.paciente.help.nombreRepresentante' | translate"
+              jhiTranslate="agendamientoApp.paciente.nombreRepresentante"
+              >Nombre Representante</span
+            >
+          </dt>
+          <dd>
+            <span>{{ pacienteRef.nombreRepresentante }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.paciente.help.parentescoRepresentante' | translate"
+              jhiTranslate="agendamientoApp.paciente.parentescoRepresentante"
+              >Parentesco Representante</span
+            >
+          </dt>
+          <dd>
+            <span>{{ pacienteRef.parentescoRepresentante }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.paciente.help.correoRepresentante' | translate"
+              jhiTranslate="agendamientoApp.paciente.correoRepresentante"
+              >Correo Representante</span
+            >
+          </dt>
+          <dd>
+            <span>{{ pacienteRef.correoRepresentante }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.paciente.help.celularRepresentante' | translate"
+              jhiTranslate="agendamientoApp.paciente.celularRepresentante"
+              >Celular Representante</span
+            >
+          </dt>
+          <dd>
+            <span>{{ pacienteRef.celularRepresentante }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.paciente.help.direccionRepresentante' | translate"
+              jhiTranslate="agendamientoApp.paciente.direccionRepresentante"
+              >Direccion Representante</span
+            >
+          </dt>
+          <dd>
+            <span>{{ pacienteRef.direccionRepresentante }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.paciente.sujeto">Sujeto</span></dt>
+          <dd>
+            @if (paciente()!.sujeto) {
+              <div>
+                <a [routerLink]="['/sujeto', paciente()!.sujeto?.id, 'view']">{{ pacienteRef.sujeto?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/paciente', pacienteRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

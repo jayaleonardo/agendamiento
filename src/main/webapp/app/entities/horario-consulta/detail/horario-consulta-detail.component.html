@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (horarioConsulta(); as horarioConsultaRef) {
+      <div>
+        <h2 data-cy="horarioConsultaDetailsHeading">
+          <span jhiTranslate="agendamientoApp.horarioConsulta.detail.title">Horario Consulta</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ horarioConsultaRef.id }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.fechaHorario' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.fechaHorario"
+              >Fecha Horario</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.fechaHorario | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.horaInicio' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.horaInicio"
+              >Hora Inicio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.horaInicio | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.duracionMinutos' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.duracionMinutos"
+              >Duracion Minutos</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.duracionMinutos }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.diaSemana' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.diaSemana"
+              >Dia Semana</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.diaSemana }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.esHorarioAtencion' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.esHorarioAtencion"
+              >Es Horario Atencion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.esHorarioAtencion }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.estado' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.estado"
+              >Estado</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.estado }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.horarioConsulta.especialista">Especialista</span></dt>
+          <dd>
+            @if (horarioConsulta()!.especialista) {
+              <div>
+                <a [routerLink]="['/especialista', horarioConsulta()!.especialista?.id, 'view']">{{
+                  horarioConsultaRef.especialista?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/horario-consulta', horarioConsultaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

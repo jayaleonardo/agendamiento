@@ -1,0 +1,34 @@
+{
+  "agendamientoApp": {
+    "contacto": {
+      "home": {
+        "title": "Contactos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Contacto",
+        "createOrEditLabel": "Crear o editar Contacto",
+        "notFound": "Ningún Contactos encontrado"
+      },
+      "created": "Un nuevo Contacto ha sido creado con el identificador {{ param }}",
+      "updated": "Un Contacto ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Contacto ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Contacto {{ id }}?"
+      },
+      "detail": {
+        "title": "Contacto"
+      },
+      "id": "ID",
+      "telefono": "Telefono",
+      "correo": "Correo",
+      "codigoPais": "Codigo Pais",
+      "celular": "Celular",
+      "sujeto": "Sujeto",
+      "help": {
+        "telefono": "teléfono de contacto",
+        "correo": "correo de contacto",
+        "codigoPais": "código de país",
+        "celular": "celular de contacto"
+      }
+    }
+  }
+}

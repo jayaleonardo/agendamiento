@@ -1,0 +1,45 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234546"
+  },
+  "applications": "*",
+  "documentation": "The Contacto entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "teléfono de contacto",
+      "fieldName": "telefono",
+      "fieldType": "String"
+    },
+    {
+      "documentation": "correo de contacto",
+      "fieldName": "correo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "código de país",
+      "fieldName": "codigoPais",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "celular de contacto",
+      "fieldName": "celular",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Contacto",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "documentation": "Contacto relacionado con Sujeto",
+      "otherEntityName": "sujeto",
+      "relationshipName": "sujeto",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (tipoTerapia(); as tipoTerapiaRef) {
+      <div>
+        <h2 data-cy="tipoTerapiaDetailsHeading"><span jhiTranslate="agendamientoApp.tipoTerapia.detail.title">Tipo Terapia</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ tipoTerapiaRef.id }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.tipoTerapia.help.descripcion' | translate"
+              jhiTranslate="agendamientoApp.tipoTerapia.descripcion"
+              >Descripcion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ tipoTerapiaRef.descripcion }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/tipo-terapia', tipoTerapiaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

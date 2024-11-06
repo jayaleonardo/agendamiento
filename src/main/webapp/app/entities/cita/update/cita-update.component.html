@@ -1,0 +1,333 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cita-heading" data-cy="CitaCreateUpdateHeading" jhiTranslate="agendamientoApp.cita.home.createOrEditLabel">
+        Crear o editar Cita
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.cita.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let fechaCitaRef = editForm.get('fechaCita')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fechaCita"
+            [ngbTooltip]="'agendamientoApp.cita.help.fechaCita' | translate"
+            jhiTranslate="agendamientoApp.cita.fechaCita"
+            >Fecha Cita</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaCita"
+              data-cy="fechaCita"
+              type="text"
+              class="form-control"
+              name="fechaCita"
+              ngbDatepicker
+              #fechaCitaDp="ngbDatepicker"
+              formControlName="fechaCita"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaCitaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (fechaCitaRef.invalid && (fechaCitaRef.dirty || fechaCitaRef.touched)) {
+            <div>
+              @if (editForm.get('fechaCita')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let horaInicioRef = editForm.get('horaInicio')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_horaInicio"
+            [ngbTooltip]="'agendamientoApp.cita.help.horaInicio' | translate"
+            jhiTranslate="agendamientoApp.cita.horaInicio"
+            >Hora Inicio</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_horaInicio"
+              data-cy="horaInicio"
+              type="datetime-local"
+              class="form-control"
+              name="horaInicio"
+              formControlName="horaInicio"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (horaInicioRef.invalid && (horaInicioRef.dirty || horaInicioRef.touched)) {
+            <div>
+              @if (editForm.get('horaInicio')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('horaInicio')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Este campo debe ser una fecha y hora.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let duracionMinutosRef = editForm.get('duracionMinutos')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_duracionMinutos"
+            [ngbTooltip]="'agendamientoApp.cita.help.duracionMinutos' | translate"
+            jhiTranslate="agendamientoApp.cita.duracionMinutos"
+            >Duracion Minutos</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="duracionMinutos"
+            id="field_duracionMinutos"
+            data-cy="duracionMinutos"
+            formControlName="duracionMinutos"
+          />
+          @if (duracionMinutosRef.invalid && (duracionMinutosRef.dirty || duracionMinutosRef.touched)) {
+            <div>
+              @if (editForm.get('duracionMinutos')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('duracionMinutos')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_estado"
+            [ngbTooltip]="'agendamientoApp.cita.help.estado' | translate"
+            jhiTranslate="agendamientoApp.cita.estado"
+            >Estado</label
+          >
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tipoVisita"
+            [ngbTooltip]="'agendamientoApp.cita.help.tipoVisita' | translate"
+            jhiTranslate="agendamientoApp.cita.tipoVisita"
+            >Tipo Visita</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="tipoVisita"
+            id="field_tipoVisita"
+            data-cy="tipoVisita"
+            formControlName="tipoVisita"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_canalAtencion"
+            [ngbTooltip]="'agendamientoApp.cita.help.canalAtencion' | translate"
+            jhiTranslate="agendamientoApp.cita.canalAtencion"
+            >Canal Atencion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="canalAtencion"
+            id="field_canalAtencion"
+            data-cy="canalAtencion"
+            formControlName="canalAtencion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_observacion"
+            [ngbTooltip]="'agendamientoApp.cita.help.observacion' | translate"
+            jhiTranslate="agendamientoApp.cita.observacion"
+            >Observacion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="observacion"
+            id="field_observacion"
+            data-cy="observacion"
+            formControlName="observacion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_recordatorio"
+            [ngbTooltip]="'agendamientoApp.cita.help.recordatorio' | translate"
+            jhiTranslate="agendamientoApp.cita.recordatorio"
+            >Recordatorio</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="recordatorio"
+            id="field_recordatorio"
+            data-cy="recordatorio"
+            formControlName="recordatorio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_motivoConsulta"
+            [ngbTooltip]="'agendamientoApp.cita.help.motivoConsulta' | translate"
+            jhiTranslate="agendamientoApp.cita.motivoConsulta"
+            >Motivo Consulta</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="motivoConsulta"
+            id="field_motivoConsulta"
+            data-cy="motivoConsulta"
+            formControlName="motivoConsulta"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_detalleConsultaVirtual"
+            [ngbTooltip]="'agendamientoApp.cita.help.detalleConsultaVirtual' | translate"
+            jhiTranslate="agendamientoApp.cita.detalleConsultaVirtual"
+            >Detalle Consulta Virtual</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="detalleConsultaVirtual"
+            id="field_detalleConsultaVirtual"
+            data-cy="detalleConsultaVirtual"
+            formControlName="detalleConsultaVirtual"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_virtual"
+            [ngbTooltip]="'agendamientoApp.cita.help.virtual' | translate"
+            jhiTranslate="agendamientoApp.cita.virtual"
+            >Virtual</label
+          >
+          <input type="checkbox" class="form-check" name="virtual" id="field_virtual" data-cy="virtual" formControlName="virtual" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_informacionReserva"
+            [ngbTooltip]="'agendamientoApp.cita.help.informacionReserva' | translate"
+            jhiTranslate="agendamientoApp.cita.informacionReserva"
+            >Informacion Reserva</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="informacionReserva"
+            id="field_informacionReserva"
+            data-cy="informacionReserva"
+            formControlName="informacionReserva"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_especialista" jhiTranslate="agendamientoApp.cita.especialista">Especialista</label>
+          <select
+            class="form-control"
+            id="field_especialista"
+            data-cy="especialista"
+            name="especialista"
+            formControlName="especialista"
+            [compareWith]="compareEspecialista"
+          >
+            <option [ngValue]="null"></option>
+            @for (especialistaOption of especialistasSharedCollection; track $index) {
+              <option [ngValue]="especialistaOption">{{ especialistaOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoTerapia" jhiTranslate="agendamientoApp.cita.tipoTerapia">Tipo Terapia</label>
+          <select
+            class="form-control"
+            id="field_tipoTerapia"
+            data-cy="tipoTerapia"
+            name="tipoTerapia"
+            formControlName="tipoTerapia"
+            [compareWith]="compareTipoTerapia"
+          >
+            <option [ngValue]="null"></option>
+            @for (tipoTerapiaOption of tipoTerapiasSharedCollection; track $index) {
+              <option [ngValue]="tipoTerapiaOption">{{ tipoTerapiaOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_paciente" jhiTranslate="agendamientoApp.cita.paciente">Paciente</label>
+          <select
+            class="form-control"
+            id="field_paciente"
+            data-cy="paciente"
+            name="paciente"
+            formControlName="paciente"
+            [compareWith]="comparePaciente"
+          >
+            <option [ngValue]="null"></option>
+            @for (pacienteOption of pacientesSharedCollection; track $index) {
+              <option [ngValue]="pacienteOption">{{ pacienteOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

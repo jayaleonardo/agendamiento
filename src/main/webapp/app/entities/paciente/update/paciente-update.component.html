@@ -1,0 +1,175 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-paciente-heading" data-cy="PacienteCreateUpdateHeading" jhiTranslate="agendamientoApp.paciente.home.createOrEditLabel">
+        Crear o editar Paciente
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.paciente.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nroHistoriaRef = editForm.get('nroHistoria')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nroHistoria"
+            [ngbTooltip]="'agendamientoApp.paciente.help.nroHistoria' | translate"
+            jhiTranslate="agendamientoApp.paciente.nroHistoria"
+            >Nro Historia</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="nroHistoria"
+            id="field_nroHistoria"
+            data-cy="nroHistoria"
+            formControlName="nroHistoria"
+          />
+          @if (nroHistoriaRef.invalid && (nroHistoriaRef.dirty || nroHistoriaRef.touched)) {
+            <div>
+              @if (editForm.get('nroHistoria')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('nroHistoria')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nombreRepresentante"
+            [ngbTooltip]="'agendamientoApp.paciente.help.nombreRepresentante' | translate"
+            jhiTranslate="agendamientoApp.paciente.nombreRepresentante"
+            >Nombre Representante</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nombreRepresentante"
+            id="field_nombreRepresentante"
+            data-cy="nombreRepresentante"
+            formControlName="nombreRepresentante"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_parentescoRepresentante"
+            [ngbTooltip]="'agendamientoApp.paciente.help.parentescoRepresentante' | translate"
+            jhiTranslate="agendamientoApp.paciente.parentescoRepresentante"
+            >Parentesco Representante</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="parentescoRepresentante"
+            id="field_parentescoRepresentante"
+            data-cy="parentescoRepresentante"
+            formControlName="parentescoRepresentante"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_correoRepresentante"
+            [ngbTooltip]="'agendamientoApp.paciente.help.correoRepresentante' | translate"
+            jhiTranslate="agendamientoApp.paciente.correoRepresentante"
+            >Correo Representante</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="correoRepresentante"
+            id="field_correoRepresentante"
+            data-cy="correoRepresentante"
+            formControlName="correoRepresentante"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_celularRepresentante"
+            [ngbTooltip]="'agendamientoApp.paciente.help.celularRepresentante' | translate"
+            jhiTranslate="agendamientoApp.paciente.celularRepresentante"
+            >Celular Representante</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="celularRepresentante"
+            id="field_celularRepresentante"
+            data-cy="celularRepresentante"
+            formControlName="celularRepresentante"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_direccionRepresentante"
+            [ngbTooltip]="'agendamientoApp.paciente.help.direccionRepresentante' | translate"
+            jhiTranslate="agendamientoApp.paciente.direccionRepresentante"
+            >Direccion Representante</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="direccionRepresentante"
+            id="field_direccionRepresentante"
+            data-cy="direccionRepresentante"
+            formControlName="direccionRepresentante"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sujeto" jhiTranslate="agendamientoApp.paciente.sujeto">Sujeto</label>
+          <select
+            class="form-control"
+            id="field_sujeto"
+            data-cy="sujeto"
+            name="sujeto"
+            formControlName="sujeto"
+            [compareWith]="compareSujeto"
+          >
+            <option [ngValue]="null"></option>
+            @for (sujetoOption of sujetosCollection; track $index) {
+              <option [ngValue]="sujetoOption">{{ sujetoOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

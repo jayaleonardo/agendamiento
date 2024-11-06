@@ -1,0 +1,179 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-direccion-heading" data-cy="DireccionCreateUpdateHeading" jhiTranslate="agendamientoApp.direccion.home.createOrEditLabel">
+        Crear o editar Direccion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.direccion.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let idDireccionRef = editForm.get('idDireccion')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_idDireccion"
+            [ngbTooltip]="'agendamientoApp.direccion.help.idDireccion' | translate"
+            jhiTranslate="agendamientoApp.direccion.idDireccion"
+            >Id Direccion</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="idDireccion"
+            id="field_idDireccion"
+            data-cy="idDireccion"
+            formControlName="idDireccion"
+          />
+          @if (idDireccionRef.invalid && (idDireccionRef.dirty || idDireccionRef.touched)) {
+            <div>
+              @if (editForm.get('idDireccion')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('idDireccion')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let paisRef = editForm.get('pais')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_pais"
+            [ngbTooltip]="'agendamientoApp.direccion.help.pais' | translate"
+            jhiTranslate="agendamientoApp.direccion.pais"
+            >Pais</label
+          >
+          <input type="text" class="form-control" name="pais" id="field_pais" data-cy="pais" formControlName="pais" />
+          @if (paisRef.invalid && (paisRef.dirty || paisRef.touched)) {
+            <div>
+              @if (editForm.get('pais')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let provinciaRef = editForm.get('provincia')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_provincia"
+            [ngbTooltip]="'agendamientoApp.direccion.help.provincia' | translate"
+            jhiTranslate="agendamientoApp.direccion.provincia"
+            >Provincia</label
+          >
+          <input type="text" class="form-control" name="provincia" id="field_provincia" data-cy="provincia" formControlName="provincia" />
+          @if (provinciaRef.invalid && (provinciaRef.dirty || provinciaRef.touched)) {
+            <div>
+              @if (editForm.get('provincia')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let ciudadRef = editForm.get('ciudad')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_ciudad"
+            [ngbTooltip]="'agendamientoApp.direccion.help.ciudad' | translate"
+            jhiTranslate="agendamientoApp.direccion.ciudad"
+            >Ciudad</label
+          >
+          <input type="text" class="form-control" name="ciudad" id="field_ciudad" data-cy="ciudad" formControlName="ciudad" />
+          @if (ciudadRef.invalid && (ciudadRef.dirty || ciudadRef.touched)) {
+            <div>
+              @if (editForm.get('ciudad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let callesRef = editForm.get('calles')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_calles"
+            [ngbTooltip]="'agendamientoApp.direccion.help.calles' | translate"
+            jhiTranslate="agendamientoApp.direccion.calles"
+            >Calles</label
+          >
+          <input type="text" class="form-control" name="calles" id="field_calles" data-cy="calles" formControlName="calles" />
+          @if (callesRef.invalid && (callesRef.dirty || callesRef.touched)) {
+            <div>
+              @if (editForm.get('calles')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nroDomicilio"
+            [ngbTooltip]="'agendamientoApp.direccion.help.nroDomicilio' | translate"
+            jhiTranslate="agendamientoApp.direccion.nroDomicilio"
+            >Nro Domicilio</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nroDomicilio"
+            id="field_nroDomicilio"
+            data-cy="nroDomicilio"
+            formControlName="nroDomicilio"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sujeto" jhiTranslate="agendamientoApp.direccion.sujeto">Sujeto</label>
+          <select
+            class="form-control"
+            id="field_sujeto"
+            data-cy="sujeto"
+            name="sujeto"
+            formControlName="sujeto"
+            [compareWith]="compareSujeto"
+          >
+            <option [ngValue]="null"></option>
+            @for (sujetoOption of sujetosCollection; track $index) {
+              <option [ngValue]="sujetoOption">{{ sujetoOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

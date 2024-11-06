@@ -1,0 +1,27 @@
+{
+  "agendamientoApp": {
+    "tipoTerapia": {
+      "home": {
+        "title": "Tipo Terapias",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Terapia",
+        "createOrEditLabel": "Crear o editar Tipo Terapia",
+        "notFound": "Ningún Tipo Terapias encontrado"
+      },
+      "created": "Un nuevo Tipo Terapia ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Terapia ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Terapia ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Terapia {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Terapia"
+      },
+      "id": "ID",
+      "descripcion": "Descripcion",
+      "help": {
+        "descripcion": "descripción del tipo de terapia"
+      }
+    }
+  }
+}

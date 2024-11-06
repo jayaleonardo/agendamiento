@@ -1,0 +1,45 @@
+{
+  "agendamientoApp": {
+    "sujeto": {
+      "home": {
+        "title": "Sujetos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Sujeto",
+        "createOrEditLabel": "Crear o editar Sujeto",
+        "notFound": "Ningún Sujetos encontrado"
+      },
+      "created": "Un nuevo Sujeto ha sido creado con el identificador {{ param }}",
+      "updated": "Un Sujeto ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Sujeto ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Sujeto {{ id }}?"
+      },
+      "detail": {
+        "title": "Sujeto"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "segundoNombre": "Segundo Nombre",
+      "apellido": "Apellido",
+      "segundoApellido": "Segundo Apellido",
+      "documentoIdentidad": "Documento Identidad",
+      "estado": "Estado",
+      "sexo": "Sexo",
+      "fechaNacimiento": "Fecha Nacimiento",
+      "contacto": "Contacto",
+      "direccion": "Direccion",
+      "especialista": "Especialista",
+      "paciente": "Paciente",
+      "help": {
+        "nombre": "nombre del sujeto",
+        "segundoNombre": "segundo nombre del sujeto",
+        "apellido": "apellido del sujeto",
+        "segundoApellido": "segundo apellido del sujeto",
+        "documentoIdentidad": "documento de identidad del sujeto",
+        "estado": "estado del sujeto",
+        "sexo": "sexo del sujeto",
+        "fechaNacimiento": "fecha de nacimiento del sujeto"
+      }
+    }
+  }
+}

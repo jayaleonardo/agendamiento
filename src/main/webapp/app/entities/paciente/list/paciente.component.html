@@ -1,0 +1,158 @@
+<div>
+  <h2 id="page-heading" data-cy="PacienteHeading">
+    <span jhiTranslate="agendamientoApp.paciente.home.title">Pacientes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="agendamientoApp.paciente.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-paciente"
+        [routerLink]="['/paciente/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="agendamientoApp.paciente.home.createLabel">Crear nuevo Paciente</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (pacientes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="agendamientoApp.paciente.home.notFound">Ningún Pacientes encontrado</span>
+    </div>
+  }
+
+  @if (pacientes && pacientes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nroHistoria">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.nroHistoria">Nro Historia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreRepresentante">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.nombreRepresentante">Nombre Representante</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="parentescoRepresentante">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.parentescoRepresentante">Parentesco Representante</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="correoRepresentante">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.correoRepresentante">Correo Representante</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="celularRepresentante">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.celularRepresentante">Celular Representante</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="direccionRepresentante">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.direccionRepresentante">Direccion Representante</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sujeto.id">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.paciente.sujeto">Sujeto</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (paciente of pacientes; track trackId(paciente)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/paciente', paciente.id, 'view']">{{ paciente.id }}</a>
+              </td>
+              <td>{{ paciente.nroHistoria }}</td>
+              <td>{{ paciente.nombreRepresentante }}</td>
+              <td>{{ paciente.parentescoRepresentante }}</td>
+              <td>{{ paciente.correoRepresentante }}</td>
+              <td>{{ paciente.celularRepresentante }}</td>
+              <td>{{ paciente.direccionRepresentante }}</td>
+              <td>
+                @if (paciente.sujeto) {
+                  <div>
+                    <a [routerLink]="['/sujeto', paciente.sujeto.id, 'view']">{{ paciente.sujeto.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/paciente', paciente.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/paciente', paciente.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(paciente)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (pacientes && pacientes.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

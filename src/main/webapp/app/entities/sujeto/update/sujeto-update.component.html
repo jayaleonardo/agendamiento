@@ -1,0 +1,183 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-sujeto-heading" data-cy="SujetoCreateUpdateHeading" jhiTranslate="agendamientoApp.sujeto.home.createOrEditLabel">
+        Crear o editar Sujeto
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.sujeto.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nombreRef = editForm.get('nombre')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nombre"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.nombre' | translate"
+            jhiTranslate="agendamientoApp.sujeto.nombre"
+            >Nombre</label
+          >
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_segundoNombre"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.segundoNombre' | translate"
+            jhiTranslate="agendamientoApp.sujeto.segundoNombre"
+            >Segundo Nombre</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="segundoNombre"
+            id="field_segundoNombre"
+            data-cy="segundoNombre"
+            formControlName="segundoNombre"
+          />
+        </div>
+
+        @let apellidoRef = editForm.get('apellido')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_apellido"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.apellido' | translate"
+            jhiTranslate="agendamientoApp.sujeto.apellido"
+            >Apellido</label
+          >
+          <input type="text" class="form-control" name="apellido" id="field_apellido" data-cy="apellido" formControlName="apellido" />
+          @if (apellidoRef.invalid && (apellidoRef.dirty || apellidoRef.touched)) {
+            <div>
+              @if (editForm.get('apellido')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_segundoApellido"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.segundoApellido' | translate"
+            jhiTranslate="agendamientoApp.sujeto.segundoApellido"
+            >Segundo Apellido</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="segundoApellido"
+            id="field_segundoApellido"
+            data-cy="segundoApellido"
+            formControlName="segundoApellido"
+          />
+        </div>
+
+        @let documentoIdentidadRef = editForm.get('documentoIdentidad')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_documentoIdentidad"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.documentoIdentidad' | translate"
+            jhiTranslate="agendamientoApp.sujeto.documentoIdentidad"
+            >Documento Identidad</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="documentoIdentidad"
+            id="field_documentoIdentidad"
+            data-cy="documentoIdentidad"
+            formControlName="documentoIdentidad"
+          />
+          @if (documentoIdentidadRef.invalid && (documentoIdentidadRef.dirty || documentoIdentidadRef.touched)) {
+            <div>
+              @if (editForm.get('documentoIdentidad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_estado"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.estado' | translate"
+            jhiTranslate="agendamientoApp.sujeto.estado"
+            >Estado</label
+          >
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_sexo"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.sexo' | translate"
+            jhiTranslate="agendamientoApp.sujeto.sexo"
+            >Sexo</label
+          >
+          <input type="text" class="form-control" name="sexo" id="field_sexo" data-cy="sexo" formControlName="sexo" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fechaNacimiento"
+            [ngbTooltip]="'agendamientoApp.sujeto.help.fechaNacimiento' | translate"
+            jhiTranslate="agendamientoApp.sujeto.fechaNacimiento"
+            >Fecha Nacimiento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaNacimiento"
+              data-cy="fechaNacimiento"
+              type="text"
+              class="form-control"
+              name="fechaNacimiento"
+              ngbDatepicker
+              #fechaNacimientoDp="ngbDatepicker"
+              formControlName="fechaNacimiento"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaNacimientoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

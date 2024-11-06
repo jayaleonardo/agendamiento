@@ -1,0 +1,119 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-clinica-heading" data-cy="ClinicaCreateUpdateHeading" jhiTranslate="agendamientoApp.clinica.home.createOrEditLabel">
+        Crear o editar Clinica
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.clinica.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nombreRef = editForm.get('nombre')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nombre"
+            [ngbTooltip]="'agendamientoApp.clinica.help.nombre' | translate"
+            jhiTranslate="agendamientoApp.clinica.nombre"
+            >Nombre</label
+          >
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let telefonoRef = editForm.get('telefono')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_telefono"
+            [ngbTooltip]="'agendamientoApp.clinica.help.telefono' | translate"
+            jhiTranslate="agendamientoApp.clinica.telefono"
+            >Telefono</label
+          >
+          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+          @if (telefonoRef.invalid && (telefonoRef.dirty || telefonoRef.touched)) {
+            <div>
+              @if (editForm.get('telefono')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let correoRef = editForm.get('correo')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_correo"
+            [ngbTooltip]="'agendamientoApp.clinica.help.correo' | translate"
+            jhiTranslate="agendamientoApp.clinica.correo"
+            >Correo</label
+          >
+          <input type="text" class="form-control" name="correo" id="field_correo" data-cy="correo" formControlName="correo" />
+          @if (correoRef.invalid && (correoRef.dirty || correoRef.touched)) {
+            <div>
+              @if (editForm.get('correo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let horarioAtencionRef = editForm.get('horarioAtencion')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_horarioAtencion"
+            [ngbTooltip]="'agendamientoApp.clinica.help.horarioAtencion' | translate"
+            jhiTranslate="agendamientoApp.clinica.horarioAtencion"
+            >Horario Atencion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="horarioAtencion"
+            id="field_horarioAtencion"
+            data-cy="horarioAtencion"
+            formControlName="horarioAtencion"
+          />
+          @if (horarioAtencionRef.invalid && (horarioAtencionRef.dirty || horarioAtencionRef.touched)) {
+            <div>
+              @if (editForm.get('horarioAtencion')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

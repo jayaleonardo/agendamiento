@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234551"
+  },
+  "applications": "*",
+  "documentation": "The Programacion entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "fecha desde",
+      "fieldName": "fechaDesde",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "fecha hasta",
+      "fieldName": "fechaHasta",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "duración en minutos",
+      "fieldName": "duracionMinutos",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "desde hora del almuerzo",
+      "fieldName": "desdeHoraAlmuerzo",
+      "fieldType": "Instant"
+    },
+    {
+      "documentation": "hasta hora del almuerzo",
+      "fieldName": "hastaHoraAlmuerzo",
+      "fieldType": "Instant"
+    },
+    {
+      "documentation": "días de la semana",
+      "fieldName": "diasSemana",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Programacion",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

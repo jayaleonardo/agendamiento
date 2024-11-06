@@ -1,0 +1,21 @@
+{
+  "annotations": {
+    "changelogDate": "20241105234553"
+  },
+  "applications": "*",
+  "documentation": "The TipoTerapia entity.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "descripción del tipo de terapia",
+      "fieldName": "descripcion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "TipoTerapia",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

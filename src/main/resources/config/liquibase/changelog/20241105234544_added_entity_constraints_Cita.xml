@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Cita.
+    -->
+    <changeSet id="20241105234544-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="especialista_id"
+                                 baseTableName="cita"
+                                 constraintName="fk_cita__especialista_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="especialista"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="tipo_terapia_id"
+                                 baseTableName="cita"
+                                 constraintName="fk_cita__tipo_terapia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_terapia"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="paciente_id"
+                                 baseTableName="cita"
+                                 constraintName="fk_cita__paciente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="paciente"
+                                 />
+    </changeSet>
+</databaseChangeLog>

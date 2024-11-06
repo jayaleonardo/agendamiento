@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (direccion(); as direccionRef) {
+      <div>
+        <h2 data-cy="direccionDetailsHeading"><span jhiTranslate="agendamientoApp.direccion.detail.title">Direccion</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ direccionRef.id }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.direccion.help.idDireccion' | translate"
+              jhiTranslate="agendamientoApp.direccion.idDireccion"
+              >Id Direccion</span
+            >
+          </dt>
+          <dd>
+            <span>{{ direccionRef.idDireccion }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.direccion.help.pais' | translate" jhiTranslate="agendamientoApp.direccion.pais">Pais</span>
+          </dt>
+          <dd>
+            <span>{{ direccionRef.pais }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.direccion.help.provincia' | translate" jhiTranslate="agendamientoApp.direccion.provincia"
+              >Provincia</span
+            >
+          </dt>
+          <dd>
+            <span>{{ direccionRef.provincia }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.direccion.help.ciudad' | translate" jhiTranslate="agendamientoApp.direccion.ciudad"
+              >Ciudad</span
+            >
+          </dt>
+          <dd>
+            <span>{{ direccionRef.ciudad }}</span>
+          </dd>
+          <dt>
+            <span [ngbTooltip]="'agendamientoApp.direccion.help.calles' | translate" jhiTranslate="agendamientoApp.direccion.calles"
+              >Calles</span
+            >
+          </dt>
+          <dd>
+            <span>{{ direccionRef.calles }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.direccion.help.nroDomicilio' | translate"
+              jhiTranslate="agendamientoApp.direccion.nroDomicilio"
+              >Nro Domicilio</span
+            >
+          </dt>
+          <dd>
+            <span>{{ direccionRef.nroDomicilio }}</span>
+          </dd>
+          <dt><span jhiTranslate="agendamientoApp.direccion.sujeto">Sujeto</span></dt>
+          <dd>
+            @if (direccion()!.sujeto) {
+              <div>
+                <a [routerLink]="['/sujeto', direccion()!.sujeto?.id, 'view']">{{ direccionRef.sujeto?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/direccion', direccionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

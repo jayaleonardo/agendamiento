@@ -1,0 +1,266 @@
+/**  
+ * The Cita entity.  
+ */  
+entity Cita {  
+    /** fecha de la cita */  
+    fechaCita LocalDate required  
+
+    /** hora de inicio */  
+    horaInicio Instant required  
+
+    /** duración en minutos */  
+    duracionMinutos Integer required  
+
+    /** estado */  
+    estado String  
+
+    /** tipo de visita */  
+    tipoVisita String  
+
+    /** canal de atención */  
+    canalAtencion String  
+
+    /** observación */  
+    observacion String  
+
+    /** recordatorio */  
+    recordatorio String  
+
+    /** motivo de consulta */  
+    motivoConsulta String  
+
+    /** detalle de consulta virtual */  
+    detalleConsultaVirtual String  
+
+    /** indica si es virtual */  
+    virtual Boolean  
+
+    /** información de reserva */  
+    informacionReserva String  
+}  
+
+/**  
+ * The Paciente entity.  
+ */  
+entity Paciente {  
+    /** número de historia clínica */  
+    nroHistoria Integer required  
+
+    /** nombre del representante */  
+    nombreRepresentante String  
+
+    /** parentesco del representante */  
+    parentescoRepresentante String  
+
+    /** correo electrónico del representante */  
+    correoRepresentante String  
+
+    /** celular del representante */  
+    celularRepresentante String  
+
+    /** dirección del representante */  
+    direccionRepresentante String  
+}  
+
+/**  
+ * The Sujeto entity.  
+ */  
+entity Sujeto {  
+    /** nombre del sujeto */  
+    nombre String required  
+
+    /** segundo nombre del sujeto */  
+    segundoNombre String  
+
+    /** apellido del sujeto */  
+    apellido String required  
+
+    /** segundo apellido del sujeto */  
+    segundoApellido String  
+
+    /** documento de identidad del sujeto */  
+    documentoIdentidad String required  
+
+    /** estado del sujeto */  
+    estado String  
+
+    /** sexo del sujeto */  
+    sexo String  
+
+    /** fecha de nacimiento del sujeto */  
+    fechaNacimiento LocalDate  
+}  
+
+/**  
+ * The Especialista entity.  
+ */  
+entity Especialista {  
+    /** especialidad del especialista */  
+    especialidad String required  
+
+    /** código del doctor */  
+    codigoDoctor String required  
+
+    /** número de consultorio */  
+    nroConsultorio String required  
+
+    /** foto del especialista */  
+    fotoUrl String  
+}  
+
+/**  
+ * The HorarioConsulta entity.  
+ */  
+entity HorarioConsulta {  
+    /** fecha del horario */  
+    fechaHorario LocalDate required  
+
+    /** hora de inicio */  
+    horaInicio Instant required  
+
+    /** duración en minutos */  
+    duracionMinutos Integer required  
+
+    /** día de la semana */  
+    diaSemana String  
+
+    /** indica si es horario de atención */  
+    esHorarioAtencion Boolean  
+
+    /** estado del horario */  
+    estado String  
+}  
+
+/**  
+ * The Contacto entity.  
+ */  
+entity Contacto {  
+    /** teléfono de contacto */  
+    telefono String  
+
+    /** correo de contacto */  
+    correo String required  
+
+    /** código de país */  
+    codigoPais String required  
+
+    /** celular de contacto */  
+    celular String  
+}  
+
+/**  
+ * The Direccion entity.  
+ */  
+entity Direccion {  
+    /** identificador de dirección */  
+    idDireccion Integer required  
+
+    /** país de la dirección */  
+    pais String required  
+
+    /** provincia de la dirección */  
+    provincia String required  
+
+    /** ciudad de la dirección */  
+    ciudad String required  
+
+    /** calles de la dirección */  
+    calles String required  
+
+    /** número de domicilio */  
+    nroDomicilio String  
+}  
+
+/**  
+ * The Clinica entity.  
+ */  
+entity Clinica {  
+    /** nombre de la clínica */  
+    nombre String required  
+
+    /** teléfono de la clínica */  
+    telefono String required  
+
+    /** correo de la clínica */  
+    correo String required  
+
+    /** horario de atención */  
+    horarioAtencion String required  
+}  
+
+/**  
+ * The TipoTerapia entity.  
+ */  
+entity TipoTerapia {  
+    /** descripción del tipo de terapia */  
+    descripcion String required  
+}  
+
+/**  
+ * The Programacion entity.  
+ */  
+entity Programacion {  
+    /** fecha desde */  
+    fechaDesde LocalDate required  
+
+    /** fecha hasta */  
+    fechaHasta LocalDate required  
+
+    /** duración en minutos */  
+    duracionMinutos Integer required  
+
+    /** desde hora del almuerzo */  
+    desdeHoraAlmuerzo Instant  
+
+    /** hasta hora del almuerzo */  
+    hastaHoraAlmuerzo Instant  
+
+    /** días de la semana */  
+    diasSemana String  
+}  
+
+/**  
+ * Relationships  
+ */  
+
+relationship ManyToOne {  
+    /** Cita relacionadas con Especialista */  
+    Cita{especialista} to Especialista  
+
+    /** Cita relacionadas con TipoTerapia */  
+    Cita{tipoTerapia} to TipoTerapia  
+
+    /** Cita relacionadas con Paciente */  
+    Cita{paciente} to Paciente  
+}  
+
+relationship OneToOne {  
+    /** Paciente relacionado con Sujeto */  
+    Paciente{sujeto} to Sujeto  
+
+    /** Especialista relacionado con Sujeto */  
+    Especialista{sujeto} to Sujeto  
+
+    /** Contacto relacionado con Sujeto */  
+    Contacto{sujeto} to Sujeto  
+
+    /** Direccion relacionada con Sujeto */  
+    Direccion{sujeto} to Sujeto  
+}  
+
+relationship OneToMany {  
+    /** Especialista y sus horarios de consulta */  
+    Especialista{horarioConsulta} to HorarioConsulta  
+
+    /** HorarioConsulta relacionado con Programacion */  
+    HorarioConsulta{programacion} to Programacion  
+}  
+
+// paginacion, dto, servicios  
+paginate * with pagination  
+
+// dto -> objetos planos de java  
+dto * with mapstruct  
+
+// cada entidad tenga su logica de negocios  
+service all with serviceImpl

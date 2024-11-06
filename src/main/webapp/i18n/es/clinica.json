@@ -1,0 +1,33 @@
+{
+  "agendamientoApp": {
+    "clinica": {
+      "home": {
+        "title": "Clinicas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Clinica",
+        "createOrEditLabel": "Crear o editar Clinica",
+        "notFound": "Ningún Clinicas encontrado"
+      },
+      "created": "Un nuevo Clinica ha sido creado con el identificador {{ param }}",
+      "updated": "Un Clinica ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Clinica ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Clinica {{ id }}?"
+      },
+      "detail": {
+        "title": "Clinica"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "telefono": "Telefono",
+      "correo": "Correo",
+      "horarioAtencion": "Horario Atencion",
+      "help": {
+        "nombre": "nombre de la clínica",
+        "telefono": "teléfono de la clínica",
+        "correo": "correo de la clínica",
+        "horarioAtencion": "horario de atención"
+      }
+    }
+  }
+}

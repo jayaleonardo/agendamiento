@@ -1,0 +1,199 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-horario-consulta-heading"
+        data-cy="HorarioConsultaCreateUpdateHeading"
+        jhiTranslate="agendamientoApp.horarioConsulta.home.createOrEditLabel"
+      >
+        Crear o editar Horario Consulta
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="agendamientoApp.horarioConsulta.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let fechaHorarioRef = editForm.get('fechaHorario')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_fechaHorario"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.fechaHorario' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.fechaHorario"
+            >Fecha Horario</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaHorario"
+              data-cy="fechaHorario"
+              type="text"
+              class="form-control"
+              name="fechaHorario"
+              ngbDatepicker
+              #fechaHorarioDp="ngbDatepicker"
+              formControlName="fechaHorario"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaHorarioDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (fechaHorarioRef.invalid && (fechaHorarioRef.dirty || fechaHorarioRef.touched)) {
+            <div>
+              @if (editForm.get('fechaHorario')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let horaInicioRef = editForm.get('horaInicio')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_horaInicio"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.horaInicio' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.horaInicio"
+            >Hora Inicio</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_horaInicio"
+              data-cy="horaInicio"
+              type="datetime-local"
+              class="form-control"
+              name="horaInicio"
+              formControlName="horaInicio"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (horaInicioRef.invalid && (horaInicioRef.dirty || horaInicioRef.touched)) {
+            <div>
+              @if (editForm.get('horaInicio')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('horaInicio')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Este campo debe ser una fecha y hora.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let duracionMinutosRef = editForm.get('duracionMinutos')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_duracionMinutos"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.duracionMinutos' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.duracionMinutos"
+            >Duracion Minutos</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="duracionMinutos"
+            id="field_duracionMinutos"
+            data-cy="duracionMinutos"
+            formControlName="duracionMinutos"
+          />
+          @if (duracionMinutosRef.invalid && (duracionMinutosRef.dirty || duracionMinutosRef.touched)) {
+            <div>
+              @if (editForm.get('duracionMinutos')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('duracionMinutos')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_diaSemana"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.diaSemana' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.diaSemana"
+            >Dia Semana</label
+          >
+          <input type="text" class="form-control" name="diaSemana" id="field_diaSemana" data-cy="diaSemana" formControlName="diaSemana" />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_esHorarioAtencion"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.esHorarioAtencion' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.esHorarioAtencion"
+            >Es Horario Atencion</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="esHorarioAtencion"
+            id="field_esHorarioAtencion"
+            data-cy="esHorarioAtencion"
+            formControlName="esHorarioAtencion"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_estado"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.estado' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.estado"
+            >Estado</label
+          >
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_especialista" jhiTranslate="agendamientoApp.horarioConsulta.especialista"
+            >Especialista</label
+          >
+          <select
+            class="form-control"
+            id="field_especialista"
+            data-cy="especialista"
+            name="especialista"
+            formControlName="especialista"
+            [compareWith]="compareEspecialista"
+          >
+            <option [ngValue]="null"></option>
+            @for (especialistaOption of especialistasSharedCollection; track $index) {
+              <option [ngValue]="especialistaOption">{{ especialistaOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
