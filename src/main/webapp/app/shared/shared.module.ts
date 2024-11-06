@@ -8,13 +8,17 @@ import FindLanguageFromKeyPipe from './language/find-language-from-key.pipe';
 import TranslateDirective from './language/translate.directive';
 import { AlertComponent } from './alert/alert.component';
 import { AlertErrorComponent } from './alert/alert-error.component';
+import { JhMaterialModule } from './jh-material.module';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getEspaniolPaginadorIntl } from './pagination/espaniol-paginador-intl';
 
 /**
  * Application wide Module
  */
 @NgModule({
-  imports: [AlertComponent, AlertErrorComponent, FindLanguageFromKeyPipe, TranslateDirective],
+  imports: [JhMaterialModule, AlertComponent, AlertErrorComponent, FindLanguageFromKeyPipe, TranslateDirective],
   exports: [
+    JhMaterialModule,
     CommonModule,
     NgbModule,
     FontAwesomeModule,
@@ -24,5 +28,6 @@ import { AlertErrorComponent } from './alert/alert-error.component';
     FindLanguageFromKeyPipe,
     TranslateDirective,
   ],
+  providers: [{ provide: MatPaginatorIntl, useValue: getEspaniolPaginadorIntl() }],
 })
 export default class SharedModule {}

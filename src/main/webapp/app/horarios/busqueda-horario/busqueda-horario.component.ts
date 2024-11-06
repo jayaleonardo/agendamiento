@@ -3,10 +3,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HorarioService } from '../horarios-service';
 import { IEspecialista } from 'app/entities/especialista/especialista.model';
+import SharedModule from 'app/shared/shared.module';
 @Component({
   selector: 'jhi-busqueda-horario',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule],
   templateUrl: './busqueda-horario.component.html',
   styleUrl: './busqueda-horario.component.scss',
 })

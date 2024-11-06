@@ -10,11 +10,16 @@
           </div>
         </div>
         <div class="col-6">
-          <select name="especialista" formControlName="especialista">
-            @for (especialista of especialistas; track $index) {
-              <option [ngValue]="especialista">{{ especialista.codigoDoctor }}</option>
-            }
-          </select>
+          <mat-form-field class="styled-select" appearance="outline">
+            <mat-label>Especialista</mat-label>
+            <mat-select>
+              <mat-option [value]="null">Seleccione</mat-option>
+              <mat-option *ngFor="let especialista of especialistas" [value]="especialista.id"
+                >{{ especialista.sujeto?.apellido }} {{ especialista.sujeto?.segundoApellido }} {{ especialista.sujeto?.nombre }}
+                {{ especialista.sujeto?.segundoNombre }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
     </div>
