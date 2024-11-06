@@ -11,14 +11,16 @@ import { AlertErrorComponent } from './alert/alert-error.component';
 import { JhMaterialModule } from './jh-material.module';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getEspaniolPaginadorIntl } from './pagination/espaniol-paginador-intl';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 /**
  * Application wide Module
  */
 @NgModule({
-  imports: [JhMaterialModule, AlertComponent, AlertErrorComponent, FindLanguageFromKeyPipe, TranslateDirective],
+  imports: [JhMaterialModule, FullCalendarModule, AlertComponent, AlertErrorComponent, FindLanguageFromKeyPipe, TranslateDirective],
   exports: [
     JhMaterialModule,
+    FullCalendarModule,
     CommonModule,
     NgbModule,
     FontAwesomeModule,

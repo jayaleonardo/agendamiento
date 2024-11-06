@@ -57,5 +57,7 @@ public interface EspecialistaService {
      */
     void delete(Long id);
 
-    List<EspecialistaDTO> buscarTodos();
+    List<EspecialistaDTO> buscarPorEspecialidad(String especialidad);
+
+    List<String> buscarEspecialidades();
 }

@@ -10,8 +10,15 @@ export class HorarioService {
   protected applicationConfigService = inject(ApplicationConfigService);
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/horarios');
 
-  async buscarEspecialistas(): Promise<HttpResponse<IEspecialista[]>> {
-    const data = this.http.post<IEspecialista[]>(`${this.resourceUrl}/listarEspecialistas`, null, { observe: 'response' });
+  async especialistasPorEspecialidad(especialidad: string): Promise<HttpResponse<IEspecialista[]>> {
+    const data = this.http.get<IEspecialista[]>(`${this.resourceUrl}/especialistas-por-especialidad/${especialidad}`, {
+      observe: 'response',
+    });
+    return await lastValueFrom(data);
+  }
+
+  async buscarEspecialidades(): Promise<HttpResponse<string[]>> {
+    const data = this.http.post<string[]>(`${this.resourceUrl}/listarEspecialidades`, null, { observe: 'response' });
     return await lastValueFrom(data);
   }
 }

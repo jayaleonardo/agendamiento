@@ -1,12 +1,21 @@
-<form [formGroup]="form">
-  <div class="row">
-    <div class="col-8">
-      <div class="row">
-        <div class="col-6">
-          <div class="col">
-            <mat-form-field class="styled-select" appearance="outline">
+<form [formGroup]="form" (ngSubmit)="buscar()">
+  <div class="flex text-center">
+    <div class="row">
+      <div class="col-8">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline">
               <mat-label>Especialidad</mat-label>
-              <mat-select formControlName="especialidad">
+              <mat-select formControlName="especialidad" (selectionChange)="buscarEspecialista($event.value)">
+                <mat-option [value]="null">Seleccione</mat-option>
+                <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">{{ especialidad }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline">
+              <mat-label>Especialista</mat-label>
+              <mat-select formControlName="especialista">
                 <mat-option [value]="null">Seleccione</mat-option>
                 <mat-option *ngFor="let especialista of especialistas" [value]="especialista.id"
                   >{{ especialista.sujeto?.apellido }} {{ especialista.sujeto?.segundoApellido }} {{ especialista.sujeto?.nombre }}
@@ -16,19 +25,42 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="col-6">
-          <mat-form-field class="styled-select" appearance="outline">
-            <mat-label>Especialista</mat-label>
-            <mat-select formControlName="especialista">
-              <mat-option [value]="null">Seleccione</mat-option>
-              <mat-option *ngFor="let especialista of especialistas" [value]="especialista.id"
-                >{{ especialista.sujeto?.apellido }} {{ especialista.sujeto?.segundoApellido }} {{ especialista.sujeto?.nombre }}
-                {{ especialista.sujeto?.segundoNombre }}</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline" floatLabel="auto">
+              <mat-label>Fecha desde</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="desde" />
+              <mat-hint>YYYY-MM-DD</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline" floatLabel="auto">
+              <mat-label>Fecha hasta</mat-label>
+              <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" />
+              <mat-hint>YYYY-MM-DD</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerHasta></mat-datepicker>
+            </mat-form-field>
+          </div>
         </div>
+      </div>
+
+      <div class="col-4">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Buscar</button>
+        <button mat-raised-button color="accent" type="button">Agregar</button>
       </div>
     </div>
   </div>
 </form>
+
+<div class="demo-app-main mt-3">
+  <full-calendar #calendar [options]="calendarOptions">
+    <ng-template #eventContent let-arg>
+      <i>{{ arg.event.title }}</i>
+    </ng-template>
+  </full-calendar>
+</div>

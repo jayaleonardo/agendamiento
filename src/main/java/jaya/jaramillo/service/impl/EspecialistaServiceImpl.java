@@ -84,8 +84,14 @@ public class EspecialistaServiceImpl implements EspecialistaService {
     }
 
     @Override
-    public List<EspecialistaDTO> buscarTodos() {
-        LOG.debug("Request to buscarTodos");
-        return this.especialistaMapper.toDto(this.especialistaRepository.findAll());
+    public List<EspecialistaDTO> buscarPorEspecialidad(String especialidad) {
+        LOG.debug("Request to buscarPorEspecialidad: {}", especialidad);
+        return this.especialistaMapper.toDto(this.especialistaRepository.especialistasPorEspecialidad(especialidad));
+    }
+
+    @Override
+    public List<String> buscarEspecialidades() {
+        LOG.debug("Request to buscarEspecialidades");
+        return this.especialistaRepository.obtenerEspecialidades();
     }
 }
