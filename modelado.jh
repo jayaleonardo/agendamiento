@@ -129,6 +129,12 @@ entity HorarioConsulta {
 
     /** estado del horario */  
     estado String  
+
+     /** desde hora del almuerzo */  
+    desdeHoraAlmuerzo Instant  
+
+    /** hasta hora del almuerzo */  
+    hastaHoraAlmuerzo Instant  
 }  
 
 /**  
@@ -200,23 +206,14 @@ entity TipoTerapia {
  * The Programacion entity.  
  */  
 entity Programacion {  
-    /** fecha desde */  
-    fechaDesde LocalDate required  
+    /** fecha turno */  
+    fecha LocalDate required  
 
-    /** fecha hasta */  
-    fechaHasta LocalDate required  
+    /** desde hora inicio */  
+    desde Instant required  
 
-    /** duración en minutos */  
-    duracionMinutos Integer required  
-
-    /** desde hora del almuerzo */  
-    desdeHoraAlmuerzo Instant  
-
-    /** hasta hora del almuerzo */  
-    hastaHoraAlmuerzo Instant  
-
-    /** días de la semana */  
-    diasSemana String  
+    /** hasta hora fin */  
+    hasta Instant required  
 }  
 
 /**  
