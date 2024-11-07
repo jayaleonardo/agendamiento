@@ -16,64 +16,28 @@
             <span>{{ programacionRef.id }}</span>
           </dd>
           <dt>
-            <span
-              [ngbTooltip]="'agendamientoApp.programacion.help.fechaDesde' | translate"
-              jhiTranslate="agendamientoApp.programacion.fechaDesde"
-              >Fecha Desde</span
+            <span [ngbTooltip]="'agendamientoApp.programacion.help.fecha' | translate" jhiTranslate="agendamientoApp.programacion.fecha"
+              >Fecha</span
             >
           </dt>
           <dd>
-            <span>{{ programacionRef.fechaDesde | formatMediumDate }}</span>
+            <span>{{ programacionRef.fecha | formatMediumDate }}</span>
           </dd>
           <dt>
-            <span
-              [ngbTooltip]="'agendamientoApp.programacion.help.fechaHasta' | translate"
-              jhiTranslate="agendamientoApp.programacion.fechaHasta"
-              >Fecha Hasta</span
+            <span [ngbTooltip]="'agendamientoApp.programacion.help.desde' | translate" jhiTranslate="agendamientoApp.programacion.desde"
+              >Desde</span
             >
           </dt>
           <dd>
-            <span>{{ programacionRef.fechaHasta | formatMediumDate }}</span>
+            <span>{{ programacionRef.desde | formatMediumDatetime }}</span>
           </dd>
           <dt>
-            <span
-              [ngbTooltip]="'agendamientoApp.programacion.help.duracionMinutos' | translate"
-              jhiTranslate="agendamientoApp.programacion.duracionMinutos"
-              >Duracion Minutos</span
+            <span [ngbTooltip]="'agendamientoApp.programacion.help.hasta' | translate" jhiTranslate="agendamientoApp.programacion.hasta"
+              >Hasta</span
             >
           </dt>
           <dd>
-            <span>{{ programacionRef.duracionMinutos }}</span>
-          </dd>
-          <dt>
-            <span
-              [ngbTooltip]="'agendamientoApp.programacion.help.desdeHoraAlmuerzo' | translate"
-              jhiTranslate="agendamientoApp.programacion.desdeHoraAlmuerzo"
-              >Desde Hora Almuerzo</span
-            >
-          </dt>
-          <dd>
-            <span>{{ programacionRef.desdeHoraAlmuerzo | formatMediumDatetime }}</span>
-          </dd>
-          <dt>
-            <span
-              [ngbTooltip]="'agendamientoApp.programacion.help.hastaHoraAlmuerzo' | translate"
-              jhiTranslate="agendamientoApp.programacion.hastaHoraAlmuerzo"
-              >Hasta Hora Almuerzo</span
-            >
-          </dt>
-          <dd>
-            <span>{{ programacionRef.hastaHoraAlmuerzo | formatMediumDatetime }}</span>
-          </dd>
-          <dt>
-            <span
-              [ngbTooltip]="'agendamientoApp.programacion.help.diasSemana' | translate"
-              jhiTranslate="agendamientoApp.programacion.diasSemana"
-              >Dias Semana</span
-            >
-          </dt>
-          <dd>
-            <span>{{ programacionRef.diasSemana }}</span>
+            <span>{{ programacionRef.hasta | formatMediumDatetime }}</span>
           </dd>
           <dt><span jhiTranslate="agendamientoApp.programacion.horarioConsulta">Horario Consulta</span></dt>
           <dd>

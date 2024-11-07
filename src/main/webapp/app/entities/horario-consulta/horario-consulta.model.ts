@@ -9,6 +9,8 @@ export interface IHorarioConsulta {
   diaSemana?: string | null;
   esHorarioAtencion?: boolean | null;
   estado?: string | null;
+  desdeHoraAlmuerzo?: dayjs.Dayjs | null;
+  hastaHoraAlmuerzo?: dayjs.Dayjs | null;
   especialista?: Pick<IEspecialista, 'id'> | null;
 }
 

@@ -12,14 +12,10 @@ import { IProgramacion, NewProgramacion } from '../programacion.model';
 
 export type PartialUpdateProgramacion = Partial<IProgramacion> & Pick<IProgramacion, 'id'>;
 
-type RestOf<T extends IProgramacion | NewProgramacion> = Omit<
-  T,
-  'fechaDesde' | 'fechaHasta' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'
-> & {
-  fechaDesde?: string | null;
-  fechaHasta?: string | null;
-  desdeHoraAlmuerzo?: string | null;
-  hastaHoraAlmuerzo?: string | null;
+type RestOf<T extends IProgramacion | NewProgramacion> = Omit<T, 'fecha' | 'desde' | 'hasta'> & {
+  fecha?: string | null;
+  desde?: string | null;
+  hasta?: string | null;
 };
 
 export type RestProgramacion = RestOf<IProgramacion>;
@@ -109,20 +105,18 @@ export class ProgramacionService {
   protected convertDateFromClient<T extends IProgramacion | NewProgramacion | PartialUpdateProgramacion>(programacion: T): RestOf<T> {
     return {
       ...programacion,
-      fechaDesde: programacion.fechaDesde?.format(DATE_FORMAT) ?? null,
-      fechaHasta: programacion.fechaHasta?.format(DATE_FORMAT) ?? null,
-      desdeHoraAlmuerzo: programacion.desdeHoraAlmuerzo?.toJSON() ?? null,
-      hastaHoraAlmuerzo: programacion.hastaHoraAlmuerzo?.toJSON() ?? null,
+      fecha: programacion.fecha?.format(DATE_FORMAT) ?? null,
+      desde: programacion.desde?.toJSON() ?? null,
+      hasta: programacion.hasta?.toJSON() ?? null,
     };
   }
 
   protected convertDateFromServer(restProgramacion: RestProgramacion): IProgramacion {
     return {
       ...restProgramacion,
-      fechaDesde: restProgramacion.fechaDesde ? dayjs(restProgramacion.fechaDesde) : undefined,
-      fechaHasta: restProgramacion.fechaHasta ? dayjs(restProgramacion.fechaHasta) : undefined,
-      desdeHoraAlmuerzo: restProgramacion.desdeHoraAlmuerzo ? dayjs(restProgramacion.desdeHoraAlmuerzo) : undefined,
-      hastaHoraAlmuerzo: restProgramacion.hastaHoraAlmuerzo ? dayjs(restProgramacion.hastaHoraAlmuerzo) : undefined,
+      fecha: restProgramacion.fecha ? dayjs(restProgramacion.fecha) : undefined,
+      desde: restProgramacion.desde ? dayjs(restProgramacion.desde) : undefined,
+      hasta: restProgramacion.hasta ? dayjs(restProgramacion.hasta) : undefined,
     };
   }
 

@@ -77,6 +77,26 @@
           <dd>
             <span>{{ horarioConsultaRef.estado }}</span>
           </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.desdeHoraAlmuerzo' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.desdeHoraAlmuerzo"
+              >Desde Hora Almuerzo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.desdeHoraAlmuerzo | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.hastaHoraAlmuerzo' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.hastaHoraAlmuerzo"
+              >Hasta Hora Almuerzo</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.hastaHoraAlmuerzo | formatMediumDatetime }}</span>
+          </dd>
           <dt><span jhiTranslate="agendamientoApp.horarioConsulta.especialista">Especialista</span></dt>
           <dd>
             @if (horarioConsulta()!.especialista) {

@@ -38,23 +38,14 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class ProgramacionResourceIT {
 
-    private static final LocalDate DEFAULT_FECHA_DESDE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA_DESDE = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
 
-    private static final LocalDate DEFAULT_FECHA_HASTA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA_HASTA = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_DESDE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DESDE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Integer DEFAULT_DURACION_MINUTOS = 1;
-    private static final Integer UPDATED_DURACION_MINUTOS = 2;
-
-    private static final Instant DEFAULT_DESDE_HORA_ALMUERZO = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DESDE_HORA_ALMUERZO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
-
-    private static final Instant DEFAULT_HASTA_HORA_ALMUERZO = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_HASTA_HORA_ALMUERZO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
-
-    private static final String DEFAULT_DIAS_SEMANA = "AAAAAAAAAA";
-    private static final String UPDATED_DIAS_SEMANA = "BBBBBBBBBB";
+    private static final Instant DEFAULT_HASTA = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_HASTA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String ENTITY_API_URL = "/api/programacions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -88,13 +79,7 @@ class ProgramacionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Programacion createEntity() {
-        return new Programacion()
-            .fechaDesde(DEFAULT_FECHA_DESDE)
-            .fechaHasta(DEFAULT_FECHA_HASTA)
-            .duracionMinutos(DEFAULT_DURACION_MINUTOS)
-            .desdeHoraAlmuerzo(DEFAULT_DESDE_HORA_ALMUERZO)
-            .hastaHoraAlmuerzo(DEFAULT_HASTA_HORA_ALMUERZO)
-            .diasSemana(DEFAULT_DIAS_SEMANA);
+        return new Programacion().fecha(DEFAULT_FECHA).desde(DEFAULT_DESDE).hasta(DEFAULT_HASTA);
     }
 
     /**
@@ -104,13 +89,7 @@ class ProgramacionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Programacion createUpdatedEntity() {
-        return new Programacion()
-            .fechaDesde(UPDATED_FECHA_DESDE)
-            .fechaHasta(UPDATED_FECHA_HASTA)
-            .duracionMinutos(UPDATED_DURACION_MINUTOS)
-            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO)
-            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO)
-            .diasSemana(UPDATED_DIAS_SEMANA);
+        return new Programacion().fecha(UPDATED_FECHA).desde(UPDATED_DESDE).hasta(UPDATED_HASTA);
     }
 
     @BeforeEach
@@ -170,10 +149,10 @@ class ProgramacionResourceIT {
 
     @Test
     @Transactional
-    void checkFechaDesdeIsRequired() throws Exception {
+    void checkFechaIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
-        programacion.setFechaDesde(null);
+        programacion.setFecha(null);
 
         // Create the Programacion, which fails.
         ProgramacionDTO programacionDTO = programacionMapper.toDto(programacion);
@@ -187,10 +166,10 @@ class ProgramacionResourceIT {
 
     @Test
     @Transactional
-    void checkFechaHastaIsRequired() throws Exception {
+    void checkDesdeIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
-        programacion.setFechaHasta(null);
+        programacion.setDesde(null);
 
         // Create the Programacion, which fails.
         ProgramacionDTO programacionDTO = programacionMapper.toDto(programacion);
@@ -204,10 +183,10 @@ class ProgramacionResourceIT {
 
     @Test
     @Transactional
-    void checkDuracionMinutosIsRequired() throws Exception {
+    void checkHastaIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
-        programacion.setDuracionMinutos(null);
+        programacion.setHasta(null);
 
         // Create the Programacion, which fails.
         ProgramacionDTO programacionDTO = programacionMapper.toDto(programacion);
@@ -231,12 +210,9 @@ class ProgramacionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(programacion.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fechaDesde").value(hasItem(DEFAULT_FECHA_DESDE.toString())))
-            .andExpect(jsonPath("$.[*].fechaHasta").value(hasItem(DEFAULT_FECHA_HASTA.toString())))
-            .andExpect(jsonPath("$.[*].duracionMinutos").value(hasItem(DEFAULT_DURACION_MINUTOS)))
-            .andExpect(jsonPath("$.[*].desdeHoraAlmuerzo").value(hasItem(DEFAULT_DESDE_HORA_ALMUERZO.toString())))
-            .andExpect(jsonPath("$.[*].hastaHoraAlmuerzo").value(hasItem(DEFAULT_HASTA_HORA_ALMUERZO.toString())))
-            .andExpect(jsonPath("$.[*].diasSemana").value(hasItem(DEFAULT_DIAS_SEMANA)));
+            .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())))
+            .andExpect(jsonPath("$.[*].desde").value(hasItem(DEFAULT_DESDE.toString())))
+            .andExpect(jsonPath("$.[*].hasta").value(hasItem(DEFAULT_HASTA.toString())));
     }
 
     @Test
@@ -251,12 +227,9 @@ class ProgramacionResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(programacion.getId().intValue()))
-            .andExpect(jsonPath("$.fechaDesde").value(DEFAULT_FECHA_DESDE.toString()))
-            .andExpect(jsonPath("$.fechaHasta").value(DEFAULT_FECHA_HASTA.toString()))
-            .andExpect(jsonPath("$.duracionMinutos").value(DEFAULT_DURACION_MINUTOS))
-            .andExpect(jsonPath("$.desdeHoraAlmuerzo").value(DEFAULT_DESDE_HORA_ALMUERZO.toString()))
-            .andExpect(jsonPath("$.hastaHoraAlmuerzo").value(DEFAULT_HASTA_HORA_ALMUERZO.toString()))
-            .andExpect(jsonPath("$.diasSemana").value(DEFAULT_DIAS_SEMANA));
+            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()))
+            .andExpect(jsonPath("$.desde").value(DEFAULT_DESDE.toString()))
+            .andExpect(jsonPath("$.hasta").value(DEFAULT_HASTA.toString()));
     }
 
     @Test
@@ -278,13 +251,7 @@ class ProgramacionResourceIT {
         Programacion updatedProgramacion = programacionRepository.findById(programacion.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedProgramacion are not directly saved in db
         em.detach(updatedProgramacion);
-        updatedProgramacion
-            .fechaDesde(UPDATED_FECHA_DESDE)
-            .fechaHasta(UPDATED_FECHA_HASTA)
-            .duracionMinutos(UPDATED_DURACION_MINUTOS)
-            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO)
-            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO)
-            .diasSemana(UPDATED_DIAS_SEMANA);
+        updatedProgramacion.fecha(UPDATED_FECHA).desde(UPDATED_DESDE).hasta(UPDATED_HASTA);
         ProgramacionDTO programacionDTO = programacionMapper.toDto(updatedProgramacion);
 
         restProgramacionMockMvc
@@ -374,11 +341,7 @@ class ProgramacionResourceIT {
         Programacion partialUpdatedProgramacion = new Programacion();
         partialUpdatedProgramacion.setId(programacion.getId());
 
-        partialUpdatedProgramacion
-            .fechaDesde(UPDATED_FECHA_DESDE)
-            .fechaHasta(UPDATED_FECHA_HASTA)
-            .duracionMinutos(UPDATED_DURACION_MINUTOS)
-            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO);
+        partialUpdatedProgramacion.fecha(UPDATED_FECHA).desde(UPDATED_DESDE).hasta(UPDATED_HASTA);
 
         restProgramacionMockMvc
             .perform(
@@ -409,13 +372,7 @@ class ProgramacionResourceIT {
         Programacion partialUpdatedProgramacion = new Programacion();
         partialUpdatedProgramacion.setId(programacion.getId());
 
-        partialUpdatedProgramacion
-            .fechaDesde(UPDATED_FECHA_DESDE)
-            .fechaHasta(UPDATED_FECHA_HASTA)
-            .duracionMinutos(UPDATED_DURACION_MINUTOS)
-            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO)
-            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO)
-            .diasSemana(UPDATED_DIAS_SEMANA);
+        partialUpdatedProgramacion.fecha(UPDATED_FECHA).desde(UPDATED_DESDE).hasta(UPDATED_HASTA);
 
         restProgramacionMockMvc
             .perform(

@@ -17,25 +17,16 @@ public class ProgramacionDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Schema(description = "fecha desde", requiredMode = Schema.RequiredMode.REQUIRED)
-    private LocalDate fechaDesde;
+    @Schema(description = "fecha turno", requiredMode = Schema.RequiredMode.REQUIRED)
+    private LocalDate fecha;
 
     @NotNull
-    @Schema(description = "fecha hasta", requiredMode = Schema.RequiredMode.REQUIRED)
-    private LocalDate fechaHasta;
+    @Schema(description = "desde hora inicio", requiredMode = Schema.RequiredMode.REQUIRED)
+    private Instant desde;
 
     @NotNull
-    @Schema(description = "duración en minutos", requiredMode = Schema.RequiredMode.REQUIRED)
-    private Integer duracionMinutos;
-
-    @Schema(description = "desde hora del almuerzo")
-    private Instant desdeHoraAlmuerzo;
-
-    @Schema(description = "hasta hora del almuerzo")
-    private Instant hastaHoraAlmuerzo;
-
-    @Schema(description = "días de la semana")
-    private String diasSemana;
+    @Schema(description = "hasta hora fin", requiredMode = Schema.RequiredMode.REQUIRED)
+    private Instant hasta;
 
     private HorarioConsultaDTO horarioConsulta;
 
@@ -47,52 +38,28 @@ public class ProgramacionDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFechaDesde() {
-        return fechaDesde;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setFechaDesde(LocalDate fechaDesde) {
-        this.fechaDesde = fechaDesde;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public LocalDate getFechaHasta() {
-        return fechaHasta;
+    public Instant getDesde() {
+        return desde;
     }
 
-    public void setFechaHasta(LocalDate fechaHasta) {
-        this.fechaHasta = fechaHasta;
+    public void setDesde(Instant desde) {
+        this.desde = desde;
     }
 
-    public Integer getDuracionMinutos() {
-        return duracionMinutos;
+    public Instant getHasta() {
+        return hasta;
     }
 
-    public void setDuracionMinutos(Integer duracionMinutos) {
-        this.duracionMinutos = duracionMinutos;
-    }
-
-    public Instant getDesdeHoraAlmuerzo() {
-        return desdeHoraAlmuerzo;
-    }
-
-    public void setDesdeHoraAlmuerzo(Instant desdeHoraAlmuerzo) {
-        this.desdeHoraAlmuerzo = desdeHoraAlmuerzo;
-    }
-
-    public Instant getHastaHoraAlmuerzo() {
-        return hastaHoraAlmuerzo;
-    }
-
-    public void setHastaHoraAlmuerzo(Instant hastaHoraAlmuerzo) {
-        this.hastaHoraAlmuerzo = hastaHoraAlmuerzo;
-    }
-
-    public String getDiasSemana() {
-        return diasSemana;
-    }
-
-    public void setDiasSemana(String diasSemana) {
-        this.diasSemana = diasSemana;
+    public void setHasta(Instant hasta) {
+        this.hasta = hasta;
     }
 
     public HorarioConsultaDTO getHorarioConsulta() {
@@ -129,12 +96,9 @@ public class ProgramacionDTO implements Serializable {
     public String toString() {
         return "ProgramacionDTO{" +
             "id=" + getId() +
-            ", fechaDesde='" + getFechaDesde() + "'" +
-            ", fechaHasta='" + getFechaHasta() + "'" +
-            ", duracionMinutos=" + getDuracionMinutos() +
-            ", desdeHoraAlmuerzo='" + getDesdeHoraAlmuerzo() + "'" +
-            ", hastaHoraAlmuerzo='" + getHastaHoraAlmuerzo() + "'" +
-            ", diasSemana='" + getDiasSemana() + "'" +
+            ", fecha='" + getFecha() + "'" +
+            ", desde='" + getDesde() + "'" +
+            ", hasta='" + getHasta() + "'" +
             ", horarioConsulta=" + getHorarioConsulta() +
             "}";
     }

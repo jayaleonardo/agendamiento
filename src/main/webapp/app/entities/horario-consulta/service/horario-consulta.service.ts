@@ -12,9 +12,14 @@ import { IHorarioConsulta, NewHorarioConsulta } from '../horario-consulta.model'
 
 export type PartialUpdateHorarioConsulta = Partial<IHorarioConsulta> & Pick<IHorarioConsulta, 'id'>;
 
-type RestOf<T extends IHorarioConsulta | NewHorarioConsulta> = Omit<T, 'fechaHorario' | 'horaInicio'> & {
+type RestOf<T extends IHorarioConsulta | NewHorarioConsulta> = Omit<
+  T,
+  'fechaHorario' | 'horaInicio' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'
+> & {
   fechaHorario?: string | null;
   horaInicio?: string | null;
+  desdeHoraAlmuerzo?: string | null;
+  hastaHoraAlmuerzo?: string | null;
 };
 
 export type RestHorarioConsulta = RestOf<IHorarioConsulta>;
@@ -110,6 +115,8 @@ export class HorarioConsultaService {
       ...horarioConsulta,
       fechaHorario: horarioConsulta.fechaHorario?.format(DATE_FORMAT) ?? null,
       horaInicio: horarioConsulta.horaInicio?.toJSON() ?? null,
+      desdeHoraAlmuerzo: horarioConsulta.desdeHoraAlmuerzo?.toJSON() ?? null,
+      hastaHoraAlmuerzo: horarioConsulta.hastaHoraAlmuerzo?.toJSON() ?? null,
     };
   }
 
@@ -118,6 +125,8 @@ export class HorarioConsultaService {
       ...restHorarioConsulta,
       fechaHorario: restHorarioConsulta.fechaHorario ? dayjs(restHorarioConsulta.fechaHorario) : undefined,
       horaInicio: restHorarioConsulta.horaInicio ? dayjs(restHorarioConsulta.horaInicio) : undefined,
+      desdeHoraAlmuerzo: restHorarioConsulta.desdeHoraAlmuerzo ? dayjs(restHorarioConsulta.desdeHoraAlmuerzo) : undefined,
+      hastaHoraAlmuerzo: restHorarioConsulta.hastaHoraAlmuerzo ? dayjs(restHorarioConsulta.hastaHoraAlmuerzo) : undefined,
     };
   }
 

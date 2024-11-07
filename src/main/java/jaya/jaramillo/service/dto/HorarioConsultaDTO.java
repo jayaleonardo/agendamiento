@@ -37,6 +37,12 @@ public class HorarioConsultaDTO implements Serializable {
     @Schema(description = "estado del horario")
     private String estado;
 
+    @Schema(description = "desde hora del almuerzo")
+    private Instant desdeHoraAlmuerzo;
+
+    @Schema(description = "hasta hora del almuerzo")
+    private Instant hastaHoraAlmuerzo;
+
     private EspecialistaDTO especialista;
 
     public Long getId() {
@@ -95,6 +101,22 @@ public class HorarioConsultaDTO implements Serializable {
         this.estado = estado;
     }
 
+    public Instant getDesdeHoraAlmuerzo() {
+        return desdeHoraAlmuerzo;
+    }
+
+    public void setDesdeHoraAlmuerzo(Instant desdeHoraAlmuerzo) {
+        this.desdeHoraAlmuerzo = desdeHoraAlmuerzo;
+    }
+
+    public Instant getHastaHoraAlmuerzo() {
+        return hastaHoraAlmuerzo;
+    }
+
+    public void setHastaHoraAlmuerzo(Instant hastaHoraAlmuerzo) {
+        this.hastaHoraAlmuerzo = hastaHoraAlmuerzo;
+    }
+
     public EspecialistaDTO getEspecialista() {
         return especialista;
     }
@@ -135,6 +157,8 @@ public class HorarioConsultaDTO implements Serializable {
             ", diaSemana='" + getDiaSemana() + "'" +
             ", esHorarioAtencion='" + getEsHorarioAtencion() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", desdeHoraAlmuerzo='" + getDesdeHoraAlmuerzo() + "'" +
+            ", hastaHoraAlmuerzo='" + getHastaHoraAlmuerzo() + "'" +
             ", especialista=" + getEspecialista() +
             "}";
     }

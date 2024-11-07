@@ -7,37 +7,22 @@
   "dto": "mapstruct",
   "fields": [
     {
-      "documentation": "fecha desde",
-      "fieldName": "fechaDesde",
+      "documentation": "fecha turno",
+      "fieldName": "fecha",
       "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
     },
     {
-      "documentation": "fecha hasta",
-      "fieldName": "fechaHasta",
-      "fieldType": "LocalDate",
+      "documentation": "desde hora inicio",
+      "fieldName": "desde",
+      "fieldType": "Instant",
       "fieldValidateRules": ["required"]
     },
     {
-      "documentation": "duración en minutos",
-      "fieldName": "duracionMinutos",
-      "fieldType": "Integer",
+      "documentation": "hasta hora fin",
+      "fieldName": "hasta",
+      "fieldType": "Instant",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "documentation": "desde hora del almuerzo",
-      "fieldName": "desdeHoraAlmuerzo",
-      "fieldType": "Instant"
-    },
-    {
-      "documentation": "hasta hora del almuerzo",
-      "fieldName": "hastaHoraAlmuerzo",
-      "fieldType": "Instant"
-    },
-    {
-      "documentation": "días de la semana",
-      "fieldName": "diasSemana",
-      "fieldType": "String"
     }
   ],
   "name": "Programacion",

@@ -68,6 +68,18 @@ public class HorarioConsulta implements Serializable {
     private String estado;
 
     /**
+     * desde hora del almuerzo
+     */
+    @Column(name = "desde_hora_almuerzo")
+    private Instant desdeHoraAlmuerzo;
+
+    /**
+     * hasta hora del almuerzo
+     */
+    @Column(name = "hasta_hora_almuerzo")
+    private Instant hastaHoraAlmuerzo;
+
+    /**
      * HorarioConsulta relacionado con Programacion
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "horarioConsulta")
@@ -172,6 +184,32 @@ public class HorarioConsulta implements Serializable {
         this.estado = estado;
     }
 
+    public Instant getDesdeHoraAlmuerzo() {
+        return this.desdeHoraAlmuerzo;
+    }
+
+    public HorarioConsulta desdeHoraAlmuerzo(Instant desdeHoraAlmuerzo) {
+        this.setDesdeHoraAlmuerzo(desdeHoraAlmuerzo);
+        return this;
+    }
+
+    public void setDesdeHoraAlmuerzo(Instant desdeHoraAlmuerzo) {
+        this.desdeHoraAlmuerzo = desdeHoraAlmuerzo;
+    }
+
+    public Instant getHastaHoraAlmuerzo() {
+        return this.hastaHoraAlmuerzo;
+    }
+
+    public HorarioConsulta hastaHoraAlmuerzo(Instant hastaHoraAlmuerzo) {
+        this.setHastaHoraAlmuerzo(hastaHoraAlmuerzo);
+        return this;
+    }
+
+    public void setHastaHoraAlmuerzo(Instant hastaHoraAlmuerzo) {
+        this.hastaHoraAlmuerzo = hastaHoraAlmuerzo;
+    }
+
     public Set<Programacion> getProgramacions() {
         return this.programacions;
     }
@@ -246,6 +284,8 @@ public class HorarioConsulta implements Serializable {
             ", diaSemana='" + getDiaSemana() + "'" +
             ", esHorarioAtencion='" + getEsHorarioAtencion() + "'" +
             ", estado='" + getEstado() + "'" +
+            ", desdeHoraAlmuerzo='" + getDesdeHoraAlmuerzo() + "'" +
+            ", hastaHoraAlmuerzo='" + getHastaHoraAlmuerzo() + "'" +
             "}";
     }
 }

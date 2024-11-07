@@ -1,10 +1,13 @@
 package jaya.jaramillo.service.impl;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.domain.Programacion;
 import jaya.jaramillo.repository.ProgramacionRepository;
 import jaya.jaramillo.service.ProgramacionService;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
+import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.service.mapper.ProgramacionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,5 +83,11 @@ public class ProgramacionServiceImpl implements ProgramacionService {
     public void delete(Long id) {
         LOG.debug("Request to delete Programacion : {}", id);
         programacionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TurnoEspecialidadDTO> buscarTurnos(Long especialistaId, LocalDate desde, LocalDate hasta) {
+        LOG.debug("Request to buscarTurnos : {}, {}, {}", especialistaId, desde, hasta);
+        return programacionRepository.obtenerTurnos(especialistaId, desde, hasta);
     }
 }

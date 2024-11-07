@@ -3,34 +3,30 @@ import dayjs from 'dayjs/esm';
 import { IProgramacion, NewProgramacion } from './programacion.model';
 
 export const sampleWithRequiredData: IProgramacion = {
-  id: 6058,
-  fechaDesde: dayjs('2024-11-05'),
-  fechaHasta: dayjs('2024-11-05'),
-  duracionMinutos: 29096,
+  id: 17689,
+  fecha: dayjs('2024-11-05'),
+  desde: dayjs('2024-11-05T13:20'),
+  hasta: dayjs('2024-11-05T04:12'),
 };
 
 export const sampleWithPartialData: IProgramacion = {
-  id: 30135,
-  fechaDesde: dayjs('2024-11-05'),
-  fechaHasta: dayjs('2024-11-05'),
-  duracionMinutos: 267,
-  hastaHoraAlmuerzo: dayjs('2024-11-05T14:48'),
+  id: 13463,
+  fecha: dayjs('2024-11-05'),
+  desde: dayjs('2024-11-05T21:04'),
+  hasta: dayjs('2024-11-05T22:49'),
 };
 
 export const sampleWithFullData: IProgramacion = {
-  id: 2292,
-  fechaDesde: dayjs('2024-11-05'),
-  fechaHasta: dayjs('2024-11-04'),
-  duracionMinutos: 5846,
-  desdeHoraAlmuerzo: dayjs('2024-11-05T04:58'),
-  hastaHoraAlmuerzo: dayjs('2024-11-05T15:07'),
-  diasSemana: 'approximate',
+  id: 14464,
+  fecha: dayjs('2024-11-05'),
+  desde: dayjs('2024-11-05T21:50'),
+  hasta: dayjs('2024-11-05T00:10'),
 };
 
 export const sampleWithNewData: NewProgramacion = {
-  fechaDesde: dayjs('2024-11-05'),
-  fechaHasta: dayjs('2024-11-05'),
-  duracionMinutos: 31743,
+  fecha: dayjs('2024-11-05'),
+  desde: dayjs('2024-11-04T23:57'),
+  hasta: dayjs('2024-11-05T14:48'),
   id: null,
 };
 

@@ -27,43 +27,25 @@ public class Programacion implements Serializable {
     private Long id;
 
     /**
-     * fecha desde
+     * fecha turno
      */
     @NotNull
-    @Column(name = "fecha_desde", nullable = false)
-    private LocalDate fechaDesde;
+    @Column(name = "fecha", nullable = false)
+    private LocalDate fecha;
 
     /**
-     * fecha hasta
+     * desde hora inicio
      */
     @NotNull
-    @Column(name = "fecha_hasta", nullable = false)
-    private LocalDate fechaHasta;
+    @Column(name = "desde", nullable = false)
+    private Instant desde;
 
     /**
-     * duración en minutos
+     * hasta hora fin
      */
     @NotNull
-    @Column(name = "duracion_minutos", nullable = false)
-    private Integer duracionMinutos;
-
-    /**
-     * desde hora del almuerzo
-     */
-    @Column(name = "desde_hora_almuerzo")
-    private Instant desdeHoraAlmuerzo;
-
-    /**
-     * hasta hora del almuerzo
-     */
-    @Column(name = "hasta_hora_almuerzo")
-    private Instant hastaHoraAlmuerzo;
-
-    /**
-     * días de la semana
-     */
-    @Column(name = "dias_semana")
-    private String diasSemana;
+    @Column(name = "hasta", nullable = false)
+    private Instant hasta;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "programacions", "especialista" }, allowSetters = true)
@@ -84,82 +66,43 @@ public class Programacion implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFechaDesde() {
-        return this.fechaDesde;
+    public LocalDate getFecha() {
+        return this.fecha;
     }
 
-    public Programacion fechaDesde(LocalDate fechaDesde) {
-        this.setFechaDesde(fechaDesde);
+    public Programacion fecha(LocalDate fecha) {
+        this.setFecha(fecha);
         return this;
     }
 
-    public void setFechaDesde(LocalDate fechaDesde) {
-        this.fechaDesde = fechaDesde;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public LocalDate getFechaHasta() {
-        return this.fechaHasta;
+    public Instant getDesde() {
+        return this.desde;
     }
 
-    public Programacion fechaHasta(LocalDate fechaHasta) {
-        this.setFechaHasta(fechaHasta);
+    public Programacion desde(Instant desde) {
+        this.setDesde(desde);
         return this;
     }
 
-    public void setFechaHasta(LocalDate fechaHasta) {
-        this.fechaHasta = fechaHasta;
+    public void setDesde(Instant desde) {
+        this.desde = desde;
     }
 
-    public Integer getDuracionMinutos() {
-        return this.duracionMinutos;
+    public Instant getHasta() {
+        return this.hasta;
     }
 
-    public Programacion duracionMinutos(Integer duracionMinutos) {
-        this.setDuracionMinutos(duracionMinutos);
+    public Programacion hasta(Instant hasta) {
+        this.setHasta(hasta);
         return this;
     }
 
-    public void setDuracionMinutos(Integer duracionMinutos) {
-        this.duracionMinutos = duracionMinutos;
-    }
-
-    public Instant getDesdeHoraAlmuerzo() {
-        return this.desdeHoraAlmuerzo;
-    }
-
-    public Programacion desdeHoraAlmuerzo(Instant desdeHoraAlmuerzo) {
-        this.setDesdeHoraAlmuerzo(desdeHoraAlmuerzo);
-        return this;
-    }
-
-    public void setDesdeHoraAlmuerzo(Instant desdeHoraAlmuerzo) {
-        this.desdeHoraAlmuerzo = desdeHoraAlmuerzo;
-    }
-
-    public Instant getHastaHoraAlmuerzo() {
-        return this.hastaHoraAlmuerzo;
-    }
-
-    public Programacion hastaHoraAlmuerzo(Instant hastaHoraAlmuerzo) {
-        this.setHastaHoraAlmuerzo(hastaHoraAlmuerzo);
-        return this;
-    }
-
-    public void setHastaHoraAlmuerzo(Instant hastaHoraAlmuerzo) {
-        this.hastaHoraAlmuerzo = hastaHoraAlmuerzo;
-    }
-
-    public String getDiasSemana() {
-        return this.diasSemana;
-    }
-
-    public Programacion diasSemana(String diasSemana) {
-        this.setDiasSemana(diasSemana);
-        return this;
-    }
-
-    public void setDiasSemana(String diasSemana) {
-        this.diasSemana = diasSemana;
+    public void setHasta(Instant hasta) {
+        this.hasta = hasta;
     }
 
     public HorarioConsulta getHorarioConsulta() {
@@ -199,12 +142,9 @@ public class Programacion implements Serializable {
     public String toString() {
         return "Programacion{" +
             "id=" + getId() +
-            ", fechaDesde='" + getFechaDesde() + "'" +
-            ", fechaHasta='" + getFechaHasta() + "'" +
-            ", duracionMinutos=" + getDuracionMinutos() +
-            ", desdeHoraAlmuerzo='" + getDesdeHoraAlmuerzo() + "'" +
-            ", hastaHoraAlmuerzo='" + getHastaHoraAlmuerzo() + "'" +
-            ", diasSemana='" + getDiasSemana() + "'" +
+            ", fecha='" + getFecha() + "'" +
+            ", desde='" + getDesde() + "'" +
+            ", hasta='" + getHasta() + "'" +
             "}";
     }
 }

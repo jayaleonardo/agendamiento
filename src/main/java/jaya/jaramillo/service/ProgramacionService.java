@@ -1,7 +1,10 @@
 package jaya.jaramillo.service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
+import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -55,4 +58,6 @@ public interface ProgramacionService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<TurnoEspecialidadDTO> buscarTurnos(Long especialistaId, LocalDate desde, LocalDate hasta);
 }

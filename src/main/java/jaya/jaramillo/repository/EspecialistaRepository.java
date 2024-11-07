@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface EspecialistaRepository extends JpaRepository<Especialista, Long> {
-    @Query("Select distinct(e.especialidad) from Especialista e")
+    @Query("Select distinct(e.especialidad) from Especialista e order by e.especialidad asc")
     List<String> obtenerEspecialidades();
 
     @Query("Select e from Especialista e where e.especialidad=:especialidad")

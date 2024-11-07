@@ -10,10 +10,9 @@ import { ProgramacionService, RestProgramacion } from './programacion.service';
 
 const requireRestSample: RestProgramacion = {
   ...sampleWithRequiredData,
-  fechaDesde: sampleWithRequiredData.fechaDesde?.format(DATE_FORMAT),
-  fechaHasta: sampleWithRequiredData.fechaHasta?.format(DATE_FORMAT),
-  desdeHoraAlmuerzo: sampleWithRequiredData.desdeHoraAlmuerzo?.toJSON(),
-  hastaHoraAlmuerzo: sampleWithRequiredData.hastaHoraAlmuerzo?.toJSON(),
+  fecha: sampleWithRequiredData.fecha?.format(DATE_FORMAT),
+  desde: sampleWithRequiredData.desde?.toJSON(),
+  hasta: sampleWithRequiredData.hasta?.toJSON(),
 };
 
 describe('Programacion Service', () => {

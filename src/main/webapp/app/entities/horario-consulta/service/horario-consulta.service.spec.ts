@@ -12,6 +12,8 @@ const requireRestSample: RestHorarioConsulta = {
   ...sampleWithRequiredData,
   fechaHorario: sampleWithRequiredData.fechaHorario?.format(DATE_FORMAT),
   horaInicio: sampleWithRequiredData.horaInicio?.toJSON(),
+  desdeHoraAlmuerzo: sampleWithRequiredData.desdeHoraAlmuerzo?.toJSON(),
+  hastaHoraAlmuerzo: sampleWithRequiredData.hastaHoraAlmuerzo?.toJSON(),
 };
 
 describe('HorarioConsulta Service', () => {

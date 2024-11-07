@@ -32,12 +32,20 @@
             <column name="estado" type="varchar(255)" remarks="estado del horario">
                 <constraints nullable="true" />
             </column>
+            <column name="desde_hora_almuerzo" type="${datetimeType}" remarks="desde hora del almuerzo">
+                <constraints nullable="true" />
+            </column>
+            <column name="hasta_hora_almuerzo" type="${datetimeType}" remarks="hasta hora del almuerzo">
+                <constraints nullable="true" />
+            </column>
             <column name="especialista_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="horario_consulta" columnName="hora_inicio" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="horario_consulta" columnName="desde_hora_almuerzo" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="horario_consulta" columnName="hasta_hora_almuerzo" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -63,6 +71,8 @@
             <column name="dia_semana" type="string"/>
             <column name="es_horario_atencion" type="boolean"/>
             <column name="estado" type="string"/>
+            <column name="desde_hora_almuerzo" type="date"/>
+            <column name="hasta_hora_almuerzo" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

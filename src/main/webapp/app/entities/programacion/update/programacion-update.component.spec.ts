@@ -49,10 +49,10 @@ describe('Programacion Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call HorarioConsulta query and add missing value', () => {
       const programacion: IProgramacion = { id: 456 };
-      const horarioConsulta: IHorarioConsulta = { id: 6998 };
+      const horarioConsulta: IHorarioConsulta = { id: 502 };
       programacion.horarioConsulta = horarioConsulta;
 
-      const horarioConsultaCollection: IHorarioConsulta[] = [{ id: 23229 }];
+      const horarioConsultaCollection: IHorarioConsulta[] = [{ id: 6434 }];
       jest.spyOn(horarioConsultaService, 'query').mockReturnValue(of(new HttpResponse({ body: horarioConsultaCollection })));
       const additionalHorarioConsultas = [horarioConsulta];
       const expectedCollection: IHorarioConsulta[] = [...additionalHorarioConsultas, ...horarioConsultaCollection];
@@ -71,7 +71,7 @@ describe('Programacion Management Update Component', () => {
 
     it('Should update editForm', () => {
       const programacion: IProgramacion = { id: 456 };
-      const horarioConsulta: IHorarioConsulta = { id: 12388 };
+      const horarioConsulta: IHorarioConsulta = { id: 5921 };
       programacion.horarioConsulta = horarioConsulta;
 
       activatedRoute.data = of({ programacion });

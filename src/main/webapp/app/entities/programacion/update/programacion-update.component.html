@@ -19,158 +19,105 @@
           </div>
         }
 
-        @let fechaDesdeRef = editForm.get('fechaDesde')!;
+        @let fechaRef = editForm.get('fecha')!;
         <div class="mb-3">
           <label
             class="form-label"
-            for="field_fechaDesde"
-            [ngbTooltip]="'agendamientoApp.programacion.help.fechaDesde' | translate"
-            jhiTranslate="agendamientoApp.programacion.fechaDesde"
-            >Fecha Desde</label
+            for="field_fecha"
+            [ngbTooltip]="'agendamientoApp.programacion.help.fecha' | translate"
+            jhiTranslate="agendamientoApp.programacion.fecha"
+            >Fecha</label
           >
           <div class="input-group">
             <input
-              id="field_fechaDesde"
-              data-cy="fechaDesde"
+              id="field_fecha"
+              data-cy="fecha"
               type="text"
               class="form-control"
-              name="fechaDesde"
+              name="fecha"
               ngbDatepicker
-              #fechaDesdeDp="ngbDatepicker"
-              formControlName="fechaDesde"
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
             />
-            <button type="button" class="btn btn-secondary" (click)="fechaDesdeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
-          @if (fechaDesdeRef.invalid && (fechaDesdeRef.dirty || fechaDesdeRef.touched)) {
+          @if (fechaRef.invalid && (fechaRef.dirty || fechaRef.touched)) {
             <div>
-              @if (editForm.get('fechaDesde')?.errors?.required) {
+              @if (editForm.get('fecha')?.errors?.required) {
                 <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
               }
             </div>
           }
         </div>
 
-        @let fechaHastaRef = editForm.get('fechaHasta')!;
+        @let desdeRef = editForm.get('desde')!;
         <div class="mb-3">
           <label
             class="form-label"
-            for="field_fechaHasta"
-            [ngbTooltip]="'agendamientoApp.programacion.help.fechaHasta' | translate"
-            jhiTranslate="agendamientoApp.programacion.fechaHasta"
-            >Fecha Hasta</label
+            for="field_desde"
+            [ngbTooltip]="'agendamientoApp.programacion.help.desde' | translate"
+            jhiTranslate="agendamientoApp.programacion.desde"
+            >Desde</label
           >
-          <div class="input-group">
+          <div class="d-flex">
             <input
-              id="field_fechaHasta"
-              data-cy="fechaHasta"
-              type="text"
+              id="field_desde"
+              data-cy="desde"
+              type="datetime-local"
               class="form-control"
-              name="fechaHasta"
-              ngbDatepicker
-              #fechaHastaDp="ngbDatepicker"
-              formControlName="fechaHasta"
+              name="desde"
+              formControlName="desde"
+              placeholder="YYYY-MM-DD HH:mm"
             />
-            <button type="button" class="btn btn-secondary" (click)="fechaHastaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
-          @if (fechaHastaRef.invalid && (fechaHastaRef.dirty || fechaHastaRef.touched)) {
+          @if (desdeRef.invalid && (desdeRef.dirty || desdeRef.touched)) {
             <div>
-              @if (editForm.get('fechaHasta')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let duracionMinutosRef = editForm.get('duracionMinutos')!;
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_duracionMinutos"
-            [ngbTooltip]="'agendamientoApp.programacion.help.duracionMinutos' | translate"
-            jhiTranslate="agendamientoApp.programacion.duracionMinutos"
-            >Duracion Minutos</label
-          >
-          <input
-            type="number"
-            class="form-control"
-            name="duracionMinutos"
-            id="field_duracionMinutos"
-            data-cy="duracionMinutos"
-            formControlName="duracionMinutos"
-          />
-          @if (duracionMinutosRef.invalid && (duracionMinutosRef.dirty || duracionMinutosRef.touched)) {
-            <div>
-              @if (editForm.get('duracionMinutos')?.errors?.required) {
+              @if (editForm.get('desde')?.errors?.required) {
                 <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
               }
               <small
                 class="form-text text-danger"
-                [hidden]="!editForm.get('duracionMinutos')?.errors?.number"
-                jhiTranslate="entity.validation.number"
-                >Este campo debe ser un número.</small
+                [hidden]="!editForm.get('desde')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Este campo debe ser una fecha y hora.</small
               >
             </div>
           }
         </div>
 
+        @let hastaRef = editForm.get('hasta')!;
         <div class="mb-3">
           <label
             class="form-label"
-            for="field_desdeHoraAlmuerzo"
-            [ngbTooltip]="'agendamientoApp.programacion.help.desdeHoraAlmuerzo' | translate"
-            jhiTranslate="agendamientoApp.programacion.desdeHoraAlmuerzo"
-            >Desde Hora Almuerzo</label
+            for="field_hasta"
+            [ngbTooltip]="'agendamientoApp.programacion.help.hasta' | translate"
+            jhiTranslate="agendamientoApp.programacion.hasta"
+            >Hasta</label
           >
           <div class="d-flex">
             <input
-              id="field_desdeHoraAlmuerzo"
-              data-cy="desdeHoraAlmuerzo"
+              id="field_hasta"
+              data-cy="hasta"
               type="datetime-local"
               class="form-control"
-              name="desdeHoraAlmuerzo"
-              formControlName="desdeHoraAlmuerzo"
+              name="hasta"
+              formControlName="hasta"
               placeholder="YYYY-MM-DD HH:mm"
             />
           </div>
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_hastaHoraAlmuerzo"
-            [ngbTooltip]="'agendamientoApp.programacion.help.hastaHoraAlmuerzo' | translate"
-            jhiTranslate="agendamientoApp.programacion.hastaHoraAlmuerzo"
-            >Hasta Hora Almuerzo</label
-          >
-          <div class="d-flex">
-            <input
-              id="field_hastaHoraAlmuerzo"
-              data-cy="hastaHoraAlmuerzo"
-              type="datetime-local"
-              class="form-control"
-              name="hastaHoraAlmuerzo"
-              formControlName="hastaHoraAlmuerzo"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_diasSemana"
-            [ngbTooltip]="'agendamientoApp.programacion.help.diasSemana' | translate"
-            jhiTranslate="agendamientoApp.programacion.diasSemana"
-            >Dias Semana</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="diasSemana"
-            id="field_diasSemana"
-            data-cy="diasSemana"
-            formControlName="diasSemana"
-          />
+          @if (hastaRef.invalid && (hastaRef.dirty || hastaRef.touched)) {
+            <div>
+              @if (editForm.get('hasta')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('hasta')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Este campo debe ser una fecha y hora.</small
+              >
+            </div>
+          }
         </div>
 
         <div class="mb-3">

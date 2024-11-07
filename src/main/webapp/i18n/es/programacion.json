@@ -18,20 +18,14 @@
         "title": "Programacion"
       },
       "id": "ID",
-      "fechaDesde": "Fecha Desde",
-      "fechaHasta": "Fecha Hasta",
-      "duracionMinutos": "Duracion Minutos",
-      "desdeHoraAlmuerzo": "Desde Hora Almuerzo",
-      "hastaHoraAlmuerzo": "Hasta Hora Almuerzo",
-      "diasSemana": "Dias Semana",
+      "fecha": "Fecha",
+      "desde": "Desde",
+      "hasta": "Hasta",
       "horarioConsulta": "Horario Consulta",
       "help": {
-        "fechaDesde": "fecha desde",
-        "fechaHasta": "fecha hasta",
-        "duracionMinutos": "duración en minutos",
-        "desdeHoraAlmuerzo": "desde hora del almuerzo",
-        "hastaHoraAlmuerzo": "hasta hora del almuerzo",
-        "diasSemana": "días de la semana"
+        "fecha": "fecha turno",
+        "desde": "desde hora inicio",
+        "hasta": "hasta hora fin"
       }
     }
   }

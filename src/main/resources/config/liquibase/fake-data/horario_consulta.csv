@@ -1,11 +1,11 @@
-id;fecha_horario;hora_inicio;duracion_minutos;dia_semana;es_horario_atencion;estado
-1;2024-11-05;2024-11-05T15:11:10;21567;faithfully stealthily;false;from vastly
-2;2024-11-05;2024-11-05T20:37:56;15506;viciously yum;false;midwife quirkily
-3;2024-11-05;2024-11-05T20:37:34;7389;disinherit quarterly;false;intent warmhearted confiscate
-4;2024-11-05;2024-11-05T09:20:36;4861;psst foolishly up;false;whereas clonk
-5;2024-11-05;2024-11-05T08:36:26;6825;even after mostly;false;right ah oxygenate
-6;2024-11-05;2024-11-05T00:06:49;13459;phooey velvety almost;false;appreciate
-7;2024-11-05;2024-11-05T16:44:14;25955;effector interchange navigate;true;afterwards intelligent
-8;2024-11-05;2024-11-05T15:30:03;15676;across while whoa;true;supportive faithfully inside
-9;2024-11-05;2024-11-05T08:24:12;28810;forgo butter;true;fess fluff ack
-10;2024-11-05;2024-11-05T07:00:51;5077;contrast;false;toothbrush since ack
+id;fecha_horario;hora_inicio;duracion_minutos;dia_semana;es_horario_atencion;estado;desde_hora_almuerzo;hasta_hora_almuerzo
+1;2024-11-05;2024-11-05T15:11:10;21567;faithfully stealthily;false;from vastly;2024-11-05T01:29:38;2024-11-05T20:37:56
+2;2024-11-05;2024-11-05T13:40:37;31194;insist since midwife;true;towards possession thrifty;2024-11-05T15:10:38;2024-11-05T15:28:11
+3;2024-11-05;2024-11-05T19:04:48;14086;soulful excitedly;true;weep;2024-11-05T00:14:39;2024-11-05T22:52:01
+4;2024-11-05;2024-11-05T03:24:42;25631;hello developing forenenst;true;transcend charlatan;2024-11-05T23:20:20;2024-11-05T07:24:43
+5;2024-11-05;2024-11-05T17:47:33;5572;but;false;into dependent;2024-11-05T15:48:10;2024-11-05T09:49:25
+6;2024-11-05;2024-11-05T05:35:54;11503;oxygenate;true;disbar;2024-11-05T05:58:22;2024-11-05T00:51:03
+7;2024-11-05;2024-11-05T07:05:56;26505;duh contravene;false;yeast;2024-11-05T17:02:03;2024-11-05T15:28:40
+8;2024-11-05;2024-11-05T22:35:37;14831;duh sans belabor;false;ouch;2024-11-05T09:59:26;2024-11-05T18:13:13
+9;2024-11-05;2024-11-05T11:14:41;23038;republican;true;anti schnitzel salty;2024-11-05T15:40:40;2024-11-05T00:40:22
+10;2024-11-05;2024-11-05T19:39:47;13221;inside;true;like courageously;2024-11-05T09:10:29;2024-11-05T02:07:28

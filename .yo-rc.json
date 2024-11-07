@@ -28,7 +28,7 @@
       "TipoTerapia"
     ],
     "feignClient": null,
-    "jhipsterVersion": "8.7.3",
+    "jhipsterVersion": "8.7.2",
     "jwtSecretKey": "NzE5MTIxNmZmZTRmMTlmM2Q1ZGNiYWIyM2FmYjcxYTg3NzEyMDcxMjI1YzY4MmUwYTc3ODJmZGZmY2MxYWE3MmI2MWUzODNhOWU0N2MzZDY3MDM0YjhhNzllYzRhMGQzMTMxNDEwYmYwYzRkN2FmOTMwYmQwMzUzYjRiMjRiMzU=",
     "languages": ["es"],
     "lastLiquibaseTimestamp": 1730850353000,

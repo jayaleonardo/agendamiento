@@ -69,12 +69,26 @@ export class BusquedaHorarioComponent implements OnInit {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
+    this.cargarDatos();
+    this.buscar();
+  }
+
+  async cargarDatos(): Promise<void> {
     const rta = await this.horarioService.buscarEspecialidades();
     const body = rta.body ?? null;
     if (body !== null) {
       this.especialidades = body;
+      if (this.especialidades.length > 0) {
+        // fijar un valor por defecto de especialidad
+        this.form.patchValue({ especialidad: this.especialidades[0] });
+        this.buscarEspecialista(this.especialidades[0]);
+      }
     }
+
+    const hastaFecha = new Date();
+    hastaFecha.setDate(hastaFecha.getDate() + 7);
+    this.form.patchValue({ hasta: hastaFecha });
   }
 
   async buscarEspecialista(especialidad: string): Promise<void> {
@@ -103,11 +117,38 @@ export class BusquedaHorarioComponent implements OnInit {
     const formValues = this.form.value;
   }
 
-  buscar(): void {
-    const especialista = this.form.value.especialista;
+  async buscar(): Promise<void> {
+    const especialistaId = this.form.value.especialista;
     const desde = this.form.value.desde;
     const hasta = this.form.value.hasta;
 
-    // realizar busqueda en horarios
+    this.eventos = [];
+
+    // eslint-disable-next-line no-console
+    console.log(this.form.value);
+
+    const rta = await this.horarioService.buscarTurnos(especialistaId, desde, hasta);
+    const body = rta.body ?? null;
+    if (body !== null) {
+      // eslint-disable-next-line no-console
+      console.log(body);
+      if (body.length > 0) {
+        body.forEach(turno => {
+          const data = {
+            id: turno.programacionid.toString(),
+            title: `${turno.especialidad} ${turno.especialista}`,
+            start: turno.desde,
+            end: turno.hasta,
+            extendedProps: turno,
+            backgroundColor: '#34495e',
+            borderColor: '#34495e',
+          } as EventInput;
+
+          this.eventos = [...this.eventos, data];
+        });
+
+        this.calendarOptions.events = this.eventos;
+      }
+    }
   }
 }

@@ -1,0 +1,103 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="macartuche (generated)" id="1730943558285-17">
+        <addColumn tableName="programacion">
+            <column name="desde" type="timestamp(6)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-18">
+        <addColumn tableName="horario_consulta">
+            <column name="desde_hora_almuerzo" type="timestamp(6)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-19">
+        <addColumn tableName="programacion">
+            <column name="fecha" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-20">
+        <addColumn tableName="programacion">
+            <column name="hasta" type="timestamp(6)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-21">
+        <addColumn tableName="horario_consulta">
+            <column name="hasta_hora_almuerzo" type="timestamp(6)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-22">
+        <dropTable tableName="jhi_date_time_wrapper"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-23">
+        <dropColumn columnName="desde_hora_almuerzo" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-24">
+        <dropColumn columnName="dias_semana" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-25">
+        <dropColumn columnName="duracion_minutos" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-26">
+        <dropColumn columnName="fecha_desde" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-27">
+        <dropColumn columnName="fecha_hasta" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-28">
+        <dropColumn columnName="hasta_hora_almuerzo" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-1">
+        <setTableRemarks tableName="cita"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-2">
+        <setTableRemarks tableName="clinica"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-3">
+        <setTableRemarks tableName="contacto"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-4">
+        <setTableRemarks tableName="direccion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-5">
+        <setTableRemarks tableName="especialista"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-6">
+        <setTableRemarks tableName="horario_consulta"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-7">
+        <setTableRemarks tableName="paciente"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-8">
+        <setTableRemarks tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-9">
+        <setTableRemarks tableName="sujeto"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-10">
+        <setTableRemarks tableName="tipo_terapia"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-11">
+        <modifyDataType columnName="email" newDataType="varchar(254)" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-12">
+        <setColumnRemarks columnDataType="date" columnName="fecha_cita" tableName="cita"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-13">
+        <setColumnRemarks columnDataType="date" columnName="fecha_horario" tableName="horario_consulta"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-14">
+        <setColumnRemarks columnDataType="date" columnName="fecha_nacimiento" tableName="sujeto"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-15">
+        <setColumnRemarks columnDataType="timestamp(6)" columnName="hora_inicio" tableName="cita"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1730943558285-16">
+        <setColumnRemarks columnDataType="timestamp(6)" columnName="hora_inicio" tableName="horario_consulta"/>
+    </changeSet>
+</databaseChangeLog>

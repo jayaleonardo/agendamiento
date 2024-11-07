@@ -14,31 +14,22 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="fecha_desde" type="date" remarks="fecha desde">
+            <column name="fecha" type="date" remarks="fecha turno">
                 <constraints nullable="false" />
             </column>
-            <column name="fecha_hasta" type="date" remarks="fecha hasta">
+            <column name="desde" type="${datetimeType}" remarks="desde hora inicio">
                 <constraints nullable="false" />
             </column>
-            <column name="duracion_minutos" type="integer" remarks="duración en minutos">
+            <column name="hasta" type="${datetimeType}" remarks="hasta hora fin">
                 <constraints nullable="false" />
-            </column>
-            <column name="desde_hora_almuerzo" type="${datetimeType}" remarks="desde hora del almuerzo">
-                <constraints nullable="true" />
-            </column>
-            <column name="hasta_hora_almuerzo" type="${datetimeType}" remarks="hasta hora del almuerzo">
-                <constraints nullable="true" />
-            </column>
-            <column name="dias_semana" type="varchar(255)" remarks="días de la semana">
-                <constraints nullable="true" />
             </column>
             <column name="horario_consulta_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="programacion" columnName="desde_hora_almuerzo" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="programacion" columnName="hasta_hora_almuerzo" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="programacion" columnName="desde" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="programacion" columnName="hasta" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -58,12 +49,9 @@
                   tableName="programacion"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="fecha_desde" type="date"/>
-            <column name="fecha_hasta" type="date"/>
-            <column name="duracion_minutos" type="numeric"/>
-            <column name="desde_hora_almuerzo" type="date"/>
-            <column name="hasta_hora_almuerzo" type="date"/>
-            <column name="dias_semana" type="string"/>
+            <column name="fecha" type="date"/>
+            <column name="desde" type="date"/>
+            <column name="hasta" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

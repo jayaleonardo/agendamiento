@@ -56,6 +56,12 @@ class HorarioConsultaResourceIT {
     private static final String DEFAULT_ESTADO = "AAAAAAAAAA";
     private static final String UPDATED_ESTADO = "BBBBBBBBBB";
 
+    private static final Instant DEFAULT_DESDE_HORA_ALMUERZO = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DESDE_HORA_ALMUERZO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final Instant DEFAULT_HASTA_HORA_ALMUERZO = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_HASTA_HORA_ALMUERZO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
     private static final String ENTITY_API_URL = "/api/horario-consultas";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -94,7 +100,9 @@ class HorarioConsultaResourceIT {
             .duracionMinutos(DEFAULT_DURACION_MINUTOS)
             .diaSemana(DEFAULT_DIA_SEMANA)
             .esHorarioAtencion(DEFAULT_ES_HORARIO_ATENCION)
-            .estado(DEFAULT_ESTADO);
+            .estado(DEFAULT_ESTADO)
+            .desdeHoraAlmuerzo(DEFAULT_DESDE_HORA_ALMUERZO)
+            .hastaHoraAlmuerzo(DEFAULT_HASTA_HORA_ALMUERZO);
     }
 
     /**
@@ -110,7 +118,9 @@ class HorarioConsultaResourceIT {
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
             .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO)
+            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO);
     }
 
     @BeforeEach
@@ -236,7 +246,9 @@ class HorarioConsultaResourceIT {
             .andExpect(jsonPath("$.[*].duracionMinutos").value(hasItem(DEFAULT_DURACION_MINUTOS)))
             .andExpect(jsonPath("$.[*].diaSemana").value(hasItem(DEFAULT_DIA_SEMANA)))
             .andExpect(jsonPath("$.[*].esHorarioAtencion").value(hasItem(DEFAULT_ES_HORARIO_ATENCION.booleanValue())))
-            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO)));
+            .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO)))
+            .andExpect(jsonPath("$.[*].desdeHoraAlmuerzo").value(hasItem(DEFAULT_DESDE_HORA_ALMUERZO.toString())))
+            .andExpect(jsonPath("$.[*].hastaHoraAlmuerzo").value(hasItem(DEFAULT_HASTA_HORA_ALMUERZO.toString())));
     }
 
     @Test
@@ -256,7 +268,9 @@ class HorarioConsultaResourceIT {
             .andExpect(jsonPath("$.duracionMinutos").value(DEFAULT_DURACION_MINUTOS))
             .andExpect(jsonPath("$.diaSemana").value(DEFAULT_DIA_SEMANA))
             .andExpect(jsonPath("$.esHorarioAtencion").value(DEFAULT_ES_HORARIO_ATENCION.booleanValue()))
-            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO));
+            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO))
+            .andExpect(jsonPath("$.desdeHoraAlmuerzo").value(DEFAULT_DESDE_HORA_ALMUERZO.toString()))
+            .andExpect(jsonPath("$.hastaHoraAlmuerzo").value(DEFAULT_HASTA_HORA_ALMUERZO.toString()));
     }
 
     @Test
@@ -284,7 +298,9 @@ class HorarioConsultaResourceIT {
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
             .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO)
+            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO);
         HorarioConsultaDTO horarioConsultaDTO = horarioConsultaMapper.toDto(updatedHorarioConsulta);
 
         restHorarioConsultaMockMvc
@@ -374,7 +390,11 @@ class HorarioConsultaResourceIT {
         HorarioConsulta partialUpdatedHorarioConsulta = new HorarioConsulta();
         partialUpdatedHorarioConsulta.setId(horarioConsulta.getId());
 
-        partialUpdatedHorarioConsulta.fechaHorario(UPDATED_FECHA_HORARIO).horaInicio(UPDATED_HORA_INICIO).estado(UPDATED_ESTADO);
+        partialUpdatedHorarioConsulta
+            .fechaHorario(UPDATED_FECHA_HORARIO)
+            .horaInicio(UPDATED_HORA_INICIO)
+            .estado(UPDATED_ESTADO)
+            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO);
 
         restHorarioConsultaMockMvc
             .perform(
@@ -411,7 +431,9 @@ class HorarioConsultaResourceIT {
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
             .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
-            .estado(UPDATED_ESTADO);
+            .estado(UPDATED_ESTADO)
+            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO)
+            .hastaHoraAlmuerzo(UPDATED_HASTA_HORA_ALMUERZO);
 
         restHorarioConsultaMockMvc
             .perform(

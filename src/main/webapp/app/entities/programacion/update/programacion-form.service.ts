@@ -19,25 +19,22 @@ type ProgramacionFormGroupInput = IProgramacion | PartialWithRequiredKeyOf<NewPr
 /**
  * Type that converts some properties for forms.
  */
-type FormValueOf<T extends IProgramacion | NewProgramacion> = Omit<T, 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'> & {
-  desdeHoraAlmuerzo?: string | null;
-  hastaHoraAlmuerzo?: string | null;
+type FormValueOf<T extends IProgramacion | NewProgramacion> = Omit<T, 'desde' | 'hasta'> & {
+  desde?: string | null;
+  hasta?: string | null;
 };
 
 type ProgramacionFormRawValue = FormValueOf<IProgramacion>;
 
 type NewProgramacionFormRawValue = FormValueOf<NewProgramacion>;
 
-type ProgramacionFormDefaults = Pick<NewProgramacion, 'id' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'>;
+type ProgramacionFormDefaults = Pick<NewProgramacion, 'id' | 'desde' | 'hasta'>;
 
 type ProgramacionFormGroupContent = {
   id: FormControl<ProgramacionFormRawValue['id'] | NewProgramacion['id']>;
-  fechaDesde: FormControl<ProgramacionFormRawValue['fechaDesde']>;
-  fechaHasta: FormControl<ProgramacionFormRawValue['fechaHasta']>;
-  duracionMinutos: FormControl<ProgramacionFormRawValue['duracionMinutos']>;
-  desdeHoraAlmuerzo: FormControl<ProgramacionFormRawValue['desdeHoraAlmuerzo']>;
-  hastaHoraAlmuerzo: FormControl<ProgramacionFormRawValue['hastaHoraAlmuerzo']>;
-  diasSemana: FormControl<ProgramacionFormRawValue['diasSemana']>;
+  fecha: FormControl<ProgramacionFormRawValue['fecha']>;
+  desde: FormControl<ProgramacionFormRawValue['desde']>;
+  hasta: FormControl<ProgramacionFormRawValue['hasta']>;
   horarioConsulta: FormControl<ProgramacionFormRawValue['horarioConsulta']>;
 };
 
@@ -58,18 +55,15 @@ export class ProgramacionFormService {
           validators: [Validators.required],
         },
       ),
-      fechaDesde: new FormControl(programacionRawValue.fechaDesde, {
+      fecha: new FormControl(programacionRawValue.fecha, {
         validators: [Validators.required],
       }),
-      fechaHasta: new FormControl(programacionRawValue.fechaHasta, {
+      desde: new FormControl(programacionRawValue.desde, {
         validators: [Validators.required],
       }),
-      duracionMinutos: new FormControl(programacionRawValue.duracionMinutos, {
+      hasta: new FormControl(programacionRawValue.hasta, {
         validators: [Validators.required],
       }),
-      desdeHoraAlmuerzo: new FormControl(programacionRawValue.desdeHoraAlmuerzo),
-      hastaHoraAlmuerzo: new FormControl(programacionRawValue.hastaHoraAlmuerzo),
-      diasSemana: new FormControl(programacionRawValue.diasSemana),
       horarioConsulta: new FormControl(programacionRawValue.horarioConsulta),
     });
   }
@@ -93,8 +87,8 @@ export class ProgramacionFormService {
 
     return {
       id: null,
-      desdeHoraAlmuerzo: currentTime,
-      hastaHoraAlmuerzo: currentTime,
+      desde: currentTime,
+      hasta: currentTime,
     };
   }
 
@@ -103,8 +97,8 @@ export class ProgramacionFormService {
   ): IProgramacion | NewProgramacion {
     return {
       ...rawProgramacion,
-      desdeHoraAlmuerzo: dayjs(rawProgramacion.desdeHoraAlmuerzo, DATE_TIME_FORMAT),
-      hastaHoraAlmuerzo: dayjs(rawProgramacion.hastaHoraAlmuerzo, DATE_TIME_FORMAT),
+      desde: dayjs(rawProgramacion.desde, DATE_TIME_FORMAT),
+      hasta: dayjs(rawProgramacion.hasta, DATE_TIME_FORMAT),
     };
   }
 
@@ -113,8 +107,8 @@ export class ProgramacionFormService {
   ): ProgramacionFormRawValue | PartialWithRequiredKeyOf<NewProgramacionFormRawValue> {
     return {
       ...programacion,
-      desdeHoraAlmuerzo: programacion.desdeHoraAlmuerzo ? programacion.desdeHoraAlmuerzo.format(DATE_TIME_FORMAT) : undefined,
-      hastaHoraAlmuerzo: programacion.hastaHoraAlmuerzo ? programacion.hastaHoraAlmuerzo.format(DATE_TIME_FORMAT) : undefined,
+      desde: programacion.desde ? programacion.desde.format(DATE_TIME_FORMAT) : undefined,
+      hasta: programacion.hasta ? programacion.hasta.format(DATE_TIME_FORMAT) : undefined,
     };
   }
 }

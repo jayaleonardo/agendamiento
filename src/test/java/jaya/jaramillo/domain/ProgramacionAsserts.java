@@ -47,12 +47,9 @@ public class ProgramacionAsserts {
     public static void assertProgramacionUpdatableFieldsEquals(Programacion expected, Programacion actual) {
         assertThat(expected)
             .as("Verify Programacion relevant properties")
-            .satisfies(e -> assertThat(e.getFechaDesde()).as("check fechaDesde").isEqualTo(actual.getFechaDesde()))
-            .satisfies(e -> assertThat(e.getFechaHasta()).as("check fechaHasta").isEqualTo(actual.getFechaHasta()))
-            .satisfies(e -> assertThat(e.getDuracionMinutos()).as("check duracionMinutos").isEqualTo(actual.getDuracionMinutos()))
-            .satisfies(e -> assertThat(e.getDesdeHoraAlmuerzo()).as("check desdeHoraAlmuerzo").isEqualTo(actual.getDesdeHoraAlmuerzo()))
-            .satisfies(e -> assertThat(e.getHastaHoraAlmuerzo()).as("check hastaHoraAlmuerzo").isEqualTo(actual.getHastaHoraAlmuerzo()))
-            .satisfies(e -> assertThat(e.getDiasSemana()).as("check diasSemana").isEqualTo(actual.getDiasSemana()));
+            .satisfies(e -> assertThat(e.getFecha()).as("check fecha").isEqualTo(actual.getFecha()))
+            .satisfies(e -> assertThat(e.getDesde()).as("check desde").isEqualTo(actual.getDesde()))
+            .satisfies(e -> assertThat(e.getHasta()).as("check hasta").isEqualTo(actual.getHasta()));
     }
 
     /**

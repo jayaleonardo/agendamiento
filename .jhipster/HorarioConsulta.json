@@ -38,6 +38,16 @@
       "documentation": "estado del horario",
       "fieldName": "estado",
       "fieldType": "String"
+    },
+    {
+      "documentation": "desde hora del almuerzo",
+      "fieldName": "desdeHoraAlmuerzo",
+      "fieldType": "Instant"
+    },
+    {
+      "documentation": "hasta hora del almuerzo",
+      "fieldName": "hastaHoraAlmuerzo",
+      "fieldType": "Instant"
     }
   ],
   "name": "HorarioConsulta",

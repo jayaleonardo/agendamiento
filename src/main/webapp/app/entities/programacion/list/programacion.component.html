@@ -42,44 +42,23 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="fechaDesde">
+            <th scope="col" jhiSortBy="fecha">
               <div class="d-flex">
-                <span jhiTranslate="agendamientoApp.programacion.fechaDesde">Fecha Desde</span>
+                <span jhiTranslate="agendamientoApp.programacion.fecha">Fecha</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="fechaHasta">
+            <th scope="col" jhiSortBy="desde">
               <div class="d-flex">
-                <span jhiTranslate="agendamientoApp.programacion.fechaHasta">Fecha Hasta</span>
+                <span jhiTranslate="agendamientoApp.programacion.desde">Desde</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="duracionMinutos">
+            <th scope="col" jhiSortBy="hasta">
               <div class="d-flex">
-                <span jhiTranslate="agendamientoApp.programacion.duracionMinutos">Duracion Minutos</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="desdeHoraAlmuerzo">
-              <div class="d-flex">
-                <span jhiTranslate="agendamientoApp.programacion.desdeHoraAlmuerzo">Desde Hora Almuerzo</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="hastaHoraAlmuerzo">
-              <div class="d-flex">
-                <span jhiTranslate="agendamientoApp.programacion.hastaHoraAlmuerzo">Hasta Hora Almuerzo</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="diasSemana">
-              <div class="d-flex">
-                <span jhiTranslate="agendamientoApp.programacion.diasSemana">Dias Semana</span>
+                <span jhiTranslate="agendamientoApp.programacion.hasta">Hasta</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
@@ -99,12 +78,9 @@
               <td>
                 <a [routerLink]="['/programacion', programacion.id, 'view']">{{ programacion.id }}</a>
               </td>
-              <td>{{ programacion.fechaDesde | formatMediumDate }}</td>
-              <td>{{ programacion.fechaHasta | formatMediumDate }}</td>
-              <td>{{ programacion.duracionMinutos }}</td>
-              <td>{{ programacion.desdeHoraAlmuerzo | formatMediumDatetime }}</td>
-              <td>{{ programacion.hastaHoraAlmuerzo | formatMediumDatetime }}</td>
-              <td>{{ programacion.diasSemana }}</td>
+              <td>{{ programacion.fecha | formatMediumDate }}</td>
+              <td>{{ programacion.desde | formatMediumDatetime }}</td>
+              <td>{{ programacion.hasta | formatMediumDatetime }}</td>
               <td>
                 @if (programacion.horarioConsulta) {
                   <div>

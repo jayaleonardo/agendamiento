@@ -26,6 +26,8 @@ describe('HorarioConsulta Form Service', () => {
             diaSemana: expect.any(Object),
             esHorarioAtencion: expect.any(Object),
             estado: expect.any(Object),
+            desdeHoraAlmuerzo: expect.any(Object),
+            hastaHoraAlmuerzo: expect.any(Object),
             especialista: expect.any(Object),
           }),
         );
@@ -43,6 +45,8 @@ describe('HorarioConsulta Form Service', () => {
             diaSemana: expect.any(Object),
             esHorarioAtencion: expect.any(Object),
             estado: expect.any(Object),
+            desdeHoraAlmuerzo: expect.any(Object),
+            hastaHoraAlmuerzo: expect.any(Object),
             especialista: expect.any(Object),
           }),
         );

@@ -19,15 +19,20 @@ type HorarioConsultaFormGroupInput = IHorarioConsulta | PartialWithRequiredKeyOf
 /**
  * Type that converts some properties for forms.
  */
-type FormValueOf<T extends IHorarioConsulta | NewHorarioConsulta> = Omit<T, 'horaInicio'> & {
+type FormValueOf<T extends IHorarioConsulta | NewHorarioConsulta> = Omit<T, 'horaInicio' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'> & {
   horaInicio?: string | null;
+  desdeHoraAlmuerzo?: string | null;
+  hastaHoraAlmuerzo?: string | null;
 };
 
 type HorarioConsultaFormRawValue = FormValueOf<IHorarioConsulta>;
 
 type NewHorarioConsultaFormRawValue = FormValueOf<NewHorarioConsulta>;
 
-type HorarioConsultaFormDefaults = Pick<NewHorarioConsulta, 'id' | 'horaInicio' | 'esHorarioAtencion'>;
+type HorarioConsultaFormDefaults = Pick<
+  NewHorarioConsulta,
+  'id' | 'horaInicio' | 'esHorarioAtencion' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'
+>;
 
 type HorarioConsultaFormGroupContent = {
   id: FormControl<HorarioConsultaFormRawValue['id'] | NewHorarioConsulta['id']>;
@@ -37,6 +42,8 @@ type HorarioConsultaFormGroupContent = {
   diaSemana: FormControl<HorarioConsultaFormRawValue['diaSemana']>;
   esHorarioAtencion: FormControl<HorarioConsultaFormRawValue['esHorarioAtencion']>;
   estado: FormControl<HorarioConsultaFormRawValue['estado']>;
+  desdeHoraAlmuerzo: FormControl<HorarioConsultaFormRawValue['desdeHoraAlmuerzo']>;
+  hastaHoraAlmuerzo: FormControl<HorarioConsultaFormRawValue['hastaHoraAlmuerzo']>;
   especialista: FormControl<HorarioConsultaFormRawValue['especialista']>;
 };
 
@@ -69,6 +76,8 @@ export class HorarioConsultaFormService {
       diaSemana: new FormControl(horarioConsultaRawValue.diaSemana),
       esHorarioAtencion: new FormControl(horarioConsultaRawValue.esHorarioAtencion),
       estado: new FormControl(horarioConsultaRawValue.estado),
+      desdeHoraAlmuerzo: new FormControl(horarioConsultaRawValue.desdeHoraAlmuerzo),
+      hastaHoraAlmuerzo: new FormControl(horarioConsultaRawValue.hastaHoraAlmuerzo),
       especialista: new FormControl(horarioConsultaRawValue.especialista),
     });
   }
@@ -96,6 +105,8 @@ export class HorarioConsultaFormService {
       id: null,
       horaInicio: currentTime,
       esHorarioAtencion: false,
+      desdeHoraAlmuerzo: currentTime,
+      hastaHoraAlmuerzo: currentTime,
     };
   }
 
@@ -105,6 +116,8 @@ export class HorarioConsultaFormService {
     return {
       ...rawHorarioConsulta,
       horaInicio: dayjs(rawHorarioConsulta.horaInicio, DATE_TIME_FORMAT),
+      desdeHoraAlmuerzo: dayjs(rawHorarioConsulta.desdeHoraAlmuerzo, DATE_TIME_FORMAT),
+      hastaHoraAlmuerzo: dayjs(rawHorarioConsulta.hastaHoraAlmuerzo, DATE_TIME_FORMAT),
     };
   }
 
@@ -114,6 +127,8 @@ export class HorarioConsultaFormService {
     return {
       ...horarioConsulta,
       horaInicio: horarioConsulta.horaInicio ? horarioConsulta.horaInicio.format(DATE_TIME_FORMAT) : undefined,
+      desdeHoraAlmuerzo: horarioConsulta.desdeHoraAlmuerzo ? horarioConsulta.desdeHoraAlmuerzo.format(DATE_TIME_FORMAT) : undefined,
+      hastaHoraAlmuerzo: horarioConsulta.hastaHoraAlmuerzo ? horarioConsulta.hastaHoraAlmuerzo.format(DATE_TIME_FORMAT) : undefined,
     };
   }
 }

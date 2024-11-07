@@ -3,12 +3,9 @@ import { IHorarioConsulta } from 'app/entities/horario-consulta/horario-consulta
 
 export interface IProgramacion {
   id: number;
-  fechaDesde?: dayjs.Dayjs | null;
-  fechaHasta?: dayjs.Dayjs | null;
-  duracionMinutos?: number | null;
-  desdeHoraAlmuerzo?: dayjs.Dayjs | null;
-  hastaHoraAlmuerzo?: dayjs.Dayjs | null;
-  diasSemana?: string | null;
+  fecha?: dayjs.Dayjs | null;
+  desde?: dayjs.Dayjs | null;
+  hasta?: dayjs.Dayjs | null;
   horarioConsulta?: Pick<IHorarioConsulta, 'id'> | null;
 }
 

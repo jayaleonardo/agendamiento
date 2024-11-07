@@ -2,13 +2,17 @@ package jaya.jaramillo.web.rest;
 
 import java.util.List;
 import jaya.jaramillo.service.EspecialistaService;
+import jaya.jaramillo.service.ProgramacionService;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
+import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
+import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +22,11 @@ public class HorariosResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(HorariosResource.class);
     private final EspecialistaService especialistaService;
+    private final ProgramacionService programacionService;
 
-    public HorariosResource(EspecialistaService especialistaService) {
+    public HorariosResource(EspecialistaService especialistaService, ProgramacionService programacionService) {
         this.especialistaService = especialistaService;
+        this.programacionService = programacionService;
     }
 
     @PostMapping("/listarEspecialidades")
@@ -33,5 +39,12 @@ public class HorariosResource {
     public ResponseEntity<List<EspecialistaDTO>> especialistaPorEspecialidad(@PathVariable(value = "especialidad") String especialidad) {
         LOG.debug("Rest especialistaPorEspecialidad {} ", especialidad);
         return ResponseEntity.ok().body(this.especialistaService.buscarPorEspecialidad(especialidad));
+    }
+
+    @PostMapping("/buscarTurnos")
+    public ResponseEntity<List<TurnoEspecialidadDTO>> buscarTurnos(@RequestBody BuscarTurnoRequest request) {
+        LOG.debug("Rest buscarTurnos");
+        return ResponseEntity.ok()
+            .body(this.programacionService.buscarTurnos(request.getEspecialistaId(), request.getDesde(), request.getHasta()));
     }
 }

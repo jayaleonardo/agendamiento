@@ -24,6 +24,8 @@
       "diaSemana": "Dia Semana",
       "esHorarioAtencion": "Es Horario Atencion",
       "estado": "Estado",
+      "desdeHoraAlmuerzo": "Desde Hora Almuerzo",
+      "hastaHoraAlmuerzo": "Hasta Hora Almuerzo",
       "programacion": "Programacion",
       "especialista": "Especialista",
       "help": {
@@ -32,7 +34,9 @@
         "duracionMinutos": "duración en minutos",
         "diaSemana": "día de la semana",
         "esHorarioAtencion": "indica si es horario de atención",
-        "estado": "estado del horario"
+        "estado": "estado del horario",
+        "desdeHoraAlmuerzo": "desde hora del almuerzo",
+        "hastaHoraAlmuerzo": "hasta hora del almuerzo"
       }
     }
   }

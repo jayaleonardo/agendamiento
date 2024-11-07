@@ -20,12 +20,9 @@ describe('Programacion Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            fechaDesde: expect.any(Object),
-            fechaHasta: expect.any(Object),
-            duracionMinutos: expect.any(Object),
-            desdeHoraAlmuerzo: expect.any(Object),
-            hastaHoraAlmuerzo: expect.any(Object),
-            diasSemana: expect.any(Object),
+            fecha: expect.any(Object),
+            desde: expect.any(Object),
+            hasta: expect.any(Object),
             horarioConsulta: expect.any(Object),
           }),
         );
@@ -37,12 +34,9 @@ describe('Programacion Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            fechaDesde: expect.any(Object),
-            fechaHasta: expect.any(Object),
-            duracionMinutos: expect.any(Object),
-            desdeHoraAlmuerzo: expect.any(Object),
-            hastaHoraAlmuerzo: expect.any(Object),
-            diasSemana: expect.any(Object),
+            fecha: expect.any(Object),
+            desde: expect.any(Object),
+            hasta: expect.any(Object),
             horarioConsulta: expect.any(Object),
           }),
         );
