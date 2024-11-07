@@ -146,9 +146,8 @@ export class BusquedaHorarioComponent implements OnInit {
 
           this.eventos = [...this.eventos, data];
         });
-
-        this.calendarOptions.events = this.eventos;
       }
+      this.calendarOptions.events = this.eventos;
     }
   }
 }
