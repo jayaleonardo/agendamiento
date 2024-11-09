@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Component, inject, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HorarioService } from '../horarios-service';
 import { IEspecialista } from 'app/entities/especialista/especialista.model';
@@ -12,6 +12,8 @@ import listPlugin from '@fullcalendar/list';
 import esLocale from '@fullcalendar/core/locales/es';
 import moment from 'moment';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { MatDialog } from '@angular/material/dialog';
+import { CreacionHorarioComponent } from 'app/shared/dialogos/creacion-horario/creacion-horario.component';
 
 @Component({
   selector: 'jhi-busqueda-horario',
@@ -20,9 +22,10 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
   templateUrl: './busqueda-horario.component.html',
   styleUrl: './busqueda-horario.component.scss',
 })
-export class BusquedaHorarioComponent implements OnInit {
+export class BusquedaHorarioComponent implements OnInit, AfterViewInit {
   changeDetector = inject(ChangeDetectorRef);
   horarioService = inject(HorarioService);
+  dialogService = inject(MatDialog);
 
   eventos: EventInput[] = [];
   especialistas?: IEspecialista[];
@@ -68,7 +71,6 @@ export class BusquedaHorarioComponent implements OnInit {
     this.calendarApi = this.calendar.getApi();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   ngOnInit(): void {
     this.cargarDatos();
     this.buscar();
@@ -148,6 +150,20 @@ export class BusquedaHorarioComponent implements OnInit {
         });
       }
       this.calendarOptions.events = this.eventos;
+    }
+  }
+
+  configurarHorario(): void {
+    const especialistaSeleccionado = this.form.value.especialista;
+
+    if (especialistaSeleccionado) {
+      const data = this.especialistas?.find(esp => esp.id === especialistaSeleccionado);
+      const dialogRef = this.dialogService.open(CreacionHorarioComponent, {
+        width: '70%',
+        height: 'auto',
+        disableClose: true,
+        data,
+      });
     }
   }
 }

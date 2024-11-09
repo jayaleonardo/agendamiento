@@ -1,0 +1,23 @@
+.cabecera {
+  background: #a6d1e9;
+}
+
+h5 {
+  color: #0e6494;
+  font-weight: bold;
+}
+
+.duracion li {
+  list-style: none;
+  display: inline-block;
+  width: 40px;
+  height: 30px;
+  border-radius: 11px 11px 11px 11px;
+  -webkit-border-radius: 11px 11px 11px 11px;
+  -moz-border-radius: 11px 11px 11px 11px;
+  border: 1px solid #0e6494;
+  background: #0e6494;
+  margin: 5px;
+  text-align: center;
+  color: #fff;
+}

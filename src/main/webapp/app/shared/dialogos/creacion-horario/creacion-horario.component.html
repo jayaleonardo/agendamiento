@@ -1,0 +1,156 @@
+<div style="background: #f1f1f1" id="nuevohorario">
+  <form [formGroup]="form">
+    <div class="row cabecera">
+      <div class="col-9">
+        <h2 mat-dialog-title>Crear horario</h2>
+      </div>
+      <div class="col-3 text-end mt-3 mr-2">
+        <button mat-raised-button color="primary" type="submit">Aceptar</button>
+        <button mat-raised-button color="accent" (click)="aplicarConfiguracion()">Cancelar</button>
+      </div>
+    </div>
+    <div class="container" mat-dialog-content>
+      <div class="row mt-3 mb-2">
+        <div class="col-6">
+          <span style="font-weight: bold">Especialista: </span>
+          {{ data.sujeto?.apellido }} {{ data.sujeto?.segundoApellido }} {{ data.sujeto?.nombre }} {{ data.sujeto?.segundoNombre }}
+        </div>
+        <div class="col-6">
+          <span style="font-weight: bold">Especialidad: </span>
+          {{ data.especialidad }}
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="row mt-3">
+        <div class="col-6">
+          <mat-form-field class="input-full-width" appearance="outline">
+            <mat-label>Fecha desde</mat-label>
+            <input matInput [matDatepicker]="selectorDesde" formControlName="desde" />
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="selectorDesde"></mat-datepicker-toggle>
+            <mat-datepicker #selectorDesde></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="input-full-width" appearance="outline">
+            <mat-label>Fecha hasta</mat-label>
+            <input matInput [matDatepicker]="selectorHasta" formControlName="hasta" />
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="selectorDesde"></mat-datepicker-toggle>
+            <mat-datepicker #selectorHasta></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-6 duracion">
+          <div class="row">
+            <div class="col-2">
+              <span style="font-weight: bold">Duración de la cita</span>
+            </div>
+            <div class="col-10">
+              <mat-radio-group aria-label="Select an option" formControlName="duracion">
+                <mat-radio-button *ngFor="let duracion of duraciones" value="{{ duracion }}">{{ duracion }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="row mt-3">
+        <div class="col-3">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Horario de consulta</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <div class="mt-2">
+                <mat-form-field>
+                  <mat-label>Desde:</mat-label>
+                  <input type="text" matInput [matTimepicker]="horarioDesde" formControlName="horarioDesde" />
+                  <mat-timepicker-toggle matSuffix [for]="horarioDesde"></mat-timepicker-toggle>
+                  <mat-timepicker #horarioDesde></mat-timepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Hasta:</mat-label>
+                  <input type="text" matInput [matTimepicker]="horarioHasta" formControlName="horarioHasta" />
+                  <mat-timepicker-toggle matSuffix [for]="horarioHasta"></mat-timepicker-toggle>
+                  <mat-timepicker #horarioHasta></mat-timepicker>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="col-3">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Hora de almuerzo</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <div class="mt-2">
+                <mat-form-field>
+                  <mat-label>Desde:</mat-label>
+                  <input type="text" matInput [matTimepicker]="almuerzoDesde" formControlName="almuerzoDesde" />
+                  <mat-timepicker-toggle matSuffix [for]="almuerzoDesde"></mat-timepicker-toggle>
+                  <mat-timepicker #almuerzoDesde></mat-timepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Hasta:</mat-label>
+                  <input type="text" matInput [matTimepicker]="almuerzoHasta" formControlName="almuerzoHasta" />
+                  <mat-timepicker-toggle matSuffix [for]="almuerzoHasta"></mat-timepicker-toggle>
+                  <mat-timepicker #almuerzoHasta></mat-timepicker>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="col-6">
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title>Dias de atención</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+              <div class="mt-2">
+                <jhi-checkbox-group formControlName="diasSeleccionados" (onCheck)="onCheck($event)">
+                  <div class="row">
+                    <div class="col-12">
+                      <jhi-checkbox *ngFor="let dia of diasSemana" [value]="dia.id" [label]="dia.nombre"></jhi-checkbox>
+                    </div>
+                  </div>
+                </jhi-checkbox-group>
+
+                <div class="mt-1">
+                  <button mat-raised-button color="primary" (click)="aplicarConfiguracion()">Aplicar</button>
+                  <button mat-raised-button color="primary">Quitar</button>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="row mt-3" *ngIf="mostrarConfiguracion">
+        <h5 class="text-center" style="font-weight: bold !important">Resumen del horario por día de la semana</h5>
+        <div class="row">
+          <div *ngFor="let dia of diasSeleccionados" style="background: #fdfbc6" class="col-3 mx-1 mb-2">
+            <h5>{{ nombreDia(dia) }}</h5>
+            <div><span style="font-weight: bold">Citas por día:</span> CALCULAR</div>
+            <div><span style="font-weight: bold">Horario de consulta:</span> {{ preHorarioDesde }} - {{ preHorarioHasta }}</div>
+            <div>
+              <span style="font-weight: bold">Horario de almuerzo:</span> {{ preHorarioAlmuerzoDesde }} - {{ preHorarioAlmuerzoHasta }}
+            </div>
+            <div><span style="font-weight: bold">Duración de la consulta:</span> {{ preDuracion }} min.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

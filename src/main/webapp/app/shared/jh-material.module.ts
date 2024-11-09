@@ -43,6 +43,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { MatNativeDateTimeModule, MatTimepickerModule } from '@dhutaryan/ngx-mat-timepicker';
 
 export const MY_FORMATS = {
   parse: {
@@ -113,6 +114,8 @@ export const MY_FORMATS = {
     ScrollingModule,
     ClipboardModule,
     MatSelectModule,
+    MatTimepickerModule,
+    MatNativeDateTimeModule,
   ],
 })
 export class JhMaterialModule {}
