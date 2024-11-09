@@ -3,37 +3,41 @@ import dayjs from 'dayjs/esm';
 import { IHorarioConsulta, NewHorarioConsulta } from './horario-consulta.model';
 
 export const sampleWithRequiredData: IHorarioConsulta = {
-  id: 29383,
-  fechaHorario: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T06:02'),
-  duracionMinutos: 11318,
+  id: 32527,
+  desde: dayjs('2024-11-05'),
+  hasta: dayjs('2024-11-05'),
+  horaInicio: dayjs('2024-11-05T13:12'),
+  duracionMinutos: 31321,
 };
 
 export const sampleWithPartialData: IHorarioConsulta = {
-  id: 19198,
-  fechaHorario: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T03:15'),
-  duracionMinutos: 9035,
-  desdeHoraAlmuerzo: dayjs('2024-11-05T11:07'),
-  hastaHoraAlmuerzo: dayjs('2024-11-05T14:45'),
+  id: 4768,
+  desde: dayjs('2024-11-05'),
+  hasta: dayjs('2024-11-05'),
+  horaInicio: dayjs('2024-11-05T14:45'),
+  duracionMinutos: 3750,
+  esHorarioAtencion: true,
+  estado: 'unwelcome',
 };
 
 export const sampleWithFullData: IHorarioConsulta = {
-  id: 3750,
-  fechaHorario: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T07:08'),
-  duracionMinutos: 8324,
-  diaSemana: 'possible generously where',
+  id: 18606,
+  desde: dayjs('2024-11-05'),
+  hasta: dayjs('2024-11-05'),
+  horaInicio: dayjs('2024-11-05T01:36'),
+  duracionMinutos: 16870,
+  diaSemana: 'uh-huh',
   esHorarioAtencion: true,
-  estado: 'split',
-  desdeHoraAlmuerzo: dayjs('2024-11-05T09:41'),
-  hastaHoraAlmuerzo: dayjs('2024-11-05T20:58'),
+  estado: 'yuck',
+  desdeHoraAlmuerzo: dayjs('2024-11-05T17:08'),
+  hastaHoraAlmuerzo: dayjs('2024-11-05T16:11'),
 };
 
 export const sampleWithNewData: NewHorarioConsulta = {
-  fechaHorario: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T19:19'),
-  duracionMinutos: 31815,
+  desde: dayjs('2024-11-05'),
+  hasta: dayjs('2024-11-05'),
+  horaInicio: dayjs('2024-11-05T20:58'),
+  duracionMinutos: 1764,
   id: null,
 };
 

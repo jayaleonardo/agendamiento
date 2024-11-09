@@ -38,8 +38,11 @@ import org.springframework.transaction.annotation.Transactional;
 @WithMockUser
 class HorarioConsultaResourceIT {
 
-    private static final LocalDate DEFAULT_FECHA_HORARIO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA_HORARIO = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_DESDE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DESDE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_HASTA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_HASTA = LocalDate.now(ZoneId.systemDefault());
 
     private static final Instant DEFAULT_HORA_INICIO = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_HORA_INICIO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -95,7 +98,8 @@ class HorarioConsultaResourceIT {
      */
     public static HorarioConsulta createEntity() {
         return new HorarioConsulta()
-            .fechaHorario(DEFAULT_FECHA_HORARIO)
+            .desde(DEFAULT_DESDE)
+            .hasta(DEFAULT_HASTA)
             .horaInicio(DEFAULT_HORA_INICIO)
             .duracionMinutos(DEFAULT_DURACION_MINUTOS)
             .diaSemana(DEFAULT_DIA_SEMANA)
@@ -113,7 +117,8 @@ class HorarioConsultaResourceIT {
      */
     public static HorarioConsulta createUpdatedEntity() {
         return new HorarioConsulta()
-            .fechaHorario(UPDATED_FECHA_HORARIO)
+            .desde(UPDATED_DESDE)
+            .hasta(UPDATED_HASTA)
             .horaInicio(UPDATED_HORA_INICIO)
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
@@ -180,10 +185,27 @@ class HorarioConsultaResourceIT {
 
     @Test
     @Transactional
-    void checkFechaHorarioIsRequired() throws Exception {
+    void checkDesdeIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
-        horarioConsulta.setFechaHorario(null);
+        horarioConsulta.setDesde(null);
+
+        // Create the HorarioConsulta, which fails.
+        HorarioConsultaDTO horarioConsultaDTO = horarioConsultaMapper.toDto(horarioConsulta);
+
+        restHorarioConsultaMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(horarioConsultaDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkHastaIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        horarioConsulta.setHasta(null);
 
         // Create the HorarioConsulta, which fails.
         HorarioConsultaDTO horarioConsultaDTO = horarioConsultaMapper.toDto(horarioConsulta);
@@ -241,7 +263,8 @@ class HorarioConsultaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(horarioConsulta.getId().intValue())))
-            .andExpect(jsonPath("$.[*].fechaHorario").value(hasItem(DEFAULT_FECHA_HORARIO.toString())))
+            .andExpect(jsonPath("$.[*].desde").value(hasItem(DEFAULT_DESDE.toString())))
+            .andExpect(jsonPath("$.[*].hasta").value(hasItem(DEFAULT_HASTA.toString())))
             .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
             .andExpect(jsonPath("$.[*].duracionMinutos").value(hasItem(DEFAULT_DURACION_MINUTOS)))
             .andExpect(jsonPath("$.[*].diaSemana").value(hasItem(DEFAULT_DIA_SEMANA)))
@@ -263,7 +286,8 @@ class HorarioConsultaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(horarioConsulta.getId().intValue()))
-            .andExpect(jsonPath("$.fechaHorario").value(DEFAULT_FECHA_HORARIO.toString()))
+            .andExpect(jsonPath("$.desde").value(DEFAULT_DESDE.toString()))
+            .andExpect(jsonPath("$.hasta").value(DEFAULT_HASTA.toString()))
             .andExpect(jsonPath("$.horaInicio").value(DEFAULT_HORA_INICIO.toString()))
             .andExpect(jsonPath("$.duracionMinutos").value(DEFAULT_DURACION_MINUTOS))
             .andExpect(jsonPath("$.diaSemana").value(DEFAULT_DIA_SEMANA))
@@ -293,7 +317,8 @@ class HorarioConsultaResourceIT {
         // Disconnect from session so that the updates on updatedHorarioConsulta are not directly saved in db
         em.detach(updatedHorarioConsulta);
         updatedHorarioConsulta
-            .fechaHorario(UPDATED_FECHA_HORARIO)
+            .desde(UPDATED_DESDE)
+            .hasta(UPDATED_HASTA)
             .horaInicio(UPDATED_HORA_INICIO)
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
@@ -391,10 +416,10 @@ class HorarioConsultaResourceIT {
         partialUpdatedHorarioConsulta.setId(horarioConsulta.getId());
 
         partialUpdatedHorarioConsulta
-            .fechaHorario(UPDATED_FECHA_HORARIO)
-            .horaInicio(UPDATED_HORA_INICIO)
-            .estado(UPDATED_ESTADO)
-            .desdeHoraAlmuerzo(UPDATED_DESDE_HORA_ALMUERZO);
+            .desde(UPDATED_DESDE)
+            .hasta(UPDATED_HASTA)
+            .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
+            .estado(UPDATED_ESTADO);
 
         restHorarioConsultaMockMvc
             .perform(
@@ -426,7 +451,8 @@ class HorarioConsultaResourceIT {
         partialUpdatedHorarioConsulta.setId(horarioConsulta.getId());
 
         partialUpdatedHorarioConsulta
-            .fechaHorario(UPDATED_FECHA_HORARIO)
+            .desde(UPDATED_DESDE)
+            .hasta(UPDATED_HASTA)
             .horaInicio(UPDATED_HORA_INICIO)
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)

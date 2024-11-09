@@ -19,13 +19,23 @@
           </dd>
           <dt>
             <span
-              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.fechaHorario' | translate"
-              jhiTranslate="agendamientoApp.horarioConsulta.fechaHorario"
-              >Fecha Horario</span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.desde' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.desde"
+              >Desde</span
             >
           </dt>
           <dd>
-            <span>{{ horarioConsultaRef.fechaHorario | formatMediumDate }}</span>
+            <span>{{ horarioConsultaRef.desde | formatMediumDate }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.hasta' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.hasta"
+              >Hasta</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.hasta | formatMediumDate }}</span>
           </dd>
           <dt>
             <span

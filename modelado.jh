@@ -1,263 +1,268 @@
-/**  
- * The Cita entity.  
- */  
-entity Cita {  
-    /** fecha de la cita */  
-    fechaCita LocalDate required  
+/**
+ * The Cita entity.
+ */
+entity Cita {
+    /** fecha de la cita */
+    fechaCita LocalDate required
 
-    /** hora de inicio */  
-    horaInicio Instant required  
+    /** hora de inicio */
+    horaInicio Instant required
 
-    /** duración en minutos */  
-    duracionMinutos Integer required  
+    /** duración en minutos */
+    duracionMinutos Integer required
 
-    /** estado */  
-    estado String  
+    /** estado */
+    estado String
 
-    /** tipo de visita */  
-    tipoVisita String  
+    /** tipo de visita */
+    tipoVisita String
 
-    /** canal de atención */  
-    canalAtencion String  
+    /** canal de atención */
+    canalAtencion String
 
-    /** observación */  
-    observacion String  
+    /** observación */
+    observacion String
 
-    /** recordatorio */  
-    recordatorio String  
+    /** recordatorio */
+    recordatorio String
 
-    /** motivo de consulta */  
-    motivoConsulta String  
+    /** motivo de consulta */
+    motivoConsulta String
 
-    /** detalle de consulta virtual */  
-    detalleConsultaVirtual String  
+    /** detalle de consulta virtual */
+    detalleConsultaVirtual String
 
-    /** indica si es virtual */  
-    virtual Boolean  
+    /** indica si es virtual */
+    virtual Boolean
 
-    /** información de reserva */  
-    informacionReserva String  
-}  
+    /** información de reserva */
+    informacionReserva String
+}
 
-/**  
- * The Paciente entity.  
- */  
-entity Paciente {  
-    /** número de historia clínica */  
-    nroHistoria Integer required  
+/**
+ * The Paciente entity.
+ */
+entity Paciente {
+    /** número de historia clínica */
+    nroHistoria Integer required
 
-    /** nombre del representante */  
-    nombreRepresentante String  
+    /** nombre del representante */
+    nombreRepresentante String
 
-    /** parentesco del representante */  
-    parentescoRepresentante String  
+    /** parentesco del representante */
+    parentescoRepresentante String
 
-    /** correo electrónico del representante */  
-    correoRepresentante String  
+    /** correo electrónico del representante */
+    correoRepresentante String
 
-    /** celular del representante */  
-    celularRepresentante String  
+    /** celular del representante */
+    celularRepresentante String
 
-    /** dirección del representante */  
-    direccionRepresentante String  
-}  
+    /** dirección del representante */
+    direccionRepresentante String
+}
 
-/**  
- * The Sujeto entity.  
- */  
-entity Sujeto {  
-    /** nombre del sujeto */  
-    nombre String required  
+/**
+ * The Sujeto entity.
+ */
+entity Sujeto {
+    /** nombre del sujeto */
+    nombre String required
 
-    /** segundo nombre del sujeto */  
-    segundoNombre String  
+    /** segundo nombre del sujeto */
+    segundoNombre String
 
-    /** apellido del sujeto */  
-    apellido String required  
+    /** apellido del sujeto */
+    apellido String required
 
-    /** segundo apellido del sujeto */  
-    segundoApellido String  
+    /** segundo apellido del sujeto */
+    segundoApellido String
 
-    /** documento de identidad del sujeto */  
-    documentoIdentidad String required  
+    /** documento de identidad del sujeto */
+    documentoIdentidad String required
 
-    /** estado del sujeto */  
-    estado String  
+    /** estado del sujeto */
+    estado String
 
-    /** sexo del sujeto */  
-    sexo String  
+    /** sexo del sujeto */
+    sexo String
 
-    /** fecha de nacimiento del sujeto */  
-    fechaNacimiento LocalDate  
-}  
+    /** fecha de nacimiento del sujeto */
+    fechaNacimiento LocalDate
+}
 
-/**  
- * The Especialista entity.  
- */  
-entity Especialista {  
-    /** especialidad del especialista */  
-    especialidad String required  
+/**
+ * The Especialista entity.
+ */
+entity Especialista {
+    /** especialidad del especialista */
+    especialidad String required
 
-    /** código del doctor */  
-    codigoDoctor String required  
-
-    /** número de consultorio */  
-    nroConsultorio String required  
-
-    /** foto del especialista */  
-    fotoUrl String  
-}  
-
-/**  
- * The HorarioConsulta entity.  
- */  
-entity HorarioConsulta {  
-    /** fecha del horario */  
-    fechaHorario LocalDate required  
-
-    /** hora de inicio */  
-    horaInicio Instant required  
-
-    /** duración en minutos */  
-    duracionMinutos Integer required  
-
-    /** día de la semana */  
-    diaSemana String  
-
-    /** indica si es horario de atención */  
-    esHorarioAtencion Boolean  
-
-    /** estado del horario */  
-    estado String  
-
-     /** desde hora del almuerzo */  
-    desdeHoraAlmuerzo Instant  
-
-    /** hasta hora del almuerzo */  
-    hastaHoraAlmuerzo Instant  
-}  
-
-/**  
- * The Contacto entity.  
- */  
-entity Contacto {  
-    /** teléfono de contacto */  
-    telefono String  
-
-    /** correo de contacto */  
-    correo String required  
+    /** código del doctor */
+    codigoDoctor String required
 
-    /** código de país */  
-    codigoPais String required  
+    /** número de consultorio */
+    nroConsultorio String required
 
-    /** celular de contacto */  
-    celular String  
-}  
+    /** foto del especialista */
+    fotoUrl String
+}
 
-/**  
- * The Direccion entity.  
- */  
-entity Direccion {  
-    /** identificador de dirección */  
-    idDireccion Integer required  
+/**
+ * The HorarioConsulta entity.
+ */
+entity HorarioConsulta {
 
-    /** país de la dirección */  
-    pais String required  
+    /** fecha desde del horario */
+    desde LocalDate required
 
-    /** provincia de la dirección */  
-    provincia String required  
+    /** fecha hasta del horario */
+    hasta LocalDate required
 
-    /** ciudad de la dirección */  
-    ciudad String required  
 
-    /** calles de la dirección */  
-    calles String required  
+    /** hora de inicio */
+    horaInicio Instant required
 
-    /** número de domicilio */  
-    nroDomicilio String  
-}  
+    /** duración en minutos */
+    duracionMinutos Integer required
 
-/**  
- * The Clinica entity.  
- */  
-entity Clinica {  
-    /** nombre de la clínica */  
-    nombre String required  
+    /** día de la semana */
+    diaSemana String
 
-    /** teléfono de la clínica */  
-    telefono String required  
+    /** indica si es horario de atención */
+    esHorarioAtencion Boolean
 
-    /** correo de la clínica */  
-    correo String required  
+    /** estado del horario */
+    estado String
 
-    /** horario de atención */  
-    horarioAtencion String required  
-}  
+     /** desde hora del almuerzo */
+    desdeHoraAlmuerzo Instant
 
-/**  
- * The TipoTerapia entity.  
- */  
-entity TipoTerapia {  
-    /** descripción del tipo de terapia */  
-    descripcion String required  
-}  
+    /** hasta hora del almuerzo */
+    hastaHoraAlmuerzo Instant
+}
 
-/**  
- * The Programacion entity.  
- */  
-entity Programacion {  
-    /** fecha turno */  
-    fecha LocalDate required  
+/**
+ * The Contacto entity.
+ */
+entity Contacto {
+    /** teléfono de contacto */
+    telefono String
 
-    /** desde hora inicio */  
-    desde Instant required  
+    /** correo de contacto */
+    correo String required
 
-    /** hasta hora fin */  
-    hasta Instant required  
-}  
+    /** código de país */
+    codigoPais String required
 
-/**  
- * Relationships  
- */  
+    /** celular de contacto */
+    celular String
+}
 
-relationship ManyToOne {  
-    /** Cita relacionadas con Especialista */  
-    Cita{especialista} to Especialista  
+/**
+ * The Direccion entity.
+ */
+entity Direccion {
+    /** identificador de dirección */
+    idDireccion Integer required
 
-    /** Cita relacionadas con TipoTerapia */  
-    Cita{tipoTerapia} to TipoTerapia  
+    /** país de la dirección */
+    pais String required
 
-    /** Cita relacionadas con Paciente */  
-    Cita{paciente} to Paciente  
-}  
+    /** provincia de la dirección */
+    provincia String required
 
-relationship OneToOne {  
-    /** Paciente relacionado con Sujeto */  
-    Paciente{sujeto} to Sujeto  
+    /** ciudad de la dirección */
+    ciudad String required
 
-    /** Especialista relacionado con Sujeto */  
-    Especialista{sujeto} to Sujeto  
+    /** calles de la dirección */
+    calles String required
 
-    /** Contacto relacionado con Sujeto */  
-    Contacto{sujeto} to Sujeto  
+    /** número de domicilio */
+    nroDomicilio String
+}
 
-    /** Direccion relacionada con Sujeto */  
-    Direccion{sujeto} to Sujeto  
-}  
+/**
+ * The Clinica entity.
+ */
+entity Clinica {
+    /** nombre de la clínica */
+    nombre String required
 
-relationship OneToMany {  
-    /** Especialista y sus horarios de consulta */  
-    Especialista{horarioConsulta} to HorarioConsulta  
+    /** teléfono de la clínica */
+    telefono String required
 
-    /** HorarioConsulta relacionado con Programacion */  
-    HorarioConsulta{programacion} to Programacion  
-}  
+    /** correo de la clínica */
+    correo String required
 
-// paginacion, dto, servicios  
-paginate * with pagination  
+    /** horario de atención */
+    horarioAtencion String required
+}
 
-// dto -> objetos planos de java  
-dto * with mapstruct  
+/**
+ * The TipoTerapia entity.
+ */
+entity TipoTerapia {
+    /** descripción del tipo de terapia */
+    descripcion String required
+}
 
-// cada entidad tenga su logica de negocios  
+/**
+ * The Programacion entity.
+ */
+entity Programacion {
+    /** fecha turno */
+    fecha LocalDate required
+
+    /** desde hora inicio */
+    desde Instant required
+
+    /** hasta hora fin */
+    hasta Instant required
+}
+
+/**
+ * Relationships
+ */
+
+relationship ManyToOne {
+    /** Cita relacionadas con Especialista */
+    Cita{especialista} to Especialista
+
+    /** Cita relacionadas con TipoTerapia */
+    Cita{tipoTerapia} to TipoTerapia
+
+    /** Cita relacionadas con Paciente */
+    Cita{paciente} to Paciente
+}
+
+relationship OneToOne {
+    /** Paciente relacionado con Sujeto */
+    Paciente{sujeto} to Sujeto
+
+    /** Especialista relacionado con Sujeto */
+    Especialista{sujeto} to Sujeto
+
+    /** Contacto relacionado con Sujeto */
+    Contacto{sujeto} to Sujeto
+
+    /** Direccion relacionada con Sujeto */
+    Direccion{sujeto} to Sujeto
+}
+
+relationship OneToMany {
+    /** Especialista y sus horarios de consulta */
+    Especialista{horarioConsulta} to HorarioConsulta
+
+    /** HorarioConsulta relacionado con Programacion */
+    HorarioConsulta{programacion} to Programacion
+}
+
+// paginacion, dto, servicios
+paginate * with pagination
+
+// dto -> objetos planos de java
+dto * with mapstruct
+
+// cada entidad tenga su logica de negocios
 service all with serviceImpl

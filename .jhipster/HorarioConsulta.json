@@ -7,8 +7,14 @@
   "dto": "mapstruct",
   "fields": [
     {
-      "documentation": "fecha del horario",
-      "fieldName": "fechaHorario",
+      "documentation": "fecha desde del horario",
+      "fieldName": "desde",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "fecha hasta del horario",
+      "fieldName": "hasta",
       "fieldType": "LocalDate",
       "fieldValidateRules": ["required"]
     },

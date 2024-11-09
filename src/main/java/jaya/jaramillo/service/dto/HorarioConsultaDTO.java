@@ -17,8 +17,12 @@ public class HorarioConsultaDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Schema(description = "fecha del horario", requiredMode = Schema.RequiredMode.REQUIRED)
-    private LocalDate fechaHorario;
+    @Schema(description = "fecha desde del horario", requiredMode = Schema.RequiredMode.REQUIRED)
+    private LocalDate desde;
+
+    @NotNull
+    @Schema(description = "fecha hasta del horario", requiredMode = Schema.RequiredMode.REQUIRED)
+    private LocalDate hasta;
 
     @NotNull
     @Schema(description = "hora de inicio", requiredMode = Schema.RequiredMode.REQUIRED)
@@ -53,12 +57,20 @@ public class HorarioConsultaDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFechaHorario() {
-        return fechaHorario;
+    public LocalDate getDesde() {
+        return desde;
     }
 
-    public void setFechaHorario(LocalDate fechaHorario) {
-        this.fechaHorario = fechaHorario;
+    public void setDesde(LocalDate desde) {
+        this.desde = desde;
+    }
+
+    public LocalDate getHasta() {
+        return hasta;
+    }
+
+    public void setHasta(LocalDate hasta) {
+        this.hasta = hasta;
     }
 
     public Instant getHoraInicio() {
@@ -151,7 +163,8 @@ public class HorarioConsultaDTO implements Serializable {
     public String toString() {
         return "HorarioConsultaDTO{" +
             "id=" + getId() +
-            ", fechaHorario='" + getFechaHorario() + "'" +
+            ", desde='" + getDesde() + "'" +
+            ", hasta='" + getHasta() + "'" +
             ", horaInicio='" + getHoraInicio() + "'" +
             ", duracionMinutos=" + getDuracionMinutos() +
             ", diaSemana='" + getDiaSemana() + "'" +

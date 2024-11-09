@@ -36,7 +36,8 @@ type HorarioConsultaFormDefaults = Pick<
 
 type HorarioConsultaFormGroupContent = {
   id: FormControl<HorarioConsultaFormRawValue['id'] | NewHorarioConsulta['id']>;
-  fechaHorario: FormControl<HorarioConsultaFormRawValue['fechaHorario']>;
+  desde: FormControl<HorarioConsultaFormRawValue['desde']>;
+  hasta: FormControl<HorarioConsultaFormRawValue['hasta']>;
   horaInicio: FormControl<HorarioConsultaFormRawValue['horaInicio']>;
   duracionMinutos: FormControl<HorarioConsultaFormRawValue['duracionMinutos']>;
   diaSemana: FormControl<HorarioConsultaFormRawValue['diaSemana']>;
@@ -64,7 +65,10 @@ export class HorarioConsultaFormService {
           validators: [Validators.required],
         },
       ),
-      fechaHorario: new FormControl(horarioConsultaRawValue.fechaHorario, {
+      desde: new FormControl(horarioConsultaRawValue.desde, {
+        validators: [Validators.required],
+      }),
+      hasta: new FormControl(horarioConsultaRawValue.hasta, {
         validators: [Validators.required],
       }),
       horaInicio: new FormControl(horarioConsultaRawValue.horaInicio, {

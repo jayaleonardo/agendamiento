@@ -3,7 +3,8 @@ import { IEspecialista } from 'app/entities/especialista/especialista.model';
 
 export interface IHorarioConsulta {
   id: number;
-  fechaHorario?: dayjs.Dayjs | null;
+  desde?: dayjs.Dayjs | null;
+  hasta?: dayjs.Dayjs | null;
   horaInicio?: dayjs.Dayjs | null;
   duracionMinutos?: number | null;
   diaSemana?: string | null;

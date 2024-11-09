@@ -19,33 +19,62 @@
           </div>
         }
 
-        @let fechaHorarioRef = editForm.get('fechaHorario')!;
+        @let desdeRef = editForm.get('desde')!;
         <div class="mb-3">
           <label
             class="form-label"
-            for="field_fechaHorario"
-            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.fechaHorario' | translate"
-            jhiTranslate="agendamientoApp.horarioConsulta.fechaHorario"
-            >Fecha Horario</label
+            for="field_desde"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.desde' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.desde"
+            >Desde</label
           >
           <div class="input-group">
             <input
-              id="field_fechaHorario"
-              data-cy="fechaHorario"
+              id="field_desde"
+              data-cy="desde"
               type="text"
               class="form-control"
-              name="fechaHorario"
+              name="desde"
               ngbDatepicker
-              #fechaHorarioDp="ngbDatepicker"
-              formControlName="fechaHorario"
+              #desdeDp="ngbDatepicker"
+              formControlName="desde"
             />
-            <button type="button" class="btn btn-secondary" (click)="fechaHorarioDp.toggle()">
-              <fa-icon icon="calendar-alt"></fa-icon>
-            </button>
+            <button type="button" class="btn btn-secondary" (click)="desdeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
           </div>
-          @if (fechaHorarioRef.invalid && (fechaHorarioRef.dirty || fechaHorarioRef.touched)) {
+          @if (desdeRef.invalid && (desdeRef.dirty || desdeRef.touched)) {
             <div>
-              @if (editForm.get('fechaHorario')?.errors?.required) {
+              @if (editForm.get('desde')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let hastaRef = editForm.get('hasta')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_hasta"
+            [ngbTooltip]="'agendamientoApp.horarioConsulta.help.hasta' | translate"
+            jhiTranslate="agendamientoApp.horarioConsulta.hasta"
+            >Hasta</label
+          >
+          <div class="input-group">
+            <input
+              id="field_hasta"
+              data-cy="hasta"
+              type="text"
+              class="form-control"
+              name="hasta"
+              ngbDatepicker
+              #hastaDp="ngbDatepicker"
+              formControlName="hasta"
+            />
+            <button type="button" class="btn btn-secondary" (click)="hastaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          @if (hastaRef.invalid && (hastaRef.dirty || hastaRef.touched)) {
+            <div>
+              @if (editForm.get('hasta')?.errors?.required) {
                 <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
               }
             </div>

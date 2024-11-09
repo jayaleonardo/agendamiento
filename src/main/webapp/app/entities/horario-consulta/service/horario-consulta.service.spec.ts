@@ -10,7 +10,8 @@ import { HorarioConsultaService, RestHorarioConsulta } from './horario-consulta.
 
 const requireRestSample: RestHorarioConsulta = {
   ...sampleWithRequiredData,
-  fechaHorario: sampleWithRequiredData.fechaHorario?.format(DATE_FORMAT),
+  desde: sampleWithRequiredData.desde?.format(DATE_FORMAT),
+  hasta: sampleWithRequiredData.hasta?.format(DATE_FORMAT),
   horaInicio: sampleWithRequiredData.horaInicio?.toJSON(),
   desdeHoraAlmuerzo: sampleWithRequiredData.desdeHoraAlmuerzo?.toJSON(),
   hastaHoraAlmuerzo: sampleWithRequiredData.hastaHoraAlmuerzo?.toJSON(),

@@ -47,7 +47,8 @@ public class HorarioConsultaAsserts {
     public static void assertHorarioConsultaUpdatableFieldsEquals(HorarioConsulta expected, HorarioConsulta actual) {
         assertThat(expected)
             .as("Verify HorarioConsulta relevant properties")
-            .satisfies(e -> assertThat(e.getFechaHorario()).as("check fechaHorario").isEqualTo(actual.getFechaHorario()))
+            .satisfies(e -> assertThat(e.getDesde()).as("check desde").isEqualTo(actual.getDesde()))
+            .satisfies(e -> assertThat(e.getHasta()).as("check hasta").isEqualTo(actual.getHasta()))
             .satisfies(e -> assertThat(e.getHoraInicio()).as("check horaInicio").isEqualTo(actual.getHoraInicio()))
             .satisfies(e -> assertThat(e.getDuracionMinutos()).as("check duracionMinutos").isEqualTo(actual.getDuracionMinutos()))
             .satisfies(e -> assertThat(e.getDiaSemana()).as("check diaSemana").isEqualTo(actual.getDiaSemana()))

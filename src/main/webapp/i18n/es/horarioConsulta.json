@@ -18,7 +18,8 @@
         "title": "Horario Consulta"
       },
       "id": "ID",
-      "fechaHorario": "Fecha Horario",
+      "desde": "Desde",
+      "hasta": "Hasta",
       "horaInicio": "Hora Inicio",
       "duracionMinutos": "Duracion Minutos",
       "diaSemana": "Dia Semana",
@@ -29,7 +30,8 @@
       "programacion": "Programacion",
       "especialista": "Especialista",
       "help": {
-        "fechaHorario": "fecha del horario",
+        "desde": "fecha desde del horario",
+        "hasta": "fecha hasta del horario",
         "horaInicio": "hora de inicio",
         "duracionMinutos": "duración en minutos",
         "diaSemana": "día de la semana",

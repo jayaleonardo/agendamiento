@@ -8,7 +8,6 @@ import jaya.jaramillo.service.dto.EspecialistaDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +27,11 @@ public class HorariosResource {
     private final ProgramacionService programacionService;
     private final HorarioConsultaService horarioconsultaService;
 
-    public HorariosResource(EspecialistaService especialistaService, ProgramacionService programacionService,  
-        HorarioConsultaService horarioconsultaService) {
+    public HorariosResource(
+        EspecialistaService especialistaService,
+        ProgramacionService programacionService,
+        HorarioConsultaService horarioconsultaService
+    ) {
         this.especialistaService = especialistaService;
         this.programacionService = programacionService;
         this.horarioconsultaService = horarioconsultaService;
@@ -57,7 +59,6 @@ public class HorariosResource {
     @PostMapping("/crear-programacion")
     public ResponseEntity<List<TurnoEspecialidadDTO>> crearProgramacion(@RequestBody CrearProgramacionRequest request) {
         LOG.debug("Rest buscarTurnos");
-        return ResponseEntity.ok()
-            .body(this.programacionService.buscarTurnos(request));
+        return ResponseEntity.ok().body(null);
     }
 }

@@ -1,6 +1,7 @@
 package jaya.jaramillo.service.impl;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.domain.Programacion;
@@ -92,14 +93,22 @@ public class ProgramacionServiceImpl implements ProgramacionService {
         return programacionRepository.obtenerTurnos(especialistaId, desde, hasta);
     }
 
-	@Override
-	public HorarioConsultaDTO crearProgramacion(LocalDate desde, LocalDate hasta, String horaInicio, String horaFin,
-			String almuerzoDesde, String almuerzoHasta) {
+    @Override
+    public HorarioConsultaDTO crearProgramacion(
+        LocalDate desde,
+        LocalDate hasta,
+        String horaInicio,
+        String horaFin,
+        String almuerzoDesde,
+        String almuerzoHasta
+    ) {
+        LocalTime horaInicioLT = LocalTime.parse(horaInicio);
+        LocalTime horaFinLT = LocalTime.parse(horaFin);
 
         HorarioConsultaDTO horario = new HorarioConsultaDTO();
+        horario.setDesde(desde);
+        horario.setHasta(hasta);
+
         return horario;
-	}
-
-
-
+    }
 }

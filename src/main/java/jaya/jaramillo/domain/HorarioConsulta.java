@@ -29,11 +29,18 @@ public class HorarioConsulta implements Serializable {
     private Long id;
 
     /**
-     * fecha del horario
+     * fecha desde del horario
      */
     @NotNull
-    @Column(name = "fecha_horario", nullable = false)
-    private LocalDate fechaHorario;
+    @Column(name = "desde", nullable = false)
+    private LocalDate desde;
+
+    /**
+     * fecha hasta del horario
+     */
+    @NotNull
+    @Column(name = "hasta", nullable = false)
+    private LocalDate hasta;
 
     /**
      * hora de inicio
@@ -106,17 +113,30 @@ public class HorarioConsulta implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getFechaHorario() {
-        return this.fechaHorario;
+    public LocalDate getDesde() {
+        return this.desde;
     }
 
-    public HorarioConsulta fechaHorario(LocalDate fechaHorario) {
-        this.setFechaHorario(fechaHorario);
+    public HorarioConsulta desde(LocalDate desde) {
+        this.setDesde(desde);
         return this;
     }
 
-    public void setFechaHorario(LocalDate fechaHorario) {
-        this.fechaHorario = fechaHorario;
+    public void setDesde(LocalDate desde) {
+        this.desde = desde;
+    }
+
+    public LocalDate getHasta() {
+        return this.hasta;
+    }
+
+    public HorarioConsulta hasta(LocalDate hasta) {
+        this.setHasta(hasta);
+        return this;
+    }
+
+    public void setHasta(LocalDate hasta) {
+        this.hasta = hasta;
     }
 
     public Instant getHoraInicio() {
@@ -278,7 +298,8 @@ public class HorarioConsulta implements Serializable {
     public String toString() {
         return "HorarioConsulta{" +
             "id=" + getId() +
-            ", fechaHorario='" + getFechaHorario() + "'" +
+            ", desde='" + getDesde() + "'" +
+            ", hasta='" + getHasta() + "'" +
             ", horaInicio='" + getHoraInicio() + "'" +
             ", duracionMinutos=" + getDuracionMinutos() +
             ", diaSemana='" + getDiaSemana() + "'" +

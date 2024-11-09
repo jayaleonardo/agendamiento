@@ -14,7 +14,10 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="fecha_horario" type="date" remarks="fecha del horario">
+            <column name="desde" type="date" remarks="fecha desde del horario">
+                <constraints nullable="false" />
+            </column>
+            <column name="hasta" type="date" remarks="fecha hasta del horario">
                 <constraints nullable="false" />
             </column>
             <column name="hora_inicio" type="${datetimeType}" remarks="hora de inicio">
@@ -65,7 +68,8 @@
                   tableName="horario_consulta"
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
-            <column name="fecha_horario" type="date"/>
+            <column name="desde" type="date"/>
+            <column name="hasta" type="date"/>
             <column name="hora_inicio" type="date"/>
             <column name="duracion_minutos" type="numeric"/>
             <column name="dia_semana" type="string"/>

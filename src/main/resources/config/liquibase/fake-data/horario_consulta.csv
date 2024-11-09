@@ -1,11 +1,11 @@
-id;fecha_horario;hora_inicio;duracion_minutos;dia_semana;es_horario_atencion;estado;desde_hora_almuerzo;hasta_hora_almuerzo
-1;2024-11-05;2024-11-05T15:11:10;21567;faithfully stealthily;false;from vastly;2024-11-05T01:29:38;2024-11-05T20:37:56
-2;2024-11-05;2024-11-05T13:40:37;31194;insist since midwife;true;towards possession thrifty;2024-11-05T15:10:38;2024-11-05T15:28:11
-3;2024-11-05;2024-11-05T19:04:48;14086;soulful excitedly;true;weep;2024-11-05T00:14:39;2024-11-05T22:52:01
-4;2024-11-05;2024-11-05T03:24:42;25631;hello developing forenenst;true;transcend charlatan;2024-11-05T23:20:20;2024-11-05T07:24:43
-5;2024-11-05;2024-11-05T17:47:33;5572;but;false;into dependent;2024-11-05T15:48:10;2024-11-05T09:49:25
-6;2024-11-05;2024-11-05T05:35:54;11503;oxygenate;true;disbar;2024-11-05T05:58:22;2024-11-05T00:51:03
-7;2024-11-05;2024-11-05T07:05:56;26505;duh contravene;false;yeast;2024-11-05T17:02:03;2024-11-05T15:28:40
-8;2024-11-05;2024-11-05T22:35:37;14831;duh sans belabor;false;ouch;2024-11-05T09:59:26;2024-11-05T18:13:13
-9;2024-11-05;2024-11-05T11:14:41;23038;republican;true;anti schnitzel salty;2024-11-05T15:40:40;2024-11-05T00:40:22
-10;2024-11-05;2024-11-05T19:39:47;13221;inside;true;like courageously;2024-11-05T09:10:29;2024-11-05T02:07:28
+id;desde;hasta;hora_inicio;duracion_minutos;dia_semana;es_horario_atencion;estado;desde_hora_almuerzo;hasta_hora_almuerzo
+1;2024-11-05;2024-11-05;2024-11-05T15:33:36;14685;violently;true;after whenever blah;2024-11-05T20:37:56;2024-11-05T11:07:14
+2;2024-11-05;2024-11-05;2024-11-05T21:16:09;26353;overdub;false;violently quintessential;2024-11-05T21:05:33;2024-11-05T00:55:04
+3;2024-11-05;2024-11-05;2024-11-05T20:37:34;7389;disinherit quarterly;false;intent warmhearted confiscate;2024-11-05T15:56:05;2024-11-05T09:20:36
+4;2024-11-05;2024-11-05;2024-11-05T00:14:39;31544;ugh near obtrude;false;amongst;2024-11-05T20:44:52;2024-11-05T20:24:58
+5;2024-11-05;2024-11-05;2024-11-05T03:32:01;12074;softly;true;but;2024-11-05T18:51:03;2024-11-05T10:13:49
+6;2024-11-05;2024-11-05;2024-11-05T03:25:11;16378;task incidentally;true;federate gladly likewise;2024-11-05T16:50:32;2024-11-05T19:53:50
+7;2024-11-05;2024-11-05;2024-11-05T10:57:52;15568;contravene regulate igloo;false;interchange;2024-11-05T10:19:59;2024-11-05T02:18:51
+8;2024-11-05;2024-11-05;2024-11-05T16:42:42;25019;utterly voluntarily;false;knottily puritan;2024-11-05T10:04:58;2024-11-05T10:15:40
+9;2024-11-05;2024-11-05;2024-11-05T13:58:20;6443;schnitzel;false;any abnormally under;2024-11-05T11:07:09;2024-11-05T19:45:36
+10;2024-11-05;2024-11-05;2024-11-05T08:09:21;17927;despite syringe achieve;false;scamper;2024-11-05T18:40:14;2024-11-05T05:58:03
