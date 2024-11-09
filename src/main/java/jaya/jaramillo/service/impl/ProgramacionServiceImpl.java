@@ -6,6 +6,7 @@ import java.util.Optional;
 import jaya.jaramillo.domain.Programacion;
 import jaya.jaramillo.repository.ProgramacionRepository;
 import jaya.jaramillo.service.ProgramacionService;
+import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.service.mapper.ProgramacionMapper;
@@ -90,4 +91,15 @@ public class ProgramacionServiceImpl implements ProgramacionService {
         LOG.debug("Request to buscarTurnos : {}, {}, {}", especialistaId, desde, hasta);
         return programacionRepository.obtenerTurnos(especialistaId, desde, hasta);
     }
+
+	@Override
+	public HorarioConsultaDTO crearProgramacion(LocalDate desde, LocalDate hasta, String horaInicio, String horaFin,
+			String almuerzoDesde, String almuerzoHasta) {
+
+        HorarioConsultaDTO horario = new HorarioConsultaDTO();
+        return horario;
+	}
+
+
+
 }

@@ -3,6 +3,8 @@ package jaya.jaramillo.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import org.springframework.data.domain.Page;
@@ -60,4 +62,6 @@ public interface ProgramacionService {
     void delete(Long id);
 
     List<TurnoEspecialidadDTO> buscarTurnos(Long especialistaId, LocalDate desde, LocalDate hasta);
+
+    HorarioConsultaDTO crearProgramacion(LocalDate desde, LocalDate hasta, String horaInicio, String horaFin, String almuerzoDesde, String almuerzoHasta)
 }
