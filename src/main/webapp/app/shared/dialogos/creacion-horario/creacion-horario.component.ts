@@ -10,6 +10,7 @@ import { CheckboxGroupComponent } from 'app/shared/checkbox-group/checkbox-group
 import SharedModule from 'app/shared/shared.module';
 import { SimpleCheckOptionComponent } from 'app/shared/simple-check-option/simple-check-option.component';
 import moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'jhi-creacion-horario',
@@ -21,6 +22,7 @@ import moment from 'moment';
 export class CreacionHorarioComponent {
   horarioService = inject(HorarioService);
   dialogRef = inject(MatDialogRef<CreacionHorarioComponent>);
+  spinner = inject(NgxSpinnerService);
 
   duraciones: number[] = [20, 30, 45, 60, 90, 120];
   diasSemana: any[];
@@ -91,7 +93,7 @@ export class CreacionHorarioComponent {
     const desde = this.form.value.desde;
     const hasta = this.form.value.hasta;
     const duracion = this.form.value.duracion;
-
+    this.spinner.show();
     if (this.numeroTurnos > 0) {
       const rta = await this.horarioService.crearProgramacion(
         desde,
@@ -109,8 +111,10 @@ export class CreacionHorarioComponent {
       const body = rta.body ?? null;
       if (body) {
         this.dialogRef.close(body);
+        this.spinner.hide();
       }
     }
+    this.spinner.hide();
   }
 
   onOkAlmuerzo(): void {
