@@ -25,6 +25,12 @@
       "fieldValidateRules": ["required"]
     },
     {
+      "documentation": "hora fin",
+      "fieldName": "horaFin",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "documentation": "duración en minutos",
       "fieldName": "duracionMinutos",
       "fieldType": "Integer",

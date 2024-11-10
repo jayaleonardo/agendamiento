@@ -19,8 +19,12 @@ type HorarioConsultaFormGroupInput = IHorarioConsulta | PartialWithRequiredKeyOf
 /**
  * Type that converts some properties for forms.
  */
-type FormValueOf<T extends IHorarioConsulta | NewHorarioConsulta> = Omit<T, 'horaInicio' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'> & {
+type FormValueOf<T extends IHorarioConsulta | NewHorarioConsulta> = Omit<
+  T,
+  'horaInicio' | 'horaFin' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'
+> & {
   horaInicio?: string | null;
+  horaFin?: string | null;
   desdeHoraAlmuerzo?: string | null;
   hastaHoraAlmuerzo?: string | null;
 };
@@ -31,7 +35,7 @@ type NewHorarioConsultaFormRawValue = FormValueOf<NewHorarioConsulta>;
 
 type HorarioConsultaFormDefaults = Pick<
   NewHorarioConsulta,
-  'id' | 'horaInicio' | 'esHorarioAtencion' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'
+  'id' | 'horaInicio' | 'horaFin' | 'esHorarioAtencion' | 'desdeHoraAlmuerzo' | 'hastaHoraAlmuerzo'
 >;
 
 type HorarioConsultaFormGroupContent = {
@@ -39,6 +43,7 @@ type HorarioConsultaFormGroupContent = {
   desde: FormControl<HorarioConsultaFormRawValue['desde']>;
   hasta: FormControl<HorarioConsultaFormRawValue['hasta']>;
   horaInicio: FormControl<HorarioConsultaFormRawValue['horaInicio']>;
+  horaFin: FormControl<HorarioConsultaFormRawValue['horaFin']>;
   duracionMinutos: FormControl<HorarioConsultaFormRawValue['duracionMinutos']>;
   diaSemana: FormControl<HorarioConsultaFormRawValue['diaSemana']>;
   esHorarioAtencion: FormControl<HorarioConsultaFormRawValue['esHorarioAtencion']>;
@@ -72,6 +77,9 @@ export class HorarioConsultaFormService {
         validators: [Validators.required],
       }),
       horaInicio: new FormControl(horarioConsultaRawValue.horaInicio, {
+        validators: [Validators.required],
+      }),
+      horaFin: new FormControl(horarioConsultaRawValue.horaFin, {
         validators: [Validators.required],
       }),
       duracionMinutos: new FormControl(horarioConsultaRawValue.duracionMinutos, {
@@ -108,6 +116,7 @@ export class HorarioConsultaFormService {
     return {
       id: null,
       horaInicio: currentTime,
+      horaFin: currentTime,
       esHorarioAtencion: false,
       desdeHoraAlmuerzo: currentTime,
       hastaHoraAlmuerzo: currentTime,
@@ -120,6 +129,7 @@ export class HorarioConsultaFormService {
     return {
       ...rawHorarioConsulta,
       horaInicio: dayjs(rawHorarioConsulta.horaInicio, DATE_TIME_FORMAT),
+      horaFin: dayjs(rawHorarioConsulta.horaFin, DATE_TIME_FORMAT),
       desdeHoraAlmuerzo: dayjs(rawHorarioConsulta.desdeHoraAlmuerzo, DATE_TIME_FORMAT),
       hastaHoraAlmuerzo: dayjs(rawHorarioConsulta.hastaHoraAlmuerzo, DATE_TIME_FORMAT),
     };
@@ -131,6 +141,7 @@ export class HorarioConsultaFormService {
     return {
       ...horarioConsulta,
       horaInicio: horarioConsulta.horaInicio ? horarioConsulta.horaInicio.format(DATE_TIME_FORMAT) : undefined,
+      horaFin: horarioConsulta.horaFin ? horarioConsulta.horaFin.format(DATE_TIME_FORMAT) : undefined,
       desdeHoraAlmuerzo: horarioConsulta.desdeHoraAlmuerzo ? horarioConsulta.desdeHoraAlmuerzo.format(DATE_TIME_FORMAT) : undefined,
       hastaHoraAlmuerzo: horarioConsulta.hastaHoraAlmuerzo ? horarioConsulta.hastaHoraAlmuerzo.format(DATE_TIME_FORMAT) : undefined,
     };

@@ -13,6 +13,7 @@ const requireRestSample: RestHorarioConsulta = {
   desde: sampleWithRequiredData.desde?.format(DATE_FORMAT),
   hasta: sampleWithRequiredData.hasta?.format(DATE_FORMAT),
   horaInicio: sampleWithRequiredData.horaInicio?.toJSON(),
+  horaFin: sampleWithRequiredData.horaFin?.toJSON(),
   desdeHoraAlmuerzo: sampleWithRequiredData.desdeHoraAlmuerzo?.toJSON(),
   hastaHoraAlmuerzo: sampleWithRequiredData.hastaHoraAlmuerzo?.toJSON(),
 };

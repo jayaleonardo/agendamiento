@@ -29,6 +29,10 @@ public class HorarioConsultaDTO implements Serializable {
     private Instant horaInicio;
 
     @NotNull
+    @Schema(description = "hora fin", requiredMode = Schema.RequiredMode.REQUIRED)
+    private Instant horaFin;
+
+    @NotNull
     @Schema(description = "duración en minutos", requiredMode = Schema.RequiredMode.REQUIRED)
     private Integer duracionMinutos;
 
@@ -79,6 +83,14 @@ public class HorarioConsultaDTO implements Serializable {
 
     public void setHoraInicio(Instant horaInicio) {
         this.horaInicio = horaInicio;
+    }
+
+    public Instant getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(Instant horaFin) {
+        this.horaFin = horaFin;
     }
 
     public Integer getDuracionMinutos() {
@@ -166,6 +178,7 @@ public class HorarioConsultaDTO implements Serializable {
             ", desde='" + getDesde() + "'" +
             ", hasta='" + getHasta() + "'" +
             ", horaInicio='" + getHoraInicio() + "'" +
+            ", horaFin='" + getHoraFin() + "'" +
             ", duracionMinutos=" + getDuracionMinutos() +
             ", diaSemana='" + getDiaSemana() + "'" +
             ", esHorarioAtencion='" + getEsHorarioAtencion() + "'" +

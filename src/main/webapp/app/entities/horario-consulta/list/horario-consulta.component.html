@@ -63,6 +63,13 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="horaFin">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.horarioConsulta.horaFin">Hora Fin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="duracionMinutos">
               <div class="d-flex">
                 <span jhiTranslate="agendamientoApp.horarioConsulta.duracionMinutos">Duracion Minutos</span>
@@ -123,6 +130,7 @@
               <td>{{ horarioConsulta.desde | formatMediumDate }}</td>
               <td>{{ horarioConsulta.hasta | formatMediumDate }}</td>
               <td>{{ horarioConsulta.horaInicio | formatMediumDatetime }}</td>
+              <td>{{ horarioConsulta.horaFin | formatMediumDatetime }}</td>
               <td>{{ horarioConsulta.duracionMinutos }}</td>
               <td>{{ horarioConsulta.diaSemana }}</td>
               <td>{{ horarioConsulta.esHorarioAtencion }}</td>

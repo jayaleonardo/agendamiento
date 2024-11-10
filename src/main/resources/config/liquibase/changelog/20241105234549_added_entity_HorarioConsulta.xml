@@ -23,6 +23,9 @@
             <column name="hora_inicio" type="${datetimeType}" remarks="hora de inicio">
                 <constraints nullable="false" />
             </column>
+            <column name="hora_fin" type="${datetimeType}" remarks="hora fin">
+                <constraints nullable="false" />
+            </column>
             <column name="duracion_minutos" type="integer" remarks="duración en minutos">
                 <constraints nullable="false" />
             </column>
@@ -47,6 +50,7 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="horario_consulta" columnName="hora_inicio" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="horario_consulta" columnName="hora_fin" columnDataType="${datetimeType}"/>
         <dropDefaultValue tableName="horario_consulta" columnName="desde_hora_almuerzo" columnDataType="${datetimeType}"/>
         <dropDefaultValue tableName="horario_consulta" columnName="hasta_hora_almuerzo" columnDataType="${datetimeType}"/>
     </changeSet>
@@ -71,6 +75,7 @@
             <column name="desde" type="date"/>
             <column name="hasta" type="date"/>
             <column name="hora_inicio" type="date"/>
+            <column name="hora_fin" type="date"/>
             <column name="duracion_minutos" type="numeric"/>
             <column name="dia_semana" type="string"/>
             <column name="es_horario_atencion" type="boolean"/>

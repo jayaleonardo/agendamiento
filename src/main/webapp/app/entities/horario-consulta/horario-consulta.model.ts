@@ -6,6 +6,7 @@ export interface IHorarioConsulta {
   desde?: dayjs.Dayjs | null;
   hasta?: dayjs.Dayjs | null;
   horaInicio?: dayjs.Dayjs | null;
+  horaFin?: dayjs.Dayjs | null;
   duracionMinutos?: number | null;
   diaSemana?: string | null;
   esHorarioAtencion?: boolean | null;

@@ -5,6 +5,7 @@ import jaya.jaramillo.service.EspecialistaService;
 import jaya.jaramillo.service.HorarioConsultaService;
 import jaya.jaramillo.service.ProgramacionService;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
+import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
@@ -57,8 +58,22 @@ public class HorariosResource {
     }
 
     @PostMapping("/crear-programacion")
-    public ResponseEntity<List<TurnoEspecialidadDTO>> crearProgramacion(@RequestBody CrearProgramacionRequest request) {
-        LOG.debug("Rest buscarTurnos");
-        return ResponseEntity.ok().body(null);
+    public ResponseEntity<HorarioConsultaDTO> crearProgramacion(@RequestBody CrearProgramacionRequest request) {
+        LOG.debug("Rest crearProgramacion {}", request);
+        return ResponseEntity.ok()
+            .body(
+                this.programacionService.crearProgramacion(
+                        request.getDesde(),
+                        request.getHasta(),
+                        request.getHoraInicio(),
+                        request.getHoraFin(),
+                        request.getAlmuerzoDesde(),
+                        request.getAlmuerzoHasta(),
+                        request.getDuracion(),
+                        request.getDiasSemana(),
+                        request.getEspecialistaId(),
+                        request.getCantidad()
+                    )
+            );
     }
 }

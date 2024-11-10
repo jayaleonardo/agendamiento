@@ -68,6 +68,10 @@ public interface ProgramacionService {
         String horaInicio,
         String horaFin,
         String almuerzoDesde,
-        String almuerzoHasta
+        String almuerzoHasta,
+        Integer duracion,
+        String diasSemana,
+        Long especialistaId,
+        Integer cantidad
     );
 }

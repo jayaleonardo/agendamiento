@@ -3,41 +3,46 @@ import dayjs from 'dayjs/esm';
 import { IHorarioConsulta, NewHorarioConsulta } from './horario-consulta.model';
 
 export const sampleWithRequiredData: IHorarioConsulta = {
-  id: 32527,
+  id: 8567,
   desde: dayjs('2024-11-05'),
   hasta: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T13:12'),
-  duracionMinutos: 31321,
+  horaInicio: dayjs('2024-11-05T22:42'),
+  horaFin: dayjs('2024-11-05T16:28'),
+  duracionMinutos: 5895,
 };
 
 export const sampleWithPartialData: IHorarioConsulta = {
-  id: 4768,
+  id: 15510,
   desde: dayjs('2024-11-05'),
   hasta: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T14:45'),
-  duracionMinutos: 3750,
-  esHorarioAtencion: true,
-  estado: 'unwelcome',
+  horaInicio: dayjs('2024-11-05T01:51'),
+  horaFin: dayjs('2024-11-05T07:08'),
+  duracionMinutos: 8324,
+  diaSemana: 'possible generously where',
+  desdeHoraAlmuerzo: dayjs('2024-11-05T03:42'),
+  hastaHoraAlmuerzo: dayjs('2024-11-05T03:35'),
 };
 
 export const sampleWithFullData: IHorarioConsulta = {
-  id: 18606,
+  id: 14911,
   desde: dayjs('2024-11-05'),
   hasta: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T01:36'),
-  duracionMinutos: 16870,
-  diaSemana: 'uh-huh',
+  horaInicio: dayjs('2024-11-05T00:08'),
+  horaFin: dayjs('2024-11-05T17:08'),
+  duracionMinutos: 22430,
+  diaSemana: 'enormously for oof',
   esHorarioAtencion: true,
-  estado: 'yuck',
-  desdeHoraAlmuerzo: dayjs('2024-11-05T17:08'),
-  hastaHoraAlmuerzo: dayjs('2024-11-05T16:11'),
+  estado: 'until',
+  desdeHoraAlmuerzo: dayjs('2024-11-05T01:27'),
+  hastaHoraAlmuerzo: dayjs('2024-11-05T11:54'),
 };
 
 export const sampleWithNewData: NewHorarioConsulta = {
   desde: dayjs('2024-11-05'),
   hasta: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T20:58'),
-  duracionMinutos: 1764,
+  horaInicio: dayjs('2024-11-05T16:16'),
+  horaFin: dayjs('2024-11-05T13:13'),
+  duracionMinutos: 7676,
   id: null,
 };
 

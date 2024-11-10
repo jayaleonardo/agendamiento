@@ -49,6 +49,16 @@
           </dd>
           <dt>
             <span
+              [ngbTooltip]="'agendamientoApp.horarioConsulta.help.horaFin' | translate"
+              jhiTranslate="agendamientoApp.horarioConsulta.horaFin"
+              >Hora Fin</span
+            >
+          </dt>
+          <dd>
+            <span>{{ horarioConsultaRef.horaFin | formatMediumDatetime }}</span>
+          </dd>
+          <dt>
+            <span
               [ngbTooltip]="'agendamientoApp.horarioConsulta.help.duracionMinutos' | translate"
               jhiTranslate="agendamientoApp.horarioConsulta.duracionMinutos"
               >Duracion Minutos</span

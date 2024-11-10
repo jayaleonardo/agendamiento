@@ -9,9 +9,12 @@ public class CrearProgramacionRequest {
     private LocalDate hasta;
     private String horaInicio;
     private String horaFin;
-    private String almuerzoInicio;
-    private String almuerzoFin;
-    private int[] diaSemana;
+    private String almuerzoDesde;
+    private String almuerzoHasta;
+    private String diasSemana;
+    private Integer cantidad;
+    private Long especialistaId;
+    private Integer duracion;
 
     public LocalDate getDesde() {
         return desde;
@@ -45,48 +48,51 @@ public class CrearProgramacionRequest {
         this.horaFin = horaFin;
     }
 
-    public String getAlmuerzoInicio() {
-        return almuerzoInicio;
+    public String getAlmuerzoDesde() {
+        return almuerzoDesde;
     }
 
-    public void setAlmuerzoInicio(String almuerzoInicio) {
-        this.almuerzoInicio = almuerzoInicio;
+    public void setAlmuerzoDesde(String almuerzoDesde) {
+        this.almuerzoDesde = almuerzoDesde;
     }
 
-    public String getAlmuerzoFin() {
-        return almuerzoFin;
+    public String getAlmuerzoHasta() {
+        return almuerzoHasta;
     }
 
-    public void setAlmuerzoFin(String almuerzoFin) {
-        this.almuerzoFin = almuerzoFin;
+    public void setAlmuerzoHasta(String almuerzoHasta) {
+        this.almuerzoHasta = almuerzoHasta;
     }
 
-    public int[] getDiaSemana() {
-        return diaSemana;
+    public String getDiasSemana() {
+        return diasSemana;
     }
 
-    public void setDiaSemana(int[] diaSemana) {
-        this.diaSemana = diaSemana;
+    public void setDiasSemana(String diasSemana) {
+        this.diasSemana = diasSemana;
     }
 
-    @Override
-    public String toString() {
-        return (
-            "CrearProgramacionRequest [desde=" +
-            desde +
-            ", hasta=" +
-            hasta +
-            ", horaInicio=" +
-            horaInicio +
-            ", horaFin=" +
-            horaFin +
-            ", almuerzoInicio=" +
-            almuerzoInicio +
-            ", almuerzoFin=" +
-            almuerzoFin +
-            ", diaSemana=" +
-            Arrays.toString(diaSemana) +
-            "]"
-        );
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Long getEspecialistaId() {
+        return especialistaId;
+    }
+
+    public void setEspecialistaId(Long especialistaId) {
+        this.especialistaId = especialistaId;
+    }
+
+    public Integer getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(Integer duracion) {
+        this.duracion = duracion;
     }
 }

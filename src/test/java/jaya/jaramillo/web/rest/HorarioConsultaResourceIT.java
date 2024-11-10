@@ -47,6 +47,9 @@ class HorarioConsultaResourceIT {
     private static final Instant DEFAULT_HORA_INICIO = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_HORA_INICIO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final Instant DEFAULT_HORA_FIN = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_HORA_FIN = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
     private static final Integer DEFAULT_DURACION_MINUTOS = 1;
     private static final Integer UPDATED_DURACION_MINUTOS = 2;
 
@@ -101,6 +104,7 @@ class HorarioConsultaResourceIT {
             .desde(DEFAULT_DESDE)
             .hasta(DEFAULT_HASTA)
             .horaInicio(DEFAULT_HORA_INICIO)
+            .horaFin(DEFAULT_HORA_FIN)
             .duracionMinutos(DEFAULT_DURACION_MINUTOS)
             .diaSemana(DEFAULT_DIA_SEMANA)
             .esHorarioAtencion(DEFAULT_ES_HORARIO_ATENCION)
@@ -120,6 +124,7 @@ class HorarioConsultaResourceIT {
             .desde(UPDATED_DESDE)
             .hasta(UPDATED_HASTA)
             .horaInicio(UPDATED_HORA_INICIO)
+            .horaFin(UPDATED_HORA_FIN)
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
             .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
@@ -236,6 +241,23 @@ class HorarioConsultaResourceIT {
 
     @Test
     @Transactional
+    void checkHoraFinIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        horarioConsulta.setHoraFin(null);
+
+        // Create the HorarioConsulta, which fails.
+        HorarioConsultaDTO horarioConsultaDTO = horarioConsultaMapper.toDto(horarioConsulta);
+
+        restHorarioConsultaMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(horarioConsultaDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkDuracionMinutosIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
@@ -266,6 +288,7 @@ class HorarioConsultaResourceIT {
             .andExpect(jsonPath("$.[*].desde").value(hasItem(DEFAULT_DESDE.toString())))
             .andExpect(jsonPath("$.[*].hasta").value(hasItem(DEFAULT_HASTA.toString())))
             .andExpect(jsonPath("$.[*].horaInicio").value(hasItem(DEFAULT_HORA_INICIO.toString())))
+            .andExpect(jsonPath("$.[*].horaFin").value(hasItem(DEFAULT_HORA_FIN.toString())))
             .andExpect(jsonPath("$.[*].duracionMinutos").value(hasItem(DEFAULT_DURACION_MINUTOS)))
             .andExpect(jsonPath("$.[*].diaSemana").value(hasItem(DEFAULT_DIA_SEMANA)))
             .andExpect(jsonPath("$.[*].esHorarioAtencion").value(hasItem(DEFAULT_ES_HORARIO_ATENCION.booleanValue())))
@@ -289,6 +312,7 @@ class HorarioConsultaResourceIT {
             .andExpect(jsonPath("$.desde").value(DEFAULT_DESDE.toString()))
             .andExpect(jsonPath("$.hasta").value(DEFAULT_HASTA.toString()))
             .andExpect(jsonPath("$.horaInicio").value(DEFAULT_HORA_INICIO.toString()))
+            .andExpect(jsonPath("$.horaFin").value(DEFAULT_HORA_FIN.toString()))
             .andExpect(jsonPath("$.duracionMinutos").value(DEFAULT_DURACION_MINUTOS))
             .andExpect(jsonPath("$.diaSemana").value(DEFAULT_DIA_SEMANA))
             .andExpect(jsonPath("$.esHorarioAtencion").value(DEFAULT_ES_HORARIO_ATENCION.booleanValue()))
@@ -320,6 +344,7 @@ class HorarioConsultaResourceIT {
             .desde(UPDATED_DESDE)
             .hasta(UPDATED_HASTA)
             .horaInicio(UPDATED_HORA_INICIO)
+            .horaFin(UPDATED_HORA_FIN)
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
             .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
@@ -418,8 +443,8 @@ class HorarioConsultaResourceIT {
         partialUpdatedHorarioConsulta
             .desde(UPDATED_DESDE)
             .hasta(UPDATED_HASTA)
-            .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)
-            .estado(UPDATED_ESTADO);
+            .diaSemana(UPDATED_DIA_SEMANA)
+            .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION);
 
         restHorarioConsultaMockMvc
             .perform(
@@ -454,6 +479,7 @@ class HorarioConsultaResourceIT {
             .desde(UPDATED_DESDE)
             .hasta(UPDATED_HASTA)
             .horaInicio(UPDATED_HORA_INICIO)
+            .horaFin(UPDATED_HORA_FIN)
             .duracionMinutos(UPDATED_DURACION_MINUTOS)
             .diaSemana(UPDATED_DIA_SEMANA)
             .esHorarioAtencion(UPDATED_ES_HORARIO_ATENCION)

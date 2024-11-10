@@ -123,6 +123,9 @@ entity HorarioConsulta {
     /** hora de inicio */
     horaInicio Instant required
 
+    /** hora fin */
+    horaFin Instant required
+
     /** duración en minutos */
     duracionMinutos Integer required
 

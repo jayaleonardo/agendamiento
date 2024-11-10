@@ -50,6 +50,13 @@ public class HorarioConsulta implements Serializable {
     private Instant horaInicio;
 
     /**
+     * hora fin
+     */
+    @NotNull
+    @Column(name = "hora_fin", nullable = false)
+    private Instant horaFin;
+
+    /**
      * duración en minutos
      */
     @NotNull
@@ -150,6 +157,19 @@ public class HorarioConsulta implements Serializable {
 
     public void setHoraInicio(Instant horaInicio) {
         this.horaInicio = horaInicio;
+    }
+
+    public Instant getHoraFin() {
+        return this.horaFin;
+    }
+
+    public HorarioConsulta horaFin(Instant horaFin) {
+        this.setHoraFin(horaFin);
+        return this;
+    }
+
+    public void setHoraFin(Instant horaFin) {
+        this.horaFin = horaFin;
     }
 
     public Integer getDuracionMinutos() {
@@ -301,6 +321,7 @@ public class HorarioConsulta implements Serializable {
             ", desde='" + getDesde() + "'" +
             ", hasta='" + getHasta() + "'" +
             ", horaInicio='" + getHoraInicio() + "'" +
+            ", horaFin='" + getHoraFin() + "'" +
             ", duracionMinutos=" + getDuracionMinutos() +
             ", diaSemana='" + getDiaSemana() + "'" +
             ", esHorarioAtencion='" + getEsHorarioAtencion() + "'" +

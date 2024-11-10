@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { IEspecialista } from 'app/entities/especialista/especialista.model';
+import { HorarioService } from 'app/horarios/horarios-service';
 import { CheckboxComponent } from 'app/shared/check-box/check-box.component';
 import { CheckboxGroupComponent } from 'app/shared/checkbox-group/checkbox-group.component';
 import SharedModule from 'app/shared/shared.module';
@@ -18,6 +19,8 @@ import moment from 'moment';
   styleUrl: './creacion-horario.component.scss',
 })
 export class CreacionHorarioComponent {
+  horarioService = inject(HorarioService);
+
   duraciones: number[] = [20, 30, 45, 60, 90, 120];
   diasSemana: any[];
   diasSeleccionados?: any[];
@@ -78,5 +81,24 @@ export class CreacionHorarioComponent {
   nombreDia(dia: number): string {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return this.diasSemana.find(day => day.id === dia).nombre;
+  }
+
+  crear(): void {
+    const desde = this.form.value.desde;
+    const hasta = this.form.value.hasta;
+    const duracion = this.form.value.duracion;
+
+    const rta = this.horarioService.crearProgramacion(
+      desde,
+      hasta,
+      this.preHorarioDesde,
+      this.preHorarioHasta,
+      this.preHorarioAlmuerzoDesde,
+      this.preHorarioAlmuerzoHasta,
+      duracion,
+      this.diasSeleccionados!.join(','),
+      this.data.id,
+      8,
+    );
   }
 }

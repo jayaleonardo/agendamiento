@@ -50,6 +50,7 @@ public class HorarioConsultaAsserts {
             .satisfies(e -> assertThat(e.getDesde()).as("check desde").isEqualTo(actual.getDesde()))
             .satisfies(e -> assertThat(e.getHasta()).as("check hasta").isEqualTo(actual.getHasta()))
             .satisfies(e -> assertThat(e.getHoraInicio()).as("check horaInicio").isEqualTo(actual.getHoraInicio()))
+            .satisfies(e -> assertThat(e.getHoraFin()).as("check horaFin").isEqualTo(actual.getHoraFin()))
             .satisfies(e -> assertThat(e.getDuracionMinutos()).as("check duracionMinutos").isEqualTo(actual.getDuracionMinutos()))
             .satisfies(e -> assertThat(e.getDiaSemana()).as("check diaSemana").isEqualTo(actual.getDiaSemana()))
             .satisfies(e -> assertThat(e.getEsHorarioAtencion()).as("check esHorarioAtencion").isEqualTo(actual.getEsHorarioAtencion()))
