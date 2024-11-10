@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { IEspecialista } from 'app/entities/especialista/especialista.model';
 import { HorarioService } from 'app/horarios/horarios-service';
@@ -20,6 +20,7 @@ import moment from 'moment';
 })
 export class CreacionHorarioComponent {
   horarioService = inject(HorarioService);
+  dialogRef = inject(MatDialogRef<CreacionHorarioComponent>);
 
   duraciones: number[] = [20, 30, 45, 60, 90, 120];
   diasSemana: any[];
@@ -32,6 +33,7 @@ export class CreacionHorarioComponent {
   preHorarioAlmuerzoDesde?: any;
   preHorarioAlmuerzoHasta?: any;
   preDuracion?: number;
+  numeroTurnos = 0;
 
   form: FormGroup = new FormGroup({
     desde: new FormControl(new Date(), Validators.required),
@@ -75,6 +77,8 @@ export class CreacionHorarioComponent {
 
     // eslint-disable-next-line no-console
     console.log(this.diasSeleccionados!.sort());
+
+    this.onOkAlmuerzo();
     this.mostrarConfiguracion = true;
   }
 
@@ -83,22 +87,52 @@ export class CreacionHorarioComponent {
     return this.diasSemana.find(day => day.id === dia).nombre;
   }
 
-  crear(): void {
+  async crear(): Promise<void> {
     const desde = this.form.value.desde;
     const hasta = this.form.value.hasta;
     const duracion = this.form.value.duracion;
 
-    const rta = this.horarioService.crearProgramacion(
-      desde,
-      hasta,
-      this.preHorarioDesde,
-      this.preHorarioHasta,
-      this.preHorarioAlmuerzoDesde,
-      this.preHorarioAlmuerzoHasta,
-      duracion,
-      this.diasSeleccionados!.join(','),
-      this.data.id,
-      8,
-    );
+    if (this.numeroTurnos > 0) {
+      const rta = await this.horarioService.crearProgramacion(
+        desde,
+        hasta,
+        this.preHorarioDesde,
+        this.preHorarioHasta,
+        this.preHorarioAlmuerzoDesde,
+        this.preHorarioAlmuerzoHasta,
+        duracion,
+        this.diasSeleccionados!.join(','),
+        this.data.id,
+        this.numeroTurnos,
+      );
+
+      const body = rta.body ?? null;
+      if (body) {
+        this.dialogRef.close(body);
+      }
+    }
+  }
+
+  onOkAlmuerzo(): void {
+    const tiempoConsulta = this.form.value.duracion;
+
+    if (tiempoConsulta !== null || tiempoConsulta !== '') {
+      const momentStartTime = moment(this.form.value.horarioDesde, 'HH:mm');
+      const momentEndTime = moment(this.form.value.horarioHasta, 'HH:mm');
+
+      const momentStartTimeAlmuerzo = moment(this.form.value.almuerzoDesde, 'HH:mm');
+      const momentEndTimeAlmuerzo = moment(this.form.value.almuerzoHasta, 'HH:mm');
+      const durationAntesAlmuerzo = moment.duration(momentStartTimeAlmuerzo.diff(momentStartTime));
+      const durationDespuesAlmuerzo = moment.duration(momentEndTime.diff(momentEndTimeAlmuerzo));
+
+      const numeroTurnosAntesAlmuerzo = Math.trunc(durationAntesAlmuerzo.asMinutes() / tiempoConsulta);
+      const numeroTurnosDespuesAlmuerzo = Math.trunc(durationDespuesAlmuerzo.asMinutes() / tiempoConsulta);
+
+      this.numeroTurnos = numeroTurnosAntesAlmuerzo + numeroTurnosDespuesAlmuerzo;
+    }
+  }
+
+  cerrarDialogo(): void {
+    this.dialogRef.close(null);
   }
 }
