@@ -1,10 +1,13 @@
 package jaya.jaramillo.service.impl;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.domain.Cita;
 import jaya.jaramillo.repository.CitaRepository;
 import jaya.jaramillo.service.CitaService;
 import jaya.jaramillo.service.dto.CitaDTO;
+import jaya.jaramillo.service.dto.CitaDataDTO;
 import jaya.jaramillo.service.mapper.CitaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,5 +83,18 @@ public class CitaServiceImpl implements CitaService {
     public void delete(Long id) {
         LOG.debug("Request to delete Cita : {}", id);
         citaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CitaDataDTO> buscarCita(
+        LocalDate desde,
+        LocalDate hasta,
+        String especialidad,
+        Long especialistaId,
+        String estado,
+        String criterio
+    ) {
+        LOG.debug("Request to buscarCita Cita : {} {} {} {} {} {}", desde, hasta, especialidad, especialistaId, estado, criterio);
+        return citaRepository.obtenerCitas(desde, hasta, especialidad, especialistaId, estado, criterio);
     }
 }

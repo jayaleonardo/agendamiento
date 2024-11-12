@@ -1,7 +1,10 @@
 package jaya.jaramillo.service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.service.dto.CitaDTO;
+import jaya.jaramillo.service.dto.CitaDataDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -55,4 +58,13 @@ public interface CitaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<CitaDataDTO> buscarCita(
+        LocalDate desde,
+        LocalDate hasta,
+        String especialidad,
+        Long especialistaId,
+        String estado,
+        String criterio
+    );
 }

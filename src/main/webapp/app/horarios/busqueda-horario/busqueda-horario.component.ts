@@ -14,6 +14,8 @@ import moment from 'moment';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { MatDialog } from '@angular/material/dialog';
 import { CreacionHorarioComponent } from 'app/shared/dialogos/creacion-horario/creacion-horario.component';
+import { lastValueFrom } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'jhi-busqueda-horario',
@@ -26,6 +28,7 @@ export class BusquedaHorarioComponent implements OnInit, AfterViewInit {
   changeDetector = inject(ChangeDetectorRef);
   horarioService = inject(HorarioService);
   dialogService = inject(MatDialog);
+  spinner = inject(NgxSpinnerService);
 
   eventos: EventInput[] = [];
   especialistas?: IEspecialista[];
@@ -126,6 +129,7 @@ export class BusquedaHorarioComponent implements OnInit, AfterViewInit {
 
     this.eventos = [];
 
+    this.spinner.show();
     // eslint-disable-next-line no-console
     console.log(this.form.value);
 
@@ -151,9 +155,10 @@ export class BusquedaHorarioComponent implements OnInit, AfterViewInit {
       }
       this.calendarOptions.events = this.eventos;
     }
+    this.spinner.hide();
   }
 
-  configurarHorario(): void {
+  async configurarHorario(): Promise<void> {
     const especialistaSeleccionado = this.form.value.especialista;
 
     if (especialistaSeleccionado) {
@@ -164,6 +169,11 @@ export class BusquedaHorarioComponent implements OnInit, AfterViewInit {
         disableClose: true,
         data,
       });
+
+      const resultadoDialogo = await lastValueFrom(dialogRef.afterClosed());
+      if (resultadoDialogo !== null) {
+        this.buscar();
+      }
     }
   }
 }

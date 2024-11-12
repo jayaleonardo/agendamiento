@@ -77,9 +77,6 @@ export class CreacionHorarioComponent {
     this.preHorarioAlmuerzoDesde = moment(this.form.value.almuerzoDesde).format('HH:mm');
     this.preHorarioAlmuerzoHasta = moment(this.form.value.almuerzoHasta).format('HH:mm');
 
-    // eslint-disable-next-line no-console
-    console.log(this.diasSeleccionados!.sort());
-
     this.onOkAlmuerzo();
     this.mostrarConfiguracion = true;
   }

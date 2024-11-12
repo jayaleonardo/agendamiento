@@ -1,13 +1,19 @@
 package jaya.jaramillo.web.rest;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.text.DateFormatter;
+import jaya.jaramillo.service.CitaService;
 import jaya.jaramillo.service.EspecialistaService;
 import jaya.jaramillo.service.HorarioConsultaService;
 import jaya.jaramillo.service.ProgramacionService;
+import jaya.jaramillo.service.dto.CitaDataDTO;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
 import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
+import jaya.jaramillo.web.rest.peticion.ConsultarCitasRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,15 +33,18 @@ public class HorariosResource {
     private final EspecialistaService especialistaService;
     private final ProgramacionService programacionService;
     private final HorarioConsultaService horarioconsultaService;
+    private final CitaService citaService;
 
     public HorariosResource(
         EspecialistaService especialistaService,
         ProgramacionService programacionService,
-        HorarioConsultaService horarioconsultaService
+        HorarioConsultaService horarioconsultaService,
+        CitaService citaService
     ) {
         this.especialistaService = especialistaService;
         this.programacionService = programacionService;
         this.horarioconsultaService = horarioconsultaService;
+        this.citaService = citaService;
     }
 
     @PostMapping("/listarEspecialidades")
@@ -73,6 +82,26 @@ public class HorariosResource {
                         request.getDiasSemana(),
                         request.getEspecialistaId(),
                         request.getCantidad()
+                    )
+            );
+    }
+
+    @PostMapping("/consultarCitas")
+    public ResponseEntity<List<CitaDataDTO>> consultarCitas(@RequestBody ConsultarCitasRequest request) {
+        LOG.debug("Rest consultarCitas {}", request);
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate desdeConvertida = LocalDate.parse(request.getDesde(), pattern);
+        LocalDate hastaConvertida = LocalDate.parse(request.getHasta(), pattern);
+
+        return ResponseEntity.ok()
+            .body(
+                this.citaService.buscarCita(
+                        desdeConvertida,
+                        hastaConvertida,
+                        request.getEspecialidad(),
+                        request.getEspecialistaId(),
+                        request.getEstado(),
+                        request.getCriterio()
                     )
             );
     }

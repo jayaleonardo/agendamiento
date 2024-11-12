@@ -39,6 +39,11 @@ const routes: Routes = [
     canActivate: [UserRouteAccessService],
     loadChildren: () => import('./horarios/horarios.routing.module').then(({ HorariosRoutingModule }) => HorariosRoutingModule),
   },
+  {
+    path: 'agenda',
+    canActivate: [UserRouteAccessService],
+    loadChildren: () => import('./agenda/agenda.routing.module').then(({ AgendaRoutingModule }) => AgendaRoutingModule),
+  },
 
   {
     path: '',

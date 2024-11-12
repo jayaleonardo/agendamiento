@@ -1,0 +1,133 @@
+<form [formGroup]="form" (ngSubmit)="buscar()">
+  <div class="flex">
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header class="cabecera">
+        <mat-card-title>Agenda</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <div class="row mt-3">
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline">
+              <mat-label>Especialidad</mat-label>
+              <mat-select formControlName="especialidad" (selectionChange)="buscarEspecialista($event.value)">
+                <mat-option [value]="null">Seleccione</mat-option>
+                <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">{{ especialidad }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline">
+              <mat-label>Especialista</mat-label>
+              <mat-select formControlName="especialista">
+                <mat-option [value]="null">Seleccione</mat-option>
+                <mat-option *ngFor="let especialista of especialistas" [value]="especialista.id"
+                  >{{ especialista.sujeto?.apellido }} {{ especialista.sujeto?.segundoApellido }} {{ especialista.sujeto?.nombre }}
+                  {{ especialista.sujeto?.segundoNombre }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline" floatLabel="auto">
+              <mat-label>Fecha desde</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="desde" />
+              <mat-hint>YYYY-MM-DD</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline" floatLabel="auto">
+              <mat-label>Fecha hasta</mat-label>
+              <input matInput [matDatepicker]="pickerHasta" formControlName="hasta" />
+              <mat-hint>YYYY-MM-DD</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerHasta></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="input-full-width" appearance="outline">
+              <mat-label>Especialidad</mat-label>
+              <mat-select formControlName="especialidad" (selectionChange)="buscarEspecialista($event.value)">
+                <mat-option [value]="null">Seleccione</mat-option>
+                <mat-option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="outline" class="input-full-width">
+              <mat-label>Paciente:</mat-label>
+              <input matInput formControlName="paciente" placeholder="Paciente" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Buscar</button>
+        </div>
+
+        <div class="row mt-1">
+          <div class="table-responsive table-entities" id="entities">
+            <table class="table table-striped" aria-describedby="page-heading">
+              <thead class="cabecera">
+                <tr class="cabecera">
+                  <th scope="col">
+                    <div class="d-flex">
+                      <span>Fecha</span>
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex">
+                      <span>Horario</span>
+                    </div>
+                  </th>
+
+                  <th scope="col">
+                    <div class="d-flex">
+                      <span>Consultorio</span>
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex">
+                      <span>Paciente</span>
+                    </div>
+                  </th>
+                  <th scope="col">
+                    <div class="d-flex">
+                      <span>Estado</span>
+                      <fa-icon class="p-1" icon="sort"></fa-icon>
+                    </div>
+                  </th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @for (cita of citas; track cita.id) {
+                  <tr data-cy="entityTable">
+                    <td>{{ cita.fecha }}</td>
+                    <td>{{ cita.horainicio }} - {{ cita.horafin }}</td>
+                    <td>{{ cita.consultorio }}</td>
+                    <td>{{ cita.paciente }}</td>
+                    <td>{{ cita.estado }}</td>
+                    <td class="text-end">
+                      <div class="btn-group"></div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</form>
