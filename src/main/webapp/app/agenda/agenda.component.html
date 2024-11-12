@@ -74,7 +74,7 @@
           <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Buscar</button>
         </div>
 
-        <div class="row mt-1">
+        <div class="row mt-3">
           <div class="table-responsive table-entities" id="entities">
             <table class="table table-striped" aria-describedby="page-heading">
               <thead class="cabecera">
@@ -114,12 +114,14 @@
                 @for (cita of citas; track cita.id) {
                   <tr data-cy="entityTable">
                     <td>{{ cita.fecha }}</td>
-                    <td>{{ cita.horainicio }} - {{ cita.horafin }}</td>
+                    <td>{{ cita.horainicio }} - {{ cita.horarioFin }}</td>
                     <td>{{ cita.consultorio }}</td>
                     <td>{{ cita.paciente }}</td>
                     <td>{{ cita.estado }}</td>
                     <td class="text-end">
-                      <div class="btn-group"></div>
+                      <div class="btn-group">
+                        <button mat-raised-button color="primary">Asignar</button>
+                      </div>
                     </td>
                   </tr>
                 }
