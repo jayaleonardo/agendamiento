@@ -241,3 +241,14 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
 .input-full-width {
   width: 100%;
 }
+
+.legend {
+  background: #529fca;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.label {
+  font-weight: bold;
+}

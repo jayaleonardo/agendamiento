@@ -9,4 +9,6 @@ export interface ICitaData {
   consultorio?: string | null;
   paciente?: string | null;
   estado?: string | null;
+  profesional?: string | null;
+  especialidad?: string | null;
 }

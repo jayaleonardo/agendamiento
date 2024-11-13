@@ -11,4 +11,6 @@ public interface CitaDataDTO {
     String getConsultorio();
     String getPaciente();
     String getEstado();
+    String getProfesional();
+    String getEspecialidad();
 }

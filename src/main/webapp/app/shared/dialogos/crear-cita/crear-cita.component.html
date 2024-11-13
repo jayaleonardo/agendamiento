@@ -1,0 +1,38 @@
+<div style="background: #f1f1f1" id="nuevacita">
+  <form>
+    <div class="row cabecera">
+      <div class="col-9">
+        <h2 mat-dialog-title>Cita</h2>
+      </div>
+
+      <div class="col-3 text-end mt-2">
+        <button mat-raised-button color="primary" type="submit">Aceptar</button>
+        <button mat-raised-button color="accent" (click)="cerrarDialogo()" type="button">Cancelar</button>
+      </div>
+    </div>
+
+    <div class="container mt-2">
+      <div class="text-center legend">Información General de la cita</div>
+
+      <div class="row mt-2">
+        <div class="col-4 label">Especialista:</div>
+        <div class="col-8">{{ data.profesional }}</div>
+
+        <div class="col-4 label">Especialidad:</div>
+        <div class="col-8">{{ data.especialidad }}</div>
+
+        <div class="col-4 label">Fecha y hora:</div>
+        <div class="col-8">{{ data.fecha }} - {{ data.horainicio }}</div>
+
+        <div class="col-4 label">Duración de la consulta:</div>
+        <div class="col-8">{{ data.duracion }}</div>
+
+        <div class="col-4 label">Consultorio:</div>
+        <div class="col-8">{{ data.consultorio }}</div>
+
+        <div class="col-4 label">Estado de la cita:</div>
+        <div class="col-8">{{ data.estado }}</div>
+      </div>
+    </div>
+  </form>
+</div>

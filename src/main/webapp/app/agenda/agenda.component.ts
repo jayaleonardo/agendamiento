@@ -7,6 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AgendaService } from './agenda-service';
 import { ICitaData } from './model/citadata.model';
 import moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { CrearCitaComponent } from 'app/shared/dialogos/crear-cita/crear-cita.component';
 
 @Component({
   selector: 'jhi-agenda',
@@ -19,6 +21,7 @@ export class AgendaComponent implements OnInit {
   horarioService = inject(HorarioService);
   agendaService = inject(AgendaService);
   spinner = inject(NgxSpinnerService);
+  dialogService = inject(MatDialog);
 
   especialistas?: IEspecialista[];
   especialidades?: string[];
@@ -87,5 +90,14 @@ export class AgendaComponent implements OnInit {
       this.citas = body;
     }
     this.spinner.hide();
+  }
+
+  asignar(data: ICitaData): void {
+    const dialogRef = this.dialogService.open(CrearCitaComponent, {
+      width: '60%',
+      height: 'auto',
+      disableClose: true,
+      data,
+    });
   }
 }
