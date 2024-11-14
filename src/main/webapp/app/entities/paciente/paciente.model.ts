@@ -8,7 +8,7 @@ export interface IPaciente {
   correoRepresentante?: string | null;
   celularRepresentante?: string | null;
   direccionRepresentante?: string | null;
-  sujeto?: Pick<ISujeto, 'id'> | null;
+  sujeto?: ISujeto | null;
 }
 
 export type NewPaciente = Omit<IPaciente, 'id'> & { id: null };

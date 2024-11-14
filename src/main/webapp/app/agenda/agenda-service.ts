@@ -1,10 +1,10 @@
-/* eslint-disable prettier/prettier */
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { lastValueFrom } from 'rxjs';
 import { ICitaData } from './model/citadata.model';
 import dayjs from 'dayjs';
+import { IPaciente } from 'app/entities/paciente/paciente.model';
 @Injectable({ providedIn: 'root' })
 export class AgendaService {
   protected http = inject(HttpClient);
@@ -28,6 +28,11 @@ export class AgendaService {
       criterio,
     };
     const data = this.http.post<ICitaData[]>(`${this.resourceUrl}/consultarCitas`, parameter, { observe: 'response' });
+    return await lastValueFrom(data);
+  }
+
+  async obtenerPacientes(): Promise<HttpResponse<IPaciente[]>> {
+    const data = this.http.post<IPaciente[]>(`${this.resourceUrl}/todos-pacientes`, null, { observe: 'response' });
     return await lastValueFrom(data);
   }
 }

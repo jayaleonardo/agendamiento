@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Component, inject, OnInit, ChangeDetectorRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HorarioService } from '../horarios-service';

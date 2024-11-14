@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BusquedaHorarioComponent } from './busqueda-horario/busqueda-horario.component';

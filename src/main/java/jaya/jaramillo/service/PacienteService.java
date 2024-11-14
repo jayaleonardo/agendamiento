@@ -1,5 +1,6 @@
 package jaya.jaramillo.service;
 
+import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.service.dto.PacienteDTO;
 import org.springframework.data.domain.Page;
@@ -55,4 +56,6 @@ public interface PacienteService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<PacienteDTO> obtenerTodos();
 }

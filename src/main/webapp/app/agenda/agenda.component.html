@@ -55,8 +55,8 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="input-full-width" appearance="outline">
-              <mat-label>Especialidad</mat-label>
-              <mat-select formControlName="especialidad" (selectionChange)="buscarEspecialista($event.value)">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="estado">
                 <mat-option [value]="null">Seleccione</mat-option>
                 <mat-option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nombre }}</mat-option>
               </mat-select>

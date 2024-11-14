@@ -1,5 +1,6 @@
 package jaya.jaramillo.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.domain.Paciente;
 import jaya.jaramillo.repository.PacienteRepository;
@@ -80,5 +81,11 @@ public class PacienteServiceImpl implements PacienteService {
     public void delete(Long id) {
         LOG.debug("Request to delete Paciente : {}", id);
         pacienteRepository.deleteById(id);
+    }
+
+    @Override
+    public List<PacienteDTO> obtenerTodos() {
+        LOG.debug("Request to obtenerTodos");
+        return pacienteMapper.toDto(pacienteRepository.findAll());
     }
 }

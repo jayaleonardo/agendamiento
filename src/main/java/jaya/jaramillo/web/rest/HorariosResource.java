@@ -7,11 +7,14 @@ import javax.swing.text.DateFormatter;
 import jaya.jaramillo.service.CitaService;
 import jaya.jaramillo.service.EspecialistaService;
 import jaya.jaramillo.service.HorarioConsultaService;
+import jaya.jaramillo.service.PacienteService;
 import jaya.jaramillo.service.ProgramacionService;
 import jaya.jaramillo.service.dto.CitaDataDTO;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
 import jaya.jaramillo.service.dto.HorarioConsultaDTO;
+import jaya.jaramillo.service.dto.PacienteDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
+import jaya.jaramillo.service.impl.PacienteServiceImpl;
 import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import jaya.jaramillo.web.rest.peticion.ConsultarCitasRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
@@ -34,17 +37,20 @@ public class HorariosResource {
     private final ProgramacionService programacionService;
     private final HorarioConsultaService horarioconsultaService;
     private final CitaService citaService;
+    private final PacienteService pacienteService;
 
     public HorariosResource(
         EspecialistaService especialistaService,
         ProgramacionService programacionService,
         HorarioConsultaService horarioconsultaService,
-        CitaService citaService
+        CitaService citaService,
+        PacienteService pacienteService
     ) {
         this.especialistaService = especialistaService;
         this.programacionService = programacionService;
         this.horarioconsultaService = horarioconsultaService;
         this.citaService = citaService;
+        this.pacienteService = pacienteService;
     }
 
     @PostMapping("/listarEspecialidades")
@@ -104,5 +110,12 @@ public class HorariosResource {
                         request.getCriterio()
                     )
             );
+    }
+
+    @PostMapping("/todos-pacientes")
+    public ResponseEntity<List<PacienteDTO>> todosPacientes() {
+        LOG.debug("Rest todosPacientes ");
+
+        return ResponseEntity.ok().body(this.pacienteService.obtenerTodos());
     }
 }

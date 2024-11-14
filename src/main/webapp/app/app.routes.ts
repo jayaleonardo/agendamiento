@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Routes } from '@angular/router';
 
 import { Authority } from 'app/config/authority.constants';

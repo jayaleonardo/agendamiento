@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
