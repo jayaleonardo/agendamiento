@@ -74,6 +74,7 @@ public class CitaAsserts {
             .as("Verify Cita relationships")
             .satisfies(e -> assertThat(e.getEspecialista()).as("check especialista").isEqualTo(actual.getEspecialista()))
             .satisfies(e -> assertThat(e.getTipoTerapia()).as("check tipoTerapia").isEqualTo(actual.getTipoTerapia()))
-            .satisfies(e -> assertThat(e.getPaciente()).as("check paciente").isEqualTo(actual.getPaciente()));
+            .satisfies(e -> assertThat(e.getPaciente()).as("check paciente").isEqualTo(actual.getPaciente()))
+            .satisfies(e -> assertThat(e.getProgramacion()).as("check programacion").isEqualTo(actual.getProgramacion()));
     }
 }

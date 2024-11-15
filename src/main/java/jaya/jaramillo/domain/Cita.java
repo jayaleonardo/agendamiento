@@ -121,6 +121,13 @@ public class Cita implements Serializable {
     @JsonIgnoreProperties(value = { "sujeto" }, allowSetters = true)
     private Paciente paciente;
 
+    /**
+     * Cita relacionadas con Programacion
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "horarioConsulta" }, allowSetters = true)
+    private Programacion programacion;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -328,6 +335,19 @@ public class Cita implements Serializable {
 
     public Cita paciente(Paciente paciente) {
         this.setPaciente(paciente);
+        return this;
+    }
+
+    public Programacion getProgramacion() {
+        return this.programacion;
+    }
+
+    public void setProgramacion(Programacion programacion) {
+        this.programacion = programacion;
+    }
+
+    public Cita programacion(Programacion programacion) {
+        this.setProgramacion(programacion);
         return this;
     }
 

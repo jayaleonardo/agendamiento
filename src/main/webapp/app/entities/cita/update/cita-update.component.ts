@@ -13,6 +13,8 @@ import { ITipoTerapia } from 'app/entities/tipo-terapia/tipo-terapia.model';
 import { TipoTerapiaService } from 'app/entities/tipo-terapia/service/tipo-terapia.service';
 import { IPaciente } from 'app/entities/paciente/paciente.model';
 import { PacienteService } from 'app/entities/paciente/service/paciente.service';
+import { IProgramacion } from 'app/entities/programacion/programacion.model';
+import { ProgramacionService } from 'app/entities/programacion/service/programacion.service';
 import { CitaService } from '../service/cita.service';
 import { ICita } from '../cita.model';
 import { CitaFormGroup, CitaFormService } from './cita-form.service';
@@ -30,12 +32,14 @@ export class CitaUpdateComponent implements OnInit {
   especialistasSharedCollection: IEspecialista[] = [];
   tipoTerapiasSharedCollection: ITipoTerapia[] = [];
   pacientesSharedCollection: IPaciente[] = [];
+  programacionsSharedCollection: IProgramacion[] = [];
 
   protected citaService = inject(CitaService);
   protected citaFormService = inject(CitaFormService);
   protected especialistaService = inject(EspecialistaService);
   protected tipoTerapiaService = inject(TipoTerapiaService);
   protected pacienteService = inject(PacienteService);
+  protected programacionService = inject(ProgramacionService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -47,6 +51,9 @@ export class CitaUpdateComponent implements OnInit {
   compareTipoTerapia = (o1: ITipoTerapia | null, o2: ITipoTerapia | null): boolean => this.tipoTerapiaService.compareTipoTerapia(o1, o2);
 
   comparePaciente = (o1: IPaciente | null, o2: IPaciente | null): boolean => this.pacienteService.comparePaciente(o1, o2);
+
+  compareProgramacion = (o1: IProgramacion | null, o2: IProgramacion | null): boolean =>
+    this.programacionService.compareProgramacion(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ cita }) => {
@@ -108,6 +115,10 @@ export class CitaUpdateComponent implements OnInit {
       this.pacientesSharedCollection,
       cita.paciente,
     );
+    this.programacionsSharedCollection = this.programacionService.addProgramacionToCollectionIfMissing<IProgramacion>(
+      this.programacionsSharedCollection,
+      cita.programacion,
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -138,5 +149,15 @@ export class CitaUpdateComponent implements OnInit {
         map((pacientes: IPaciente[]) => this.pacienteService.addPacienteToCollectionIfMissing<IPaciente>(pacientes, this.cita?.paciente)),
       )
       .subscribe((pacientes: IPaciente[]) => (this.pacientesSharedCollection = pacientes));
+
+    this.programacionService
+      .query()
+      .pipe(map((res: HttpResponse<IProgramacion[]>) => res.body ?? []))
+      .pipe(
+        map((programacions: IProgramacion[]) =>
+          this.programacionService.addProgramacionToCollectionIfMissing<IProgramacion>(programacions, this.cita?.programacion),
+        ),
+      )
+      .subscribe((programacions: IProgramacion[]) => (this.programacionsSharedCollection = programacions));
   }
 }

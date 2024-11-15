@@ -46,6 +46,7 @@ type CitaFormGroupContent = {
   especialista: FormControl<CitaFormRawValue['especialista']>;
   tipoTerapia: FormControl<CitaFormRawValue['tipoTerapia']>;
   paciente: FormControl<CitaFormRawValue['paciente']>;
+  programacion: FormControl<CitaFormRawValue['programacion']>;
 };
 
 export type CitaFormGroup = FormGroup<CitaFormGroupContent>;
@@ -86,6 +87,7 @@ export class CitaFormService {
       especialista: new FormControl(citaRawValue.especialista),
       tipoTerapia: new FormControl(citaRawValue.tipoTerapia),
       paciente: new FormControl(citaRawValue.paciente),
+      programacion: new FormControl(citaRawValue.programacion),
     });
   }
 

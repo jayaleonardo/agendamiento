@@ -3,6 +3,7 @@ package jaya.jaramillo.domain;
 import static jaya.jaramillo.domain.CitaTestSamples.*;
 import static jaya.jaramillo.domain.EspecialistaTestSamples.*;
 import static jaya.jaramillo.domain.PacienteTestSamples.*;
+import static jaya.jaramillo.domain.ProgramacionTestSamples.*;
 import static jaya.jaramillo.domain.TipoTerapiaTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -59,5 +60,17 @@ class CitaTest {
 
         cita.paciente(null);
         assertThat(cita.getPaciente()).isNull();
+    }
+
+    @Test
+    void programacionTest() {
+        Cita cita = getCitaRandomSampleGenerator();
+        Programacion programacionBack = getProgramacionRandomSampleGenerator();
+
+        cita.setProgramacion(programacionBack);
+        assertThat(cita.getProgramacion()).isEqualTo(programacionBack);
+
+        cita.programacion(null);
+        assertThat(cita.getProgramacion()).isNull();
     }
 }

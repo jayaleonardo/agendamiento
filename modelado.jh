@@ -237,6 +237,10 @@ relationship ManyToOne {
 
     /** Cita relacionadas con Paciente */
     Cita{paciente} to Paciente
+
+
+    /** Cita relacionadas con Programacion */
+    Cita{programacion} to Programacion
 }
 
 relationship OneToOne {

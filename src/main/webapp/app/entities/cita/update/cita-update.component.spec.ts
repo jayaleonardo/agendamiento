@@ -10,6 +10,8 @@ import { ITipoTerapia } from 'app/entities/tipo-terapia/tipo-terapia.model';
 import { TipoTerapiaService } from 'app/entities/tipo-terapia/service/tipo-terapia.service';
 import { IPaciente } from 'app/entities/paciente/paciente.model';
 import { PacienteService } from 'app/entities/paciente/service/paciente.service';
+import { IProgramacion } from 'app/entities/programacion/programacion.model';
+import { ProgramacionService } from 'app/entities/programacion/service/programacion.service';
 import { ICita } from '../cita.model';
 import { CitaService } from '../service/cita.service';
 import { CitaFormService } from './cita-form.service';
@@ -25,6 +27,7 @@ describe('Cita Management Update Component', () => {
   let especialistaService: EspecialistaService;
   let tipoTerapiaService: TipoTerapiaService;
   let pacienteService: PacienteService;
+  let programacionService: ProgramacionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -50,6 +53,7 @@ describe('Cita Management Update Component', () => {
     especialistaService = TestBed.inject(EspecialistaService);
     tipoTerapiaService = TestBed.inject(TipoTerapiaService);
     pacienteService = TestBed.inject(PacienteService);
+    programacionService = TestBed.inject(ProgramacionService);
 
     comp = fixture.componentInstance;
   });
@@ -121,6 +125,28 @@ describe('Cita Management Update Component', () => {
       expect(comp.pacientesSharedCollection).toEqual(expectedCollection);
     });
 
+    it('Should call Programacion query and add missing value', () => {
+      const cita: ICita = { id: 456 };
+      const programacion: IProgramacion = { id: 17689 };
+      cita.programacion = programacion;
+
+      const programacionCollection: IProgramacion[] = [{ id: 15510 }];
+      jest.spyOn(programacionService, 'query').mockReturnValue(of(new HttpResponse({ body: programacionCollection })));
+      const additionalProgramacions = [programacion];
+      const expectedCollection: IProgramacion[] = [...additionalProgramacions, ...programacionCollection];
+      jest.spyOn(programacionService, 'addProgramacionToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ cita });
+      comp.ngOnInit();
+
+      expect(programacionService.query).toHaveBeenCalled();
+      expect(programacionService.addProgramacionToCollectionIfMissing).toHaveBeenCalledWith(
+        programacionCollection,
+        ...additionalProgramacions.map(expect.objectContaining),
+      );
+      expect(comp.programacionsSharedCollection).toEqual(expectedCollection);
+    });
+
     it('Should update editForm', () => {
       const cita: ICita = { id: 456 };
       const especialista: IEspecialista = { id: 24257 };
@@ -129,6 +155,8 @@ describe('Cita Management Update Component', () => {
       cita.tipoTerapia = tipoTerapia;
       const paciente: IPaciente = { id: 9979 };
       cita.paciente = paciente;
+      const programacion: IProgramacion = { id: 18537 };
+      cita.programacion = programacion;
 
       activatedRoute.data = of({ cita });
       comp.ngOnInit();
@@ -136,6 +164,7 @@ describe('Cita Management Update Component', () => {
       expect(comp.especialistasSharedCollection).toContain(especialista);
       expect(comp.tipoTerapiasSharedCollection).toContain(tipoTerapia);
       expect(comp.pacientesSharedCollection).toContain(paciente);
+      expect(comp.programacionsSharedCollection).toContain(programacion);
       expect(comp.cita).toEqual(cita);
     });
   });
@@ -236,6 +265,16 @@ describe('Cita Management Update Component', () => {
         jest.spyOn(pacienteService, 'comparePaciente');
         comp.comparePaciente(entity, entity2);
         expect(pacienteService.comparePaciente).toHaveBeenCalledWith(entity, entity2);
+      });
+    });
+
+    describe('compareProgramacion', () => {
+      it('Should forward to programacionService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(programacionService, 'compareProgramacion');
+        comp.compareProgramacion(entity, entity2);
+        expect(programacionService.compareProgramacion).toHaveBeenCalledWith(entity, entity2);
       });
     });
   });

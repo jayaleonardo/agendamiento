@@ -135,6 +135,14 @@
               </div>
             }
           </dd>
+          <dt><span jhiTranslate="agendamientoApp.cita.programacion">Programacion</span></dt>
+          <dd>
+            @if (cita()!.programacion) {
+              <div>
+                <a [routerLink]="['/programacion', cita()!.programacion?.id, 'view']">{{ citaRef.programacion?.id }}</a>
+              </div>
+            }
+          </dd>
         </dl>
 
         <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

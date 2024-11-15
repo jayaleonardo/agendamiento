@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="macartuche (generated)" id="1731643665549-4">
+        <dropForeignKeyConstraint baseTableName="cita" constraintName="FKgtffkgenmmexdrit1s6ibnrgo"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1731643665549-1">
+        <addColumn tableName="programacion">
+            <column name="cita_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1731643665549-2">
+        <addUniqueConstraint columnNames="cita_id" constraintName="UC_PROGRAMACIONCITA_ID_COL" tableName="programacion"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1731643665549-3">
+        <addForeignKeyConstraint baseColumnNames="cita_id" baseTableName="programacion" constraintName="FKlwowj6yxd33y97i6dibmpewbt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="cita" validate="true"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1731643665549-5">
+        <dropUniqueConstraint constraintName="uc_citahorario_id_col" tableName="cita"/>
+    </changeSet>
+    <changeSet author="macartuche (generated)" id="1731643665549-6">
+        <dropColumn columnName="horario_id" tableName="cita"/>
+    </changeSet>
+</databaseChangeLog>

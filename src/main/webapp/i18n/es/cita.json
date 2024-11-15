@@ -33,6 +33,7 @@
       "especialista": "Especialista",
       "tipoTerapia": "Tipo Terapia",
       "paciente": "Paciente",
+      "programacion": "Programacion",
       "help": {
         "fechaCita": "fecha de la cita",
         "horaInicio": "hora de inicio",

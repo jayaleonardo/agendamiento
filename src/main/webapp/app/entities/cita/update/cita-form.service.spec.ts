@@ -35,6 +35,7 @@ describe('Cita Form Service', () => {
             especialista: expect.any(Object),
             tipoTerapia: expect.any(Object),
             paciente: expect.any(Object),
+            programacion: expect.any(Object),
           }),
         );
       });
@@ -60,6 +61,7 @@ describe('Cita Form Service', () => {
             especialista: expect.any(Object),
             tipoTerapia: expect.any(Object),
             paciente: expect.any(Object),
+            programacion: expect.any(Object),
           }),
         );
       });

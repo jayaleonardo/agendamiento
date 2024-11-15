@@ -30,5 +30,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="paciente"
                                  />
+
+        <addForeignKeyConstraint baseColumnNames="programacion_id"
+                                 baseTableName="cita"
+                                 constraintName="fk_cita__programacion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="programacion"
+                                 />
     </changeSet>
 </databaseChangeLog>

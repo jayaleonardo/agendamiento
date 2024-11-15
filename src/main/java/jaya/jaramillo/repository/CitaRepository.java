@@ -14,25 +14,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CitaRepository extends JpaRepository<Cita, Long> {
     @Query(
-        value = "select c.id, " +
-        "   c.fecha_cita as fecha, " +
-        "   to_char(c.hora_inicio, 'HH24:MI') as horainicio, " +
-        "   to_char(c.hora_inicio + (c.duracion_minutos||' minutes')::interval, 'HH24:MI' ) as horariofin, " +
+        value = "select prog.id, " +
+        "   prog.fecha as fecha, " +
+        "   to_char(prog.desde, 'HH24:MI') as horainicio, " +
+        "   to_char(prog.hasta, 'HH24:MI') as horariofin, " +
+        //"   to_char(c.hora_inicio + (c.duracion_minutos||' minutes')::interval, 'HH24:MI' ) as horariofin, " +
         "   c.duracion_minutos as duracion, " +
         "   esp.nro_consultorio  as consultorio,    " +
         "   suj.apellido||' '||suj.segundo_apellido ||' '||suj.nombre ||' '||suj.segundo_nombre as paciente, " +
         "   c.estado, " +
         "   psicologo.apellido||' '||psicologo.segundo_apellido ||' '||psicologo.nombre ||' '||psicologo.segundo_nombre as profesional, " +
         "   esp.especialidad " +
-        "from cita c " +
-        "   join especialista esp on esp.id = c.especialista_id " +
+        "from Programacion prog " +
+        "   join horario_consulta horario on horario.id = prog.horario_consulta_id " +
+        "   join especialista esp on esp.id = horario.especialista_id " +
         "   join sujeto psicologo on psicologo.id = esp.sujeto_id " +
+        "   left join cita c on c.programacion_id = prog.id " +
         "   left join paciente pac on pac.id = c.paciente_id " +
         "   left join sujeto suj on suj.id = pac.sujeto_id  " +
         "WHERE 1=1 " +
-        "   and c.fecha_cita between :desde and :hasta " +
+        "   and prog.fecha between :desde and :hasta " +
         "   and ( :especialidad is null or esp.especialidad =:especialidad) " +
-        "   and ( :especialistaId is null or c.especialista_id =:especialistaId) " +
+        "   and ( :especialistaId is null or horario.especialista_id =:especialistaId) " +
         "   and ( :estado is null or c.estado=:estado) " +
         "   and ( :criterio is null or suj.documento_identidad=:criterio)",
         nativeQuery = true

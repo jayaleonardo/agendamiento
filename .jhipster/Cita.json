@@ -93,6 +93,13 @@
       "relationshipName": "paciente",
       "relationshipSide": "left",
       "relationshipType": "many-to-one"
+    },
+    {
+      "documentation": "Cita relacionadas con Programacion",
+      "otherEntityName": "programacion",
+      "relationshipName": "programacion",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
     }
   ],
   "searchEngine": "no",

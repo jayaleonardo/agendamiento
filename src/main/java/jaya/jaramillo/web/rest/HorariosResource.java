@@ -99,17 +99,18 @@ public class HorariosResource {
         LocalDate desdeConvertida = LocalDate.parse(request.getDesde(), pattern);
         LocalDate hastaConvertida = LocalDate.parse(request.getHasta(), pattern);
 
-        return ResponseEntity.ok()
-            .body(
-                this.citaService.buscarCita(
-                        desdeConvertida,
-                        hastaConvertida,
-                        request.getEspecialidad(),
-                        request.getEspecialistaId(),
-                        request.getEstado(),
-                        request.getCriterio()
-                    )
-            );
+        List<CitaDataDTO> prog =
+            this.citaService.buscarCita(
+                    desdeConvertida,
+                    hastaConvertida,
+                    request.getEspecialidad(),
+                    request.getEspecialistaId(),
+                    request.getEstado(),
+                    request.getCriterio()
+                );
+
+        System.out.println("=======>" + prog.size());
+        return ResponseEntity.ok().body(prog);
     }
 
     @PostMapping("/todos-pacientes")

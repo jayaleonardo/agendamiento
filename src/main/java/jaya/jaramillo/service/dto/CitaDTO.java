@@ -64,6 +64,9 @@ public class CitaDTO implements Serializable {
     @Schema(description = "Cita relacionadas con Paciente")
     private PacienteDTO paciente;
 
+    @Schema(description = "Cita relacionadas con Programacion")
+    private ProgramacionDTO programacion;
+
     public Long getId() {
         return id;
     }
@@ -192,6 +195,14 @@ public class CitaDTO implements Serializable {
         this.paciente = paciente;
     }
 
+    public ProgramacionDTO getProgramacion() {
+        return programacion;
+    }
+
+    public void setProgramacion(ProgramacionDTO programacion) {
+        this.programacion = programacion;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -233,6 +244,7 @@ public class CitaDTO implements Serializable {
             ", especialista=" + getEspecialista() +
             ", tipoTerapia=" + getTipoTerapia() +
             ", paciente=" + getPaciente() +
+            ", programacion=" + getProgramacion() +
             "}";
     }
 }

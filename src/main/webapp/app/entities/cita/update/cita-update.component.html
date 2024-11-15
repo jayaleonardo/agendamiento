@@ -311,6 +311,23 @@
             }
           </select>
         </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_programacion" jhiTranslate="agendamientoApp.cita.programacion">Programacion</label>
+          <select
+            class="form-control"
+            id="field_programacion"
+            data-cy="programacion"
+            name="programacion"
+            formControlName="programacion"
+            [compareWith]="compareProgramacion"
+          >
+            <option [ngValue]="null"></option>
+            @for (programacionOption of programacionsSharedCollection; track $index) {
+              <option [ngValue]="programacionOption">{{ programacionOption.id }}</option>
+            }
+          </select>
+        </div>
       </div>
 
       <div>
