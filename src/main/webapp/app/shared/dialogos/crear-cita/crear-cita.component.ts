@@ -25,9 +25,12 @@ export class CrearCitaComponent implements OnInit {
   pacientes?: IPaciente[];
   motivos?: any[];
   tipoCita?: any[];
+  citaVirtual?: any[];
 
   form: FormGroup = new FormGroup({
     paciente: new FormControl('', Validators.required),
+    motivos: new FormControl('', Validators.required),
+    tipoCita: new FormControl(''),
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: ICitaData) {}
@@ -51,6 +54,9 @@ export class CrearCitaComponent implements OnInit {
     this.tipoCita = [];
     this.tipoCita.push({ id: 'Primera_vez', nombre: 'Primera vez' });
     this.tipoCita.push({ id: 'Visita_control', nombre: 'Visita control' });
+
+    this.citaVirtual = [];
+    this.citaVirtual.push({ id: 'Si', nombre: 'Si' });
   }
 
   cerrarDialogo(): void {
