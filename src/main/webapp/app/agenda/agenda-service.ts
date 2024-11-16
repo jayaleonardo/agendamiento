@@ -5,6 +5,7 @@ import { lastValueFrom } from 'rxjs';
 import { ICitaData } from './model/citadata.model';
 import dayjs from 'dayjs';
 import { IPaciente } from 'app/entities/paciente/paciente.model';
+import { ICita } from 'app/entities/cita/cita.model';
 @Injectable({ providedIn: 'root' })
 export class AgendaService {
   protected http = inject(HttpClient);
@@ -33,6 +34,11 @@ export class AgendaService {
 
   async obtenerPacientes(): Promise<HttpResponse<IPaciente[]>> {
     const data = this.http.post<IPaciente[]>(`${this.resourceUrl}/todos-pacientes`, null, { observe: 'response' });
+    return await lastValueFrom(data);
+  }
+
+  async guardarCita(datos: any): Promise<HttpResponse<ICita>> {
+    const data = this.http.post<ICita>(`${this.resourceUrl}/guardar-cita`, datos, { observe: 'response' });
     return await lastValueFrom(data);
   }
 }

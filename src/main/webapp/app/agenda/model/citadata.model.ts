@@ -11,4 +11,6 @@ export interface ICitaData {
   estado?: string | null;
   profesional?: string | null;
   especialidad?: string | null;
+  citaid?: number | null;
+  inforeserva?: string | null;
 }

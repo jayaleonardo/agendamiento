@@ -1,6 +1,10 @@
 package jaya.jaramillo.web.rest;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.text.DateFormatter;
@@ -9,15 +13,16 @@ import jaya.jaramillo.service.EspecialistaService;
 import jaya.jaramillo.service.HorarioConsultaService;
 import jaya.jaramillo.service.PacienteService;
 import jaya.jaramillo.service.ProgramacionService;
+import jaya.jaramillo.service.dto.CitaDTO;
 import jaya.jaramillo.service.dto.CitaDataDTO;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
 import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.PacienteDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
-import jaya.jaramillo.service.impl.PacienteServiceImpl;
 import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import jaya.jaramillo.web.rest.peticion.ConsultarCitasRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
+import jaya.jaramillo.web.rest.peticion.GuardarCitaRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -109,7 +114,6 @@ public class HorariosResource {
                     request.getCriterio()
                 );
 
-        System.out.println("=======>" + prog.size());
         return ResponseEntity.ok().body(prog);
     }
 
@@ -118,5 +122,37 @@ public class HorariosResource {
         LOG.debug("Rest todosPacientes ");
 
         return ResponseEntity.ok().body(this.pacienteService.obtenerTodos());
+    }
+
+    @PostMapping("/guardar-cita")
+    public ResponseEntity<CitaDTO> guardarCita(@RequestBody GuardarCitaRequest request) {
+        LOG.debug("Rest guardarCita {} ", request);
+
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        LocalTime horaInicioLT = LocalTime.parse(request.getHoraInicio());
+        Instant horaInicio = horaInicioLT.atDate(LocalDate.now()).atZone(zoneId).toInstant();
+
+        LocalTime horaFinLT = LocalTime.parse(request.getHoraFin());
+        Instant horaFin = horaFinLT.atDate(LocalDate.now()).atZone(zoneId).toInstant();
+
+        return ResponseEntity.ok()
+            .body(
+                this.citaService.guardarCita(
+                        request.getFechaCita(),
+                        horaInicio,
+                        horaFin,
+                        request.getEstado(),
+                        request.getTipoVisita(),
+                        request.getCanalAtencion(),
+                        request.getObservacion(),
+                        request.getMotivoConsulta(),
+                        request.getDetalleConsultaVirtual(),
+                        request.getVirtual(),
+                        request.getPacienteId(),
+                        request.getProgramacionId(),
+                        request.getCitaId()
+                    )
+            );
     }
 }

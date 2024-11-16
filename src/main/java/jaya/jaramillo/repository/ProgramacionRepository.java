@@ -2,6 +2,7 @@ package jaya.jaramillo.repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import jaya.jaramillo.domain.Especialista;
 import jaya.jaramillo.domain.Programacion;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import org.springframework.data.jpa.repository.*;
@@ -32,4 +33,7 @@ public interface ProgramacionRepository extends JpaRepository<Programacion, Long
         @Param("desde") LocalDate desde,
         @Param("hasta") LocalDate hasta
     );
+
+    @Query("Select prog.horarioConsulta.especialista from Programacion prog where prog.id=:programacionId")
+    Especialista especialistaPorProgramacion(Long programacionId);
 }

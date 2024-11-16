@@ -13,4 +13,6 @@ public interface CitaDataDTO {
     String getEstado();
     String getProfesional();
     String getEspecialidad();
+    String getCitaid();
+    String getInforeserva();
 }

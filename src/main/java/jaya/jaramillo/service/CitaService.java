@@ -1,5 +1,6 @@
 package jaya.jaramillo.service;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -66,5 +67,21 @@ public interface CitaService {
         Long especialistaId,
         String estado,
         String criterio
+    );
+
+    CitaDTO guardarCita(
+        LocalDate fechaCita,
+        Instant horaInicio,
+        Instant horaFin,
+        String estado,
+        String tipoVisita,
+        String canalAtencion,
+        String observacion,
+        String motivoConsulta,
+        String detalleConsultaVirtual,
+        Boolean virtual,
+        Long pacienteId,
+        Long programacionId,
+        Long citaId
     );
 }

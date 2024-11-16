@@ -37,6 +37,7 @@ export class CrearCitaComponent implements OnInit {
     motivos: new FormControl('', Validators.required),
     motivoDetalle: new FormControl({ value: '', disabled: true }),
     tipoCita: new FormControl(''),
+    virtual: new FormControl(''),
     detallevirtual: new FormControl({ value: '', disabled: true }),
     canal: new FormControl('', Validators.required),
     observacion: new FormControl(''),
@@ -82,6 +83,9 @@ export class CrearCitaComponent implements OnInit {
     this.estadosCita.push({ id: 'Reservada_linea', nombre: 'Reservada en línea' });
     this.estadosCita.push({ id: 'Atendida', nombre: 'Atendida' });
     this.estadosCita.push({ id: 'Cancelada', nombre: 'Cancelada' });
+
+    // en el caso que exista informacion de reserva colocar en la ui
+    this.form.patchValue({ infoReserva: this.data.inforeserva });
   }
 
   cerrarDialogo(): void {
@@ -107,5 +111,38 @@ export class CrearCitaComponent implements OnInit {
     } else {
       this.form.get('motivoDetalle')?.disable();
     }
+  }
+
+  async guardar(): Promise<void> {
+    this.spinner.show();
+    const canales = (this.form.value.canal as []).join(',');
+    const motivos = (this.form.value.motivos as []).join(',');
+    const tipoVisitas = (this.form.value.tipoCita as []).join(',');
+    let esVirtual = false;
+    if (this.form.value.virtual !== '') {
+      esVirtual = true;
+    }
+
+    const datos = {
+      estado: this.form.value.estado,
+      pacienteId: this.form.value.paciente,
+      motivoConsulta: motivos,
+      motivoDetalle: this.form.value.motivoDetalle,
+      virtual: esVirtual,
+      detallevirtual: this.form.value.detallevirtual,
+      canalAtencion: canales,
+      observacion: this.form.value.observacion,
+      fechaCita: this.data.fecha,
+      horaInicio: this.data.horainicio,
+      horaFin: this.data.horarioFin,
+      programacionId: this.data.id,
+      citaId: this.data.citaid,
+      tipoVisita: tipoVisitas,
+    };
+
+    const rta = await this.agendaService.guardarCita(datos);
+    const body = rta.body ?? null;
+    this.dialogRef.close(body);
+    this.spinner.hide();
   }
 }

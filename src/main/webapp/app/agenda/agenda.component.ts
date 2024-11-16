@@ -9,6 +9,7 @@ import { ICitaData } from './model/citadata.model';
 import moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearCitaComponent } from 'app/shared/dialogos/crear-cita/crear-cita.component';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'jhi-agenda',
@@ -92,12 +93,17 @@ export class AgendaComponent implements OnInit {
     this.spinner.hide();
   }
 
-  asignar(data: ICitaData): void {
+  async asignar(data: ICitaData): Promise<void> {
     const dialogRef = this.dialogService.open(CrearCitaComponent, {
       width: '60%',
       height: 'auto',
       disableClose: true,
       data,
     });
+
+    const resultadoDialogo = await lastValueFrom(dialogRef.afterClosed());
+    if (resultadoDialogo !== null) {
+      this.buscar();
+    }
   }
 }

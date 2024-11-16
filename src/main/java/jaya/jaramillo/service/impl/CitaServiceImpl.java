@@ -1,14 +1,21 @@
 package jaya.jaramillo.service.impl;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.domain.Cita;
 import jaya.jaramillo.repository.CitaRepository;
+import jaya.jaramillo.repository.ProgramacionRepository;
 import jaya.jaramillo.service.CitaService;
 import jaya.jaramillo.service.dto.CitaDTO;
 import jaya.jaramillo.service.dto.CitaDataDTO;
+import jaya.jaramillo.service.dto.EspecialistaDTO;
+import jaya.jaramillo.service.dto.PacienteDTO;
+import jaya.jaramillo.service.dto.ProgramacionDTO;
 import jaya.jaramillo.service.mapper.CitaMapper;
+import jaya.jaramillo.service.mapper.EspecialistaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -28,10 +35,19 @@ public class CitaServiceImpl implements CitaService {
     private final CitaRepository citaRepository;
 
     private final CitaMapper citaMapper;
+    private final ProgramacionRepository programacionRepository;
+    private final EspecialistaMapper especialistaMapper;
 
-    public CitaServiceImpl(CitaRepository citaRepository, CitaMapper citaMapper) {
+    public CitaServiceImpl(
+        CitaRepository citaRepository,
+        CitaMapper citaMapper,
+        ProgramacionRepository programacionRepository,
+        EspecialistaMapper especialistaMapper
+    ) {
         this.citaRepository = citaRepository;
         this.citaMapper = citaMapper;
+        this.programacionRepository = programacionRepository;
+        this.especialistaMapper = especialistaMapper;
     }
 
     @Override
@@ -96,5 +112,62 @@ public class CitaServiceImpl implements CitaService {
     ) {
         LOG.debug("Request to buscarCita Cita : {} {} {} {} {} {}", desde, hasta, especialidad, especialistaId, estado, criterio);
         return citaRepository.obtenerCitas(desde, hasta, especialidad, especialistaId, estado, criterio);
+    }
+
+    @Override
+    public CitaDTO guardarCita(
+        LocalDate fechaCita,
+        Instant horaInicio,
+        Instant horaFin,
+        String estado,
+        String tipoVisita,
+        String canalAtencion,
+        String observacion,
+        String motivoConsulta,
+        String detalleConsultaVirtual,
+        Boolean virtual,
+        Long pacienteId,
+        Long programacionId,
+        Long citaId
+    ) {
+        EspecialistaDTO especialista = especialistaMapper.toDto(programacionRepository.especialistaPorProgramacion(programacionId));
+
+        PacienteDTO paciente = new PacienteDTO();
+        paciente.setId(pacienteId);
+
+        ProgramacionDTO programacion = new ProgramacionDTO();
+        programacion.setId(programacionId);
+
+        Duration duracion = Duration.between(horaInicio, horaFin);
+
+        CitaDTO cita = null;
+        if (citaId != null) {
+            // buscar la cita para editarla
+            cita = this.citaMapper.toDto(citaRepository.findById(citaId).get());
+        } else {
+            cita = new CitaDTO();
+        }
+
+        cita.setFechaCita(fechaCita);
+        cita.setHoraInicio(horaInicio);
+        cita.setDuracionMinutos((int) duracion.toMinutes());
+        cita.setEstado(estado);
+        cita.setTipoVisita(tipoVisita);
+        cita.setCanalAtencion(canalAtencion);
+        cita.setObservacion(observacion);
+        cita.setMotivoConsulta(motivoConsulta);
+        if (motivoConsulta.equals("Problemas_pareja")) {
+            cita.setDetalleConsultaVirtual(motivoConsulta);
+        }
+        cita.setVirtual(virtual);
+        if (virtual) {
+            cita.setDetalleConsultaVirtual(detalleConsultaVirtual);
+        }
+        cita.setEspecialista(especialista);
+        cita.setPaciente(paciente);
+        cita.setProgramacion(programacion);
+
+        Cita citaBD = this.citaRepository.save(citaMapper.toEntity(cita));
+        return this.citaMapper.toDto(citaBD);
     }
 }

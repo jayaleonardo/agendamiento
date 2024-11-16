@@ -1,12 +1,12 @@
 <div id="nuevacita">
-  <form [formGroup]="form" style="overflow: scroll">
+  <form [formGroup]="form" style="overflow: scroll" (submit)="guardar()">
     <div class="row cabecera">
-      <div class="col-9">
+      <div class="col-7">
         <h2 mat-dialog-title>Cita</h2>
       </div>
 
-      <div class="col-3 text-end mt-2">
-        <button mat-raised-button color="primary" type="submit">Aceptar</button>
+      <div class="col-5 text-end mt-2">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Aceptar</button>
         <button mat-raised-button color="accent" (click)="cerrarDialogo()" type="button">Cancelar</button>
       </div>
     </div>
@@ -32,13 +32,9 @@
 
         <div class="col-4 label">Estado de la cita:</div>
         <div class="col-8">
-          <jhi-checkbox-group formControlName="estado">
-            <div class="row">
-              <div class="col-12">
-                <jhi-checkbox *ngFor="let estado of estadosCita" [value]="estado.id" [label]="estado.nombre"></jhi-checkbox>
-              </div>
-            </div>
-          </jhi-checkbox-group>
+          <mat-radio-group aria-label="Select an option" formControlName="estado">
+            <mat-radio-button *ngFor="let estado of estadosCita" value="{{ estado.id }}">{{ estado.nombre }}</mat-radio-button>
+          </mat-radio-group>
         </div>
       </div>
 
@@ -98,7 +94,7 @@
         <div class="mt-3"></div>
         <div class="col-4 label">Cita virtual</div>
         <div class="col-8">
-          <jhi-checkbox-group formControlName="tipoCita" (onCheck)="onCheckTipoCita($event)">
+          <jhi-checkbox-group formControlName="virtual" (onCheck)="onCheckTipoCita($event)">
             <div class="row">
               <div class="col-12">
                 <jhi-checkbox *ngFor="let citavirt of citaVirtual" [value]="citavirt.id" [label]="citavirt.nombre"></jhi-checkbox>

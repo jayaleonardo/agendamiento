@@ -24,7 +24,9 @@ public interface CitaRepository extends JpaRepository<Cita, Long> {
         "   suj.apellido||' '||suj.segundo_apellido ||' '||suj.nombre ||' '||suj.segundo_nombre as paciente, " +
         "   c.estado, " +
         "   psicologo.apellido||' '||psicologo.segundo_apellido ||' '||psicologo.nombre ||' '||psicologo.segundo_nombre as profesional, " +
-        "   esp.especialidad " +
+        "   esp.especialidad, " +
+        "   c.id as citaid, " +
+        "   c.informacion_reserva as inforeserva " +
         "from Programacion prog " +
         "   join horario_consulta horario on horario.id = prog.horario_consulta_id " +
         "   join especialista esp on esp.id = horario.especialista_id " +
