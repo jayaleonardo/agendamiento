@@ -26,11 +26,13 @@ export class CrearCitaComponent implements OnInit {
   motivos?: any[];
   tipoCita?: any[];
   citaVirtual?: any[];
+  estadosCita?: any[];
   canales?: any[];
   isSwitchOn = false;
   motivoSwitch = false;
 
   form: FormGroup = new FormGroup({
+    estado: new FormControl('', Validators.required),
     paciente: new FormControl('', Validators.required),
     motivos: new FormControl('', Validators.required),
     motivoDetalle: new FormControl({ value: '', disabled: true }),
@@ -38,6 +40,7 @@ export class CrearCitaComponent implements OnInit {
     detallevirtual: new FormControl({ value: '', disabled: true }),
     canal: new FormControl('', Validators.required),
     observacion: new FormControl(''),
+    infoReserva: new FormControl({ value: '', disabled: true }),
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: ICitaData) {}
@@ -71,6 +74,14 @@ export class CrearCitaComponent implements OnInit {
     this.canales.push({ id: 'Referidos', nombre: 'Referidos' });
     this.canales.push({ id: 'Correo_electronico', nombre: 'Correo electrónico' });
     this.canales.push({ id: 'SMS/Whatsapp', nombre: 'SMS/Whatspp' });
+
+    this.estadosCita = [];
+    this.estadosCita.push({ id: 'Disponible', nombre: 'Disponible' });
+    this.estadosCita.push({ id: 'Confirmada', nombre: 'Confirmada' });
+    this.estadosCita.push({ id: 'Reagendada', nombre: 'Reagendada' });
+    this.estadosCita.push({ id: 'Reservada_linea', nombre: 'Reservada en línea' });
+    this.estadosCita.push({ id: 'Atendida', nombre: 'Atendida' });
+    this.estadosCita.push({ id: 'Cancelada', nombre: 'Cancelada' });
   }
 
   cerrarDialogo(): void {

@@ -252,3 +252,8 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
 .label {
   font-weight: bold;
 }
+
+.cdk-global-overlay-wrapper {
+  overflow: auto;
+  pointer-events: auto; // needed for chrome but prevents backdrop click close
+}
