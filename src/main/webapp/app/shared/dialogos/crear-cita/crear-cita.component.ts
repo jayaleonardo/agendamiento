@@ -26,11 +26,18 @@ export class CrearCitaComponent implements OnInit {
   motivos?: any[];
   tipoCita?: any[];
   citaVirtual?: any[];
+  canales?: any[];
+  isSwitchOn = false;
+  motivoSwitch = false;
 
   form: FormGroup = new FormGroup({
     paciente: new FormControl('', Validators.required),
     motivos: new FormControl('', Validators.required),
+    motivoDetalle: new FormControl({ value: '', disabled: true }),
     tipoCita: new FormControl(''),
+    detallevirtual: new FormControl({ value: '', disabled: true }),
+    canal: new FormControl('', Validators.required),
+    observacion: new FormControl(''),
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: ICitaData) {}
@@ -57,9 +64,37 @@ export class CrearCitaComponent implements OnInit {
 
     this.citaVirtual = [];
     this.citaVirtual.push({ id: 'Si', nombre: 'Si' });
+
+    this.canales = [];
+    this.canales.push({ id: 'Cita_online', nombre: 'Cita online' });
+    this.canales.push({ id: 'Marketing_directo', nombre: 'Marketing directo' });
+    this.canales.push({ id: 'Referidos', nombre: 'Referidos' });
+    this.canales.push({ id: 'Correo_electronico', nombre: 'Correo electrónico' });
+    this.canales.push({ id: 'SMS/Whatsapp', nombre: 'SMS/Whatspp' });
   }
 
   cerrarDialogo(): void {
     this.dialogRef.close(null);
+  }
+
+  onCheckTipoCita(value: any[]): void {
+    if (value.length > 0) {
+      this.form.get('detallevirtual')?.enable();
+    } else {
+      this.form.get('detallevirtual')?.disable();
+    }
+  }
+
+  onCheckMotivo(value: any[]): void {
+    // eslint-disable-next-line no-console
+    console.log(value);
+    if (value.length > 0) {
+      const problemaPareja = value.find(val => val === 'Problemas_pareja');
+      if (problemaPareja) {
+        this.form.get('motivoDetalle')?.enable();
+      }
+    } else {
+      this.form.get('motivoDetalle')?.disable();
+    }
   }
 }

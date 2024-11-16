@@ -1,4 +1,4 @@
-<div style="background: #f1f1f1" id="nuevacita">
+<div id="nuevacita">
   <form [formGroup]="form">
     <div class="row cabecera">
       <div class="col-9">
@@ -55,13 +55,24 @@
 
         <div class="col-4 label">Motivo consulta</div>
         <div class="col-8">
-          <jhi-checkbox-group formControlName="motivos">
+          <jhi-checkbox-group formControlName="motivos" (onCheck)="onCheckMotivo($event)">
             <div class="row">
               <div class="col-12">
                 <jhi-checkbox *ngFor="let motivo of motivos" [value]="motivo.id" [label]="motivo.nombre"></jhi-checkbox>
               </div>
             </div>
           </jhi-checkbox-group>
+          <mat-form-field class="input-full-width" appearance="outline">
+            <mat-label>Detalle</mat-label>
+            <input
+              matInput
+              type="text"
+              [email]="true"
+              placeholder="Ingrese detalle"
+              formControlName="motivoDetalle"
+              [disabled]="!motivoSwitch"
+            />
+          </mat-form-field>
         </div>
 
         <div class="mt-3"></div>
@@ -79,15 +90,44 @@
         <div class="mt-3"></div>
         <div class="col-4 label">Cita virtual</div>
         <div class="col-8">
-          <jhi-checkbox-group formControlName="tipoCita">
+          <jhi-checkbox-group formControlName="tipoCita" (onCheck)="onCheckTipoCita($event)">
             <div class="row">
               <div class="col-12">
                 <jhi-checkbox *ngFor="let citavirt of citaVirtual" [value]="citavirt.id" [label]="citavirt.nombre"></jhi-checkbox>
               </div>
             </div>
           </jhi-checkbox-group>
+          <mat-form-field class="input-full-width" appearance="outline">
+            <mat-label>Detalle</mat-label>
+            <input
+              matInput
+              type="text"
+              [email]="true"
+              placeholder="Ingrese detalle"
+              formControlName="detallevirtual"
+              [disabled]="!isSwitchOn"
+            />
+          </mat-form-field>
         </div>
 
+        <div class="mt-3 mb-3"></div>
+
+        <div class="col-4">Canal atracción</div>
+        <div class="col-8">
+          <jhi-checkbox-group formControlName="canal">
+            <div class="row">
+              <div class="col-12">
+                <jhi-checkbox *ngFor="let canal of canales" [value]="canal.id" [label]="canal.nombre"></jhi-checkbox>
+              </div>
+            </div>
+          </jhi-checkbox-group>
+        </div>
+
+        <div class="mt-3 mb-3"></div>
+        <div class="col-4">Observación</div>
+        <div class="col-8">
+          <textarea matInput name="observacion" cols="35" rows="3" formControlName="observacion"></textarea>
+        </div>
         <div class="mt-3 mb-3"></div>
       </div>
     </div>
