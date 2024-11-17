@@ -111,6 +111,10 @@
           <dd>
             <span>{{ citaRef.informacionReserva }}</span>
           </dd>
+          <dt><span [ngbTooltip]="'agendamientoApp.cita.help.tarea' | translate" jhiTranslate="agendamientoApp.cita.tarea">Tarea</span></dt>
+          <dd>
+            <span>{{ citaRef.tarea }}</span>
+          </dd>
           <dt><span jhiTranslate="agendamientoApp.cita.especialista">Especialista</span></dt>
           <dd>
             @if (cita()!.especialista) {

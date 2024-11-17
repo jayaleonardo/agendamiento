@@ -1,11 +1,11 @@
-id;fecha_cita;hora_inicio;duracion_minutos;estado;tipo_visita;canal_atencion;observacion;recordatorio;motivo_consulta;detalle_consulta_virtual;virtual;informacion_reserva
-1;2024-11-05;2024-11-05T17:02:09;30809;disadvantage intently;phew;gadzooks;more psst;blaring;wildly;ha;true;furthermore
-2;2024-11-05;2024-11-05T06:02:59;15076;until;helplessly;into vacation although;aside jealously victoriously;aside;subexpression um ew;forenenst machine;true;shipper consequently hm
-3;2024-11-05;2024-11-05T13:55:36;30205;availability legging;govern;junior;eventually;acidly while;tank what intellect;once thankfully gah;false;openly
-4;2024-11-05;2024-11-05T20:26:07;7370;convoke topsail beyond;carefully for;ah thrifty;summer overdue;beside;too;unfortunately vastly;false;showboat overplay
-5;2024-11-05;2024-11-05T09:30:48;27389;cheerfully zowie cheetah;spiffy;miserable colonialism;joint brisk advanced;finally devoted dampen;mesh best-seller;good cautious;false;multicolored
-6;2024-11-05;2024-11-05T12:26:45;3303;gosh following;helpful;unfortunately stock sometimes;divine moor;unique ick than;iterate;kindheartedly worth;false;as
-7;2024-11-05;2024-11-05T17:03:57;1530;for;bitter huzzah;hot across phew;ah likewise plump;below teeming linseed;excess past;hmph;true;reconsideration whenever
-8;2024-11-05;2024-11-05T21:02:17;22447;where;ouch rejigger;populist;zowie joyfully loudly;twin ack boohoo;gently to considering;huzzah;false;yum decode ripe
-9;2024-11-05;2024-11-05T03:46:22;515;what;plugin yearly boohoo;which;cheap;boom colorful cheerful;godfather accentuate;oh concerning;true;gloom finished hence
-10;2024-11-05;2024-11-05T21:15:10;29951;hollow shrilly valiantly;gosh shadowbox;that rubbery;surprised;alongside;knowledgeably;attend unto bonnet;false;worldly heroine
+id;fecha_cita;hora_inicio;duracion_minutos;estado;tipo_visita;canal_atencion;observacion;recordatorio;motivo_consulta;detalle_consulta_virtual;virtual;informacion_reserva;tarea
+1;2024-11-05;2024-11-05T17:02:09;30809;disadvantage intently;phew;gadzooks;more psst;blaring;wildly;ha;true;furthermore;unlike upside-down beneath
+2;2024-11-05;2024-11-05T03:50:34;25346;accountability;although that deprave;victoriously decongestant;hoarse;um ew antagonize;machine glittering;yowza or mundane;true;indeed gah boohoo;likewise
+3;2024-11-05;2024-11-05T05:08:05;33;zowie readily;worthy;now;intellect lest justly;gah sans cappelletti;conclude crossly torn;fooey swiftly why;false;incidentally plus pace;round failing unfortunately
+4;2024-11-05;2024-11-05T09:13:54;28221;gah silently home;joyfully drive damaged;versus;solicit corner than;torn;advanced;finally devoted dampen;true;barring like;unexpectedly packaging
+5;2024-11-04;2024-11-05T18:11:12;32091;calculating likewise;following pile shakily;how chime;impressive afore sniveling;yuck athwart;snoop however gleefully;white bewail;true;coop;surprisingly
+6;2024-11-05;2024-11-05T15:13:38;10223;duh yum righteously;basket fraternise yippee;gee ha shred;loftily drat;garrote pfft across;brisk;following ouch rejigger;true;readjust;subsidy
+7;2024-11-05;2024-11-05T17:06:06;21140;apropos guilty furthermore;meh parallel puppet;skyline;resort excluding reflate;linear acidly;ouch plugin yearly;dwell which redound;true;boom colorful cheerful;godfather accentuate
+8;2024-11-05;2024-11-05T19:45:06;7995;inspection;by utilized about;unto;hollow shrilly valiantly;gosh shadowbox;that rubbery;surprised;true;inasmuch knowledgeably glorious;unto
+9;2024-11-05;2024-11-05T20:08:00;8089;throughout;brightly consequently openly;meh nervously hence;what;whoever headline spherical;flowery;lucky;true;boohoo now;obediently
+10;2024-11-05;2024-11-05T16:44:50;9229;skean likable;sympathetically seldom;furthermore pomelo;confute;self-assured materialise apropos;spork;cod sternly kindheartedly;false;whup given;tank blushing

@@ -262,6 +262,17 @@
         </div>
 
         <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_tarea"
+            [ngbTooltip]="'agendamientoApp.cita.help.tarea' | translate"
+            jhiTranslate="agendamientoApp.cita.tarea"
+            >Tarea</label
+          >
+          <input type="text" class="form-control" name="tarea" id="field_tarea" data-cy="tarea" formControlName="tarea" />
+        </div>
+
+        <div class="mb-3">
           <label class="form-label" for="field_especialista" jhiTranslate="agendamientoApp.cita.especialista">Especialista</label>
           <select
             class="form-control"

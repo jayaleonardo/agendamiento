@@ -23,6 +23,7 @@ import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import jaya.jaramillo.web.rest.peticion.ConsultarCitasRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
 import jaya.jaramillo.web.rest.peticion.GuardarCitaRequest;
+import jaya.jaramillo.web.rest.peticion.RegistrarAsistenciaRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -154,5 +155,11 @@ public class HorariosResource {
                         request.getCitaId()
                     )
             );
+    }
+
+    @PostMapping("/registrar-asistencia")
+    public ResponseEntity<CitaDTO> registrarAsistencia(@RequestBody RegistrarAsistenciaRequest request) {
+        LOG.debug("Resst registrarAsistencia: {} ", request);
+        return ResponseEntity.ok().body(this.citaService.registrarAsistencia(request.getCitaId(), request.getTarea(), request.getEstado()));
     }
 }

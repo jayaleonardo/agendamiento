@@ -37,6 +37,9 @@ entity Cita {
 
     /** información de reserva */
     informacionReserva String
+
+    /** tarea proxima cita */
+    tarea String
 }
 
 /**

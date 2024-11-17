@@ -126,6 +126,13 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="tarea">
+              <div class="d-flex">
+                <span jhiTranslate="agendamientoApp.cita.tarea">Tarea</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="especialista.id">
               <div class="d-flex">
                 <span jhiTranslate="agendamientoApp.cita.especialista">Especialista</span>
@@ -171,6 +178,7 @@
               <td>{{ cita.detalleConsultaVirtual }}</td>
               <td>{{ cita.virtual }}</td>
               <td>{{ cita.informacionReserva }}</td>
+              <td>{{ cita.tarea }}</td>
               <td>
                 @if (cita.especialista) {
                   <div>

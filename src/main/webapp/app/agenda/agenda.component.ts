@@ -108,12 +108,17 @@ export class AgendaComponent implements OnInit {
     }
   }
 
-  confirmar(data: ICitaData): void {
+  async confirmar(data: ICitaData): Promise<void> {
     const dialogRef = this.dialogService.open(RegistroAsistenciaComponent, {
       width: '60%',
       height: 'auto',
       disableClose: true,
       data,
     });
+
+    const resultadoDialogo = await lastValueFrom(dialogRef.afterClosed());
+    if (resultadoDialogo !== null) {
+      this.buscar();
+    }
   }
 }

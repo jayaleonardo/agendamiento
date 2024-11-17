@@ -18,6 +18,7 @@ export interface ICita {
   detalleConsultaVirtual?: string | null;
   virtual?: boolean | null;
   informacionReserva?: string | null;
+  tarea?: string | null;
   especialista?: Pick<IEspecialista, 'id'> | null;
   tipoTerapia?: Pick<ITipoTerapia, 'id'> | null;
   paciente?: Pick<IPaciente, 'id'> | null;

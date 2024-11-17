@@ -22,7 +22,8 @@ public class CitaTestSamples {
             .recordatorio("recordatorio1")
             .motivoConsulta("motivoConsulta1")
             .detalleConsultaVirtual("detalleConsultaVirtual1")
-            .informacionReserva("informacionReserva1");
+            .informacionReserva("informacionReserva1")
+            .tarea("tarea1");
     }
 
     public static Cita getCitaSample2() {
@@ -36,7 +37,8 @@ public class CitaTestSamples {
             .recordatorio("recordatorio2")
             .motivoConsulta("motivoConsulta2")
             .detalleConsultaVirtual("detalleConsultaVirtual2")
-            .informacionReserva("informacionReserva2");
+            .informacionReserva("informacionReserva2")
+            .tarea("tarea2");
     }
 
     public static Cita getCitaRandomSampleGenerator() {
@@ -50,6 +52,7 @@ public class CitaTestSamples {
             .recordatorio(UUID.randomUUID().toString())
             .motivoConsulta(UUID.randomUUID().toString())
             .detalleConsultaVirtual(UUID.randomUUID().toString())
-            .informacionReserva(UUID.randomUUID().toString());
+            .informacionReserva(UUID.randomUUID().toString())
+            .tarea(UUID.randomUUID().toString());
     }
 }

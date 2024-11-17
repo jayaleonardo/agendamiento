@@ -74,6 +74,9 @@ class CitaResourceIT {
     private static final String DEFAULT_INFORMACION_RESERVA = "AAAAAAAAAA";
     private static final String UPDATED_INFORMACION_RESERVA = "BBBBBBBBBB";
 
+    private static final String DEFAULT_TAREA = "AAAAAAAAAA";
+    private static final String UPDATED_TAREA = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/citas";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -118,7 +121,8 @@ class CitaResourceIT {
             .motivoConsulta(DEFAULT_MOTIVO_CONSULTA)
             .detalleConsultaVirtual(DEFAULT_DETALLE_CONSULTA_VIRTUAL)
             .virtual(DEFAULT_VIRTUAL)
-            .informacionReserva(DEFAULT_INFORMACION_RESERVA);
+            .informacionReserva(DEFAULT_INFORMACION_RESERVA)
+            .tarea(DEFAULT_TAREA);
     }
 
     /**
@@ -140,7 +144,8 @@ class CitaResourceIT {
             .motivoConsulta(UPDATED_MOTIVO_CONSULTA)
             .detalleConsultaVirtual(UPDATED_DETALLE_CONSULTA_VIRTUAL)
             .virtual(UPDATED_VIRTUAL)
-            .informacionReserva(UPDATED_INFORMACION_RESERVA);
+            .informacionReserva(UPDATED_INFORMACION_RESERVA)
+            .tarea(UPDATED_TAREA);
     }
 
     @BeforeEach
@@ -272,7 +277,8 @@ class CitaResourceIT {
             .andExpect(jsonPath("$.[*].motivoConsulta").value(hasItem(DEFAULT_MOTIVO_CONSULTA)))
             .andExpect(jsonPath("$.[*].detalleConsultaVirtual").value(hasItem(DEFAULT_DETALLE_CONSULTA_VIRTUAL)))
             .andExpect(jsonPath("$.[*].virtual").value(hasItem(DEFAULT_VIRTUAL.booleanValue())))
-            .andExpect(jsonPath("$.[*].informacionReserva").value(hasItem(DEFAULT_INFORMACION_RESERVA)));
+            .andExpect(jsonPath("$.[*].informacionReserva").value(hasItem(DEFAULT_INFORMACION_RESERVA)))
+            .andExpect(jsonPath("$.[*].tarea").value(hasItem(DEFAULT_TAREA)));
     }
 
     @Test
@@ -298,7 +304,8 @@ class CitaResourceIT {
             .andExpect(jsonPath("$.motivoConsulta").value(DEFAULT_MOTIVO_CONSULTA))
             .andExpect(jsonPath("$.detalleConsultaVirtual").value(DEFAULT_DETALLE_CONSULTA_VIRTUAL))
             .andExpect(jsonPath("$.virtual").value(DEFAULT_VIRTUAL.booleanValue()))
-            .andExpect(jsonPath("$.informacionReserva").value(DEFAULT_INFORMACION_RESERVA));
+            .andExpect(jsonPath("$.informacionReserva").value(DEFAULT_INFORMACION_RESERVA))
+            .andExpect(jsonPath("$.tarea").value(DEFAULT_TAREA));
     }
 
     @Test
@@ -332,7 +339,8 @@ class CitaResourceIT {
             .motivoConsulta(UPDATED_MOTIVO_CONSULTA)
             .detalleConsultaVirtual(UPDATED_DETALLE_CONSULTA_VIRTUAL)
             .virtual(UPDATED_VIRTUAL)
-            .informacionReserva(UPDATED_INFORMACION_RESERVA);
+            .informacionReserva(UPDATED_INFORMACION_RESERVA)
+            .tarea(UPDATED_TAREA);
         CitaDTO citaDTO = citaMapper.toDto(updatedCita);
 
         restCitaMockMvc
@@ -423,7 +431,8 @@ class CitaResourceIT {
             .recordatorio(UPDATED_RECORDATORIO)
             .motivoConsulta(UPDATED_MOTIVO_CONSULTA)
             .detalleConsultaVirtual(UPDATED_DETALLE_CONSULTA_VIRTUAL)
-            .informacionReserva(UPDATED_INFORMACION_RESERVA);
+            .informacionReserva(UPDATED_INFORMACION_RESERVA)
+            .tarea(UPDATED_TAREA);
 
         restCitaMockMvc
             .perform(
@@ -463,7 +472,8 @@ class CitaResourceIT {
             .motivoConsulta(UPDATED_MOTIVO_CONSULTA)
             .detalleConsultaVirtual(UPDATED_DETALLE_CONSULTA_VIRTUAL)
             .virtual(UPDATED_VIRTUAL)
-            .informacionReserva(UPDATED_INFORMACION_RESERVA);
+            .informacionReserva(UPDATED_INFORMACION_RESERVA)
+            .tarea(UPDATED_TAREA);
 
         restCitaMockMvc
             .perform(

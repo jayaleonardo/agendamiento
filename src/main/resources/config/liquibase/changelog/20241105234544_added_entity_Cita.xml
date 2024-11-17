@@ -50,6 +50,9 @@
             <column name="informacion_reserva" type="varchar(255)" remarks="información de reserva">
                 <constraints nullable="true" />
             </column>
+            <column name="tarea" type="varchar(255)" remarks="tarea proxima cita">
+                <constraints nullable="true" />
+            </column>
             <column name="especialista_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -96,6 +99,7 @@
             <column name="detalle_consulta_virtual" type="string"/>
             <column name="virtual" type="boolean"/>
             <column name="informacion_reserva" type="string"/>
+            <column name="tarea" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

@@ -3,44 +3,45 @@ import dayjs from 'dayjs/esm';
 import { ICita, NewCita } from './cita.model';
 
 export const sampleWithRequiredData: ICita = {
-  id: 15084,
+  id: 12353,
   fechaCita: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T09:10'),
-  duracionMinutos: 10132,
+  horaInicio: dayjs('2024-11-05T07:11'),
+  duracionMinutos: 536,
 };
 
 export const sampleWithPartialData: ICita = {
-  id: 923,
+  id: 28839,
   fechaCita: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T20:53'),
-  duracionMinutos: 29029,
-  estado: 'reproachfully',
-  canalAtencion: 'hence',
-  observacion: 'and',
-  motivoConsulta: 'extent',
-  detalleConsultaVirtual: 'er nauseate permafrost',
+  horaInicio: dayjs('2024-11-05T02:29'),
+  duracionMinutos: 30671,
+  tipoVisita: 'brightly',
+  canalAtencion: 'unabashedly above extent',
+  recordatorio: 'er nauseate permafrost',
+  motivoConsulta: 'yuck whoa ecstatic',
+  informacionReserva: 'per that at',
 };
 
 export const sampleWithFullData: ICita = {
-  id: 30236,
+  id: 5880,
   fechaCita: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T16:00'),
-  duracionMinutos: 27947,
-  estado: 'mosh',
-  tipoVisita: 'on ack',
-  canalAtencion: 'prejudge since down',
-  observacion: 'fiddle',
-  recordatorio: 'musty',
-  motivoConsulta: 'beside cavernous hearten',
-  detalleConsultaVirtual: 'disinherit gadzooks',
-  virtual: false,
-  informacionReserva: 'slowly',
+  horaInicio: dayjs('2024-11-05T06:15'),
+  duracionMinutos: 8042,
+  estado: 'yearningly stitcher',
+  tipoVisita: 'pocket-watch gee oh',
+  canalAtencion: 'along disrespect now',
+  observacion: 'adjudge dereference suddenly',
+  recordatorio: 'opposite',
+  motivoConsulta: 'sure-footed pepper gullible',
+  detalleConsultaVirtual: 'terribly',
+  virtual: true,
+  informacionReserva: 'ugh',
+  tarea: 'insignificant',
 };
 
 export const sampleWithNewData: NewCita = {
   fechaCita: dayjs('2024-11-05'),
-  horaInicio: dayjs('2024-11-05T08:10'),
-  duracionMinutos: 18569,
+  horaInicio: dayjs('2024-11-05T16:44'),
+  duracionMinutos: 5397,
   id: null,
 };
 

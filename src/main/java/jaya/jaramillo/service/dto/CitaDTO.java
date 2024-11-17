@@ -55,6 +55,9 @@ public class CitaDTO implements Serializable {
     @Schema(description = "información de reserva")
     private String informacionReserva;
 
+    @Schema(description = "tarea proxima cita")
+    private String tarea;
+
     @Schema(description = "Cita relacionadas con Especialista")
     private EspecialistaDTO especialista;
 
@@ -171,6 +174,14 @@ public class CitaDTO implements Serializable {
         this.informacionReserva = informacionReserva;
     }
 
+    public String getTarea() {
+        return tarea;
+    }
+
+    public void setTarea(String tarea) {
+        this.tarea = tarea;
+    }
+
     public EspecialistaDTO getEspecialista() {
         return especialista;
     }
@@ -241,6 +252,7 @@ public class CitaDTO implements Serializable {
             ", detalleConsultaVirtual='" + getDetalleConsultaVirtual() + "'" +
             ", virtual='" + getVirtual() + "'" +
             ", informacionReserva='" + getInformacionReserva() + "'" +
+            ", tarea='" + getTarea() + "'" +
             ", especialista=" + getEspecialista() +
             ", tipoTerapia=" + getTipoTerapia() +
             ", paciente=" + getPaciente() +

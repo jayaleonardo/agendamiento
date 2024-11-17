@@ -30,6 +30,7 @@
       "detalleConsultaVirtual": "Detalle Consulta Virtual",
       "virtual": "Virtual",
       "informacionReserva": "Informacion Reserva",
+      "tarea": "Tarea",
       "especialista": "Especialista",
       "tipoTerapia": "Tipo Terapia",
       "paciente": "Paciente",
@@ -46,7 +47,8 @@
         "motivoConsulta": "motivo de consulta",
         "detalleConsultaVirtual": "detalle de consulta virtual",
         "virtual": "indica si es virtual",
-        "informacionReserva": "información de reserva"
+        "informacionReserva": "información de reserva",
+        "tarea": "tarea proxima cita"
       }
     }
   }

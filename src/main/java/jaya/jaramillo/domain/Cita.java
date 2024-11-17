@@ -102,6 +102,12 @@ public class Cita implements Serializable {
     private String informacionReserva;
 
     /**
+     * tarea proxima cita
+     */
+    @Column(name = "tarea")
+    private String tarea;
+
+    /**
      * Cita relacionadas con Especialista
      */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -299,6 +305,19 @@ public class Cita implements Serializable {
         this.informacionReserva = informacionReserva;
     }
 
+    public String getTarea() {
+        return this.tarea;
+    }
+
+    public Cita tarea(String tarea) {
+        this.setTarea(tarea);
+        return this;
+    }
+
+    public void setTarea(String tarea) {
+        this.tarea = tarea;
+    }
+
     public Especialista getEspecialista() {
         return this.especialista;
     }
@@ -387,6 +406,7 @@ public class Cita implements Serializable {
             ", detalleConsultaVirtual='" + getDetalleConsultaVirtual() + "'" +
             ", virtual='" + getVirtual() + "'" +
             ", informacionReserva='" + getInformacionReserva() + "'" +
+            ", tarea='" + getTarea() + "'" +
             "}";
     }
 }

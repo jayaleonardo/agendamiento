@@ -43,6 +43,7 @@ type CitaFormGroupContent = {
   detalleConsultaVirtual: FormControl<CitaFormRawValue['detalleConsultaVirtual']>;
   virtual: FormControl<CitaFormRawValue['virtual']>;
   informacionReserva: FormControl<CitaFormRawValue['informacionReserva']>;
+  tarea: FormControl<CitaFormRawValue['tarea']>;
   especialista: FormControl<CitaFormRawValue['especialista']>;
   tipoTerapia: FormControl<CitaFormRawValue['tipoTerapia']>;
   paciente: FormControl<CitaFormRawValue['paciente']>;
@@ -84,6 +85,7 @@ export class CitaFormService {
       detalleConsultaVirtual: new FormControl(citaRawValue.detalleConsultaVirtual),
       virtual: new FormControl(citaRawValue.virtual),
       informacionReserva: new FormControl(citaRawValue.informacionReserva),
+      tarea: new FormControl(citaRawValue.tarea),
       especialista: new FormControl(citaRawValue.especialista),
       tipoTerapia: new FormControl(citaRawValue.tipoTerapia),
       paciente: new FormControl(citaRawValue.paciente),

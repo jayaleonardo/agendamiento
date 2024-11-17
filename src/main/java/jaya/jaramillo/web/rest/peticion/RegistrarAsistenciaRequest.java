@@ -3,7 +3,8 @@ package jaya.jaramillo.web.rest.peticion;
 public class RegistrarAsistenciaRequest {
 
     private Long citaId;
-    private String tares;
+    private String tarea;
+    private String estado;
 
     public Long getCitaId() {
         return citaId;
@@ -13,11 +14,19 @@ public class RegistrarAsistenciaRequest {
         this.citaId = citaId;
     }
 
-    public String getTares() {
-        return tares;
+    public String getTarea() {
+        return tarea;
     }
 
-    public void setTares(String tares) {
-        this.tares = tares;
+    public void setTarea(String tarea) {
+        this.tarea = tarea;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

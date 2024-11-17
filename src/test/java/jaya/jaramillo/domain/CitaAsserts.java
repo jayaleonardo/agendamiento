@@ -60,7 +60,8 @@ public class CitaAsserts {
                 assertThat(e.getDetalleConsultaVirtual()).as("check detalleConsultaVirtual").isEqualTo(actual.getDetalleConsultaVirtual())
             )
             .satisfies(e -> assertThat(e.getVirtual()).as("check virtual").isEqualTo(actual.getVirtual()))
-            .satisfies(e -> assertThat(e.getInformacionReserva()).as("check informacionReserva").isEqualTo(actual.getInformacionReserva()));
+            .satisfies(e -> assertThat(e.getInformacionReserva()).as("check informacionReserva").isEqualTo(actual.getInformacionReserva()))
+            .satisfies(e -> assertThat(e.getTarea()).as("check tarea").isEqualTo(actual.getTarea()));
     }
 
     /**

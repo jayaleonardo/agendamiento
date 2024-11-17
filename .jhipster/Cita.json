@@ -68,6 +68,11 @@
       "documentation": "información de reserva",
       "fieldName": "informacionReserva",
       "fieldType": "String"
+    },
+    {
+      "documentation": "tarea proxima cita",
+      "fieldName": "tarea",
+      "fieldType": "String"
     }
   ],
   "name": "Cita",

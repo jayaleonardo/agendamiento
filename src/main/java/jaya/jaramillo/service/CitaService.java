@@ -84,4 +84,6 @@ public interface CitaService {
         Long programacionId,
         Long citaId
     );
+
+    CitaDTO registrarAsistencia(Long citaId, String tarea, String estado);
 }
