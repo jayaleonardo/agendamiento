@@ -170,4 +170,9 @@ public class CitaServiceImpl implements CitaService {
         Cita citaBD = this.citaRepository.save(citaMapper.toEntity(cita));
         return this.citaMapper.toDto(citaBD);
     }
+
+    public CitaDTO registrarAsistencia(Long citaId, String tarea) {
+        CitaDTO cita = this.citaMapper.toDto(citaRepository.findById(citaId).get());
+        return cita;
+    }
 }

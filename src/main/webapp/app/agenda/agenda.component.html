@@ -107,6 +107,7 @@
                     </div>
                   </th>
                   <th scope="col">Acciones</th>
+                  <th scope="col">Finalizar cita</th>
                 </tr>
               </thead>
 
@@ -122,6 +123,10 @@
                       <div class="btn-group">
                         <button mat-raised-button color="primary" (click)="asignar(cita)" type="button">Asignar</button>
                       </div>
+                    </td>
+
+                    <td>
+                      <mat-icon class="mat-success" (click)="confirmar(cita)">check_circle</mat-icon>
                     </td>
                   </tr>
                 }

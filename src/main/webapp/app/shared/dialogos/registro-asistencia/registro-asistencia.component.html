@@ -1,0 +1,32 @@
+<div id="asistencia">
+  <form [formGroup]="form" style="overflow: scroll" (submit)="guardar()">
+    <div class="row cabecera">
+      <div class="col-7">
+        <h2 mat-dialog-title>Registro de asistencia</h2>
+      </div>
+
+      <div class="col-5 text-end mt-2">
+        <button mat-raised-button color="primary" type="button">SI</button>
+        <button mat-raised-button color="primary" type="button">NO</button>
+        <button mat-raised-button color="accent" (click)="cerrarDialogo()" type="button">Cancelar</button>
+      </div>
+    </div>
+
+    <div class="container mt-2">
+      <div class="text-center legend">Detalle de la cita que asistió el paciente</div>
+
+      <div class="row mt-2 mb-4">
+        <div class="col-4 label">Paciente:</div>
+        <div class="col-8">{{ data.paciente }}</div>
+
+        <div class="col-4 label">Fecha y hora:</div>
+        <div class="col-8">{{ data.fecha }} {{ data.horainicio }}</div>
+
+        <div class="col-4 label">Tareas para la próxima sesión:</div>
+        <div class="col-8">
+          <textarea matInput name="tareas" cols="55" rows="3" formControlName="tareas"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -10,6 +10,7 @@ import moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearCitaComponent } from 'app/shared/dialogos/crear-cita/crear-cita.component';
 import { lastValueFrom } from 'rxjs';
+import { RegistroAsistenciaComponent } from 'app/shared/dialogos/registro-asistencia/registro-asistencia.component';
 
 @Component({
   selector: 'jhi-agenda',
@@ -105,5 +106,14 @@ export class AgendaComponent implements OnInit {
     if (resultadoDialogo !== null) {
       this.buscar();
     }
+  }
+
+  confirmar(data: ICitaData): void {
+    const dialogRef = this.dialogService.open(RegistroAsistenciaComponent, {
+      width: '60%',
+      height: 'auto',
+      disableClose: true,
+      data,
+    });
   }
 }
