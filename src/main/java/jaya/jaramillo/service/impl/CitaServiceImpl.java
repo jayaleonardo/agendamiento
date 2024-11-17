@@ -171,8 +171,9 @@ public class CitaServiceImpl implements CitaService {
         return this.citaMapper.toDto(citaBD);
     }
 
-    public CitaDTO registrarAsistencia(Long citaId, String tarea) {
+    public CitaDTO registrarAsistencia(Long citaId, String tarea, String estado) {
         CitaDTO cita = this.citaMapper.toDto(citaRepository.findById(citaId).get());
+        cita.setEstado(estado);
         return cita;
     }
 }
