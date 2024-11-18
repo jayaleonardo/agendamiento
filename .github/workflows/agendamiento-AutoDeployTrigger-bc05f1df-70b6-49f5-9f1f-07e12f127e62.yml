@@ -4,19 +4,18 @@ name: Trigger auto deployment for agendamiento
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ master ]
+    branches: [master]
     paths:
-    - '**'
-    - '.github/workflows/agendamiento-AutoDeployTrigger-bc05f1df-70b6-49f5-9f1f-07e12f127e62.yml'
+      - '**'
+      - '.github/workflows/agendamiento-AutoDeployTrigger-bc05f1df-70b6-49f5-9f1f-07e12f127e62.yml'
 
-  # Allow manual trigger 
-  workflow_dispatch:      
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
 
@@ -36,7 +35,7 @@ jobs:
         with:
           appSourcePath: ${{ github.workspace }}
           _dockerfilePathKey_: _dockerfilePath_
-          registryUrl: 
+          registryUrl:
           registryUsername: ${{ secrets.AGENDAMIENTO_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.AGENDAMIENTO_REGISTRY_PASSWORD }}
           containerAppName: agendamiento
@@ -44,5 +43,3 @@ jobs:
           imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
-
-

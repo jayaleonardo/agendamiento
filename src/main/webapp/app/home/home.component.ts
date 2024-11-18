@@ -17,6 +17,7 @@ import { CheckboxGroupComponent } from 'app/shared/checkbox-group/checkbox-group
 import { SimpleCheckOptionComponent } from 'app/shared/simple-check-option/simple-check-option.component';
 import { CheckboxComponent } from 'app/shared/check-box/check-box.component';
 import { MatStepper } from '@angular/material/stepper';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   standalone: true,
@@ -37,6 +38,8 @@ export default class HomeComponent implements OnInit, OnDestroy {
   homeService = inject(HomeService);
   spinner = inject(NgxSpinnerService);
   account = signal<Account | null>(null);
+  toastr = inject(ToastrService);
+
   foto = 'https://cdn-icons-png.flaticon.com/512/9193/9193824.png';
   especialistas?: IEspecialista[];
   especialidades?: string[];
@@ -181,6 +184,9 @@ export default class HomeComponent implements OnInit, OnDestroy {
       this.especialistaSelecionado = null;
       this.stepper.selectedIndex = 0;
       this.cargarDatos();
+      this.toastr.success('Pre reserva guardada', 'Aviso');
+    } else {
+      this.toastr.error('Error de guardado', 'Error');
     }
   }
 }

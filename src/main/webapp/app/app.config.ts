@@ -12,7 +12,7 @@ import {
 } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
@@ -23,6 +23,7 @@ import routes from './app.routes';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
+import { provideToastr } from 'ngx-toastr';
 
 const routerFeatures: RouterFeatures[] = [
   withComponentInputBinding(),
@@ -52,6 +53,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(TranslationModule),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withInterceptorsFromDi()),
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers
     Title,
     { provide: LOCALE_ID, useValue: 'es' },
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
