@@ -67,7 +67,7 @@ public class PublicResource {
     @PostMapping("/turnos-disponibles")
     public ResponseEntity<List<TurnoDisponibleDTO>> turnosDisponibles(@RequestBody TurnoDisponibleRequest request) {
         LOG.debug("Rest turnosDisponibles {} ", request);
-        return ResponseEntity.ok().body(this.programacionService.turnosDisponibles(request.getFecha()));
+        return ResponseEntity.ok().body(this.programacionService.turnosDisponibles(request.getFecha(), request.getEspecialistaId()));
     }
 
     @PostMapping("/guardar-prereserva")

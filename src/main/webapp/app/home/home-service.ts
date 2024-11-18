@@ -30,9 +30,10 @@ export class HomeService {
     return await lastValueFrom(data);
   }
 
-  async turnosDisponibles(fecha: Date): Promise<HttpResponse<ITurnoDisponible[]>> {
+  async turnosDisponibles(fecha: Date, especialistaId: number): Promise<HttpResponse<ITurnoDisponible[]>> {
     const parametros = {
       fecha,
+      especialistaId,
     };
 
     const data = this.http.post<ITurnoDisponible[]>(`${this.resourceUrl}/turnos-disponibles`, parametros, {

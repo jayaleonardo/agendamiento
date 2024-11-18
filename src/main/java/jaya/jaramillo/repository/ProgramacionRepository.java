@@ -43,9 +43,11 @@ public interface ProgramacionRepository extends JpaRepository<Programacion, Long
         "   to_char(prog.desde, 'HH24:MI') desde, " +
         "   to_char(prog.hasta, 'HH24:MI') hasta " +
         "FROM programacion prog " +
+        " inner join horario_consulta horario on horario.id = prog.horario_consulta_id " +
         "   left join cita cit on cit.programacion_id = prog.id  " +
-        "WHERE prog.fecha=:fecha and cit.id is null ",
+        "WHERE prog.fecha=:fecha and cit.id is null " +
+        "   and horario.especialista_id =:especialistaId ",
         nativeQuery = true
     )
-    List<TurnoDisponibleDTO> buscarDisponibles(LocalDate fecha);
+    List<TurnoDisponibleDTO> buscarDisponibles(LocalDate fecha, Long especialistaId);
 }

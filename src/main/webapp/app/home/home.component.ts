@@ -152,7 +152,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
     this.fechaAux = moment(event).format('YYYY-MM-DD');
 
     this.spinner.show();
-    const rta = await this.homeService.turnosDisponibles(event);
+    const rta = await this.homeService.turnosDisponibles(event, this.especialistaSelecionado!.id);
     const body = rta.body ?? null;
     if (body !== null) {
       this.turnosDisponibles = body;

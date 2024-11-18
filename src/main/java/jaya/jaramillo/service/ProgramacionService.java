@@ -76,5 +76,5 @@ public interface ProgramacionService {
         Integer cantidad
     );
 
-    List<TurnoDisponibleDTO> turnosDisponibles(LocalDate fecha);
+    List<TurnoDisponibleDTO> turnosDisponibles(LocalDate fecha, Long especialistaId);
 }

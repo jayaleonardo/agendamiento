@@ -193,8 +193,8 @@ public class ProgramacionServiceImpl implements ProgramacionService {
     }
 
     @Override
-    public List<TurnoDisponibleDTO> turnosDisponibles(LocalDate fecha) {
-        LOG.debug("Request to turnosDisponibles : {}", fecha);
-        return programacionRepository.buscarDisponibles(fecha);
+    public List<TurnoDisponibleDTO> turnosDisponibles(LocalDate fecha, Long especialistaId) {
+        LOG.debug("Request to turnosDisponibles : {} {}", fecha, especialistaId);
+        return programacionRepository.buscarDisponibles(fecha, especialistaId);
     }
 }
