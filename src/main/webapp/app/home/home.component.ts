@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, inject, model, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, inject, model, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,6 +16,7 @@ import { ITurnoDisponible } from './turnos.model';
 import { CheckboxGroupComponent } from 'app/shared/checkbox-group/checkbox-group.component';
 import { SimpleCheckOptionComponent } from 'app/shared/simple-check-option/simple-check-option.component';
 import { CheckboxComponent } from 'app/shared/check-box/check-box.component';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   standalone: true,
@@ -51,6 +52,9 @@ export default class HomeComponent implements OnInit, OnDestroy {
   continuarPaso2 = true;
 
   citaVirtual?: any[];
+
+  @ViewChild('stepper')
+  stepper!: MatStepper;
 
   form1: FormGroup = new FormGroup({
     especialidad: new FormControl('', Validators.required),
@@ -175,6 +179,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
       this.form3.reset();
       this.turnoSeleccionado = null;
       this.especialistaSelecionado = null;
+      this.stepper.selectedIndex = 0;
       this.cargarDatos();
     }
   }
