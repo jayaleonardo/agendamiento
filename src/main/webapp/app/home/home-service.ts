@@ -1,0 +1,30 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { ApplicationConfigService } from 'app/core/config/application-config.service';
+import { lastValueFrom } from 'rxjs';
+import { IEspecialista } from 'app/entities/especialista/especialista.model';
+@Injectable({ providedIn: 'root' })
+export class HomeService {
+  protected http = inject(HttpClient);
+  protected applicationConfigService = inject(ApplicationConfigService);
+  protected resourceUrl = this.applicationConfigService.getEndpointFor('api/public');
+
+  async buscarEspecialidades(): Promise<HttpResponse<string[]>> {
+    const data = this.http.get<string[]>(`${this.resourceUrl}/especialidades`, { observe: 'response' });
+    return await lastValueFrom(data);
+  }
+
+  async especialistasPorEspecialidad(especialidad: string): Promise<HttpResponse<IEspecialista[]>> {
+    const data = this.http.get<IEspecialista[]>(`${this.resourceUrl}/especialistas-por-especialidad/${especialidad}`, {
+      observe: 'response',
+    });
+    return await lastValueFrom(data);
+  }
+
+  async buscarFoto(especialistaid: number): Promise<HttpResponse<IEspecialista>> {
+    const data = this.http.get<IEspecialista>(`${this.resourceUrl}/buscar-foto/${especialistaid}`, {
+      observe: 'response',
+    });
+    return await lastValueFrom(data);
+  }
+}

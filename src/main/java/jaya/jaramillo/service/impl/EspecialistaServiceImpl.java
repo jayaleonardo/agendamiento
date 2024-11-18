@@ -94,4 +94,11 @@ public class EspecialistaServiceImpl implements EspecialistaService {
         LOG.debug("Request to buscarEspecialidades");
         return this.especialistaRepository.obtenerEspecialidades();
     }
+
+    @Override
+    public EspecialistaDTO fotoEspecialista(Long especialistaId) {
+        LOG.debug("Request to fotoEspecialista {}", especialistaId);
+        Especialista esp = this.especialistaRepository.findById(especialistaId).get();
+        return this.especialistaMapper.toDto(esp);
+    }
 }

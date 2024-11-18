@@ -60,4 +60,6 @@ public interface EspecialistaService {
     List<EspecialistaDTO> buscarPorEspecialidad(String especialidad);
 
     List<String> buscarEspecialidades();
+
+    EspecialistaDTO fotoEspecialista(Long especialistaId);
 }

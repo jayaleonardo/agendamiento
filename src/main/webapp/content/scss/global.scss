@@ -284,3 +284,9 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
 .mat-success {
   --mat-icon-color: #27ae60;
 }
+
+.photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
