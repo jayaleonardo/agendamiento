@@ -290,3 +290,7 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
   height: 200px;
   border-radius: 50%;
 }
+
+::ng-deep .mat-datepicker-content .mat-calendar {
+  height: 200px !important;
+}

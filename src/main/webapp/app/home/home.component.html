@@ -10,61 +10,96 @@
           }
         </div>
       } @else {
-        <mat-stepper [linear]="true" #stepper>
-          <mat-step [stepControl]="form1">
-            <form [formGroup]="form1">
-              <div class="row cabecera pt-2 pb-2">
-                <div class="col-6">
-                  <label class="label">Especialista</label>
+        <div style="margin: 0 auto; width: 50%">
+          <mat-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="form1">
+              <form [formGroup]="form1">
+                <div class="row cabecera pt-2 pb-2">
+                  <div class="col-6">
+                    <label class="label">Especialista</label>
+                  </div>
+                  <div class="col-6 text-end">
+                    <button mat-raised-button matStepperNext color="primary" (click)="obtenerDatos()" [disabled]="form1.invalid">
+                      Continuar
+                    </button>
+                  </div>
                 </div>
-                <div class="col-6 text-end">
-                  <button mat-raised-button matStepperNext color="primary">Continuar</button>
+
+                <div class="row mt-3">
+                  <mat-form-field class="input-full-width" appearance="outline">
+                    <mat-label>Especialidad</mat-label>
+                    <mat-select formControlName="especialidad" (selectionChange)="buscarEspecialista($event.value)">
+                      <mat-option [value]="null">Seleccione</mat-option>
+                      <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">{{ especialidad }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
                 </div>
-              </div>
 
-              <div class="row mt-3">
-                <mat-form-field class="input-full-width" appearance="outline">
-                  <mat-label>Especialidad</mat-label>
-                  <mat-select formControlName="especialidad" (selectionChange)="buscarEspecialista($event.value)">
-                    <mat-option [value]="null">Seleccione</mat-option>
-                    <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">{{ especialidad }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-              <div class="row mt-1">
-                <mat-form-field class="input-full-width" appearance="outline">
-                  <mat-label>Especialista</mat-label>
-                  <mat-select formControlName="especialista" (selectionChange)="buscarFoto($event.value)">
-                    <mat-option [value]="null">Seleccione</mat-option>
-                    <mat-option *ngFor="let especialista of especialistas" [value]="especialista.id"
-                      >{{ especialista.sujeto?.apellido }} {{ especialista.sujeto?.segundoApellido }} {{ especialista.sujeto?.nombre }}
-                      {{ especialista.sujeto?.segundoNombre }}</mat-option
-                    >
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-              <div class="flex text-center">
-                <img src="{{ foto }}" class="photo" alt="Photo of a Shiba Inu" />
-              </div>
-            </form>
-          </mat-step>
-
-          <mat-step>
-            <form>
-              <div class="row cabecera pt-2 pb-2">
-                <div class="col-6">
-                  <label class="label">Escoja fecha y hora</label>
+                <div class="row mt-1">
+                  <mat-form-field class="input-full-width" appearance="outline">
+                    <mat-label>Especialista</mat-label>
+                    <mat-select formControlName="especialista" (selectionChange)="buscarFoto($event.value)">
+                      <mat-option [value]="null">Seleccione</mat-option>
+                      <mat-option *ngFor="let especialista of especialistas" [value]="especialista.id"
+                        >{{ especialista.sujeto?.apellido }} {{ especialista.sujeto?.segundoApellido }} {{ especialista.sujeto?.nombre }}
+                        {{ especialista.sujeto?.segundoNombre }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
                 </div>
-                <div class="col-6 text-end">
-                  <button mat-raised-button matStepperPrevious color="warn">Regresar</button>
-                  <button mat-raised-button matStepperNext color="primary">Continuar</button>
+
+                <div class="flex text-center">
+                  <img src="{{ foto }}" class="photo" alt="Photo of a Shiba Inu" />
                 </div>
-              </div>
-            </form>
-          </mat-step>
-        </mat-stepper>
+              </form>
+            </mat-step>
+
+            <mat-step>
+              <form>
+                <div class="row cabecera pt-2 pb-2">
+                  <div class="col-6">
+                    <label class="label">Escoja fecha y hora</label>
+                  </div>
+                  <div class="col-6 text-end">
+                    <button mat-raised-button matStepperPrevious color="warn">Regresar</button>
+                    <button mat-raised-button matStepperNext color="primary">Continuar</button>
+                  </div>
+                </div>
+
+                <div class="row mt-2">
+                  <p>Información a considerar</p>
+                  <div class="col-4 label">Especialista:</div>
+                  <div class="col-8">
+                    {{ especialistaSelecionado?.sujeto?.apellido }} {{ especialistaSelecionado?.sujeto?.segundoApellido }}
+                    {{ especialistaSelecionado?.sujeto?.nombre }} {{ especialistaSelecionado?.sujeto?.segundoNombre }}
+                  </div>
+
+                  <div class="col-4 label">Especialidad:</div>
+                  <div class="col-8">{{ especialidadSeleccionada }}</div>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row mt-2">
+                  <p>Por favor seleccionar la fecha y hora disponible</p>
+                  <div style="width: 60%; margin: 0 auto">
+                    <mat-calendar
+                      [(selected)]="fechaSeleccionada"
+                      [minDate]="minDate"
+                      (selectedChange)="seleccionarFecha($event)"
+                    ></mat-calendar>
+                  </div>
+
+                  <p class="label">Fecha seleccionada: {{ fechaAux }}</p>
+                </div>
+
+                <mat-divider></mat-divider>
+                <p>Turnos disponibles:</p>
+                <ul>
+                  <li *ngFor="let turno of turnosDisponibles">{{ turno.desde }} - {{ turno.hasta }}</li>
+                </ul>
+              </form>
+            </mat-step>
+          </mat-stepper>
+        </div>
       }
     </div>
   </div>

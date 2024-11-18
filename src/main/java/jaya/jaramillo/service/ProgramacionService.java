@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
+import jaya.jaramillo.service.dto.TurnoDisponibleDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,4 +75,6 @@ public interface ProgramacionService {
         Long especialistaId,
         Integer cantidad
     );
+
+    List<TurnoDisponibleDTO> turnosDisponibles(LocalDate fecha);
 }

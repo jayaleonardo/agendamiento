@@ -16,6 +16,7 @@ import jaya.jaramillo.service.ProgramacionService;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
 import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
+import jaya.jaramillo.service.dto.TurnoDisponibleDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.service.mapper.HorarioConsultaMapper;
 import jaya.jaramillo.service.mapper.ProgramacionMapper;
@@ -189,5 +190,11 @@ public class ProgramacionServiceImpl implements ProgramacionService {
             inicio = inicio.plusDays(1L);
         }
         return this.horarioConsultaMapper.toDto(horarioDB);
+    }
+
+    @Override
+    public List<TurnoDisponibleDTO> turnosDisponibles(LocalDate fecha) {
+        LOG.debug("Request to turnosDisponibles : {}", fecha);
+        return programacionRepository.buscarDisponibles(fecha);
     }
 }

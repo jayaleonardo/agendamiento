@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import jaya.jaramillo.domain.Especialista;
 import jaya.jaramillo.domain.Programacion;
+import jaya.jaramillo.service.dto.TurnoDisponibleDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
@@ -36,4 +37,15 @@ public interface ProgramacionRepository extends JpaRepository<Programacion, Long
 
     @Query("Select prog.horarioConsulta.especialista from Programacion prog where prog.id=:programacionId")
     Especialista especialistaPorProgramacion(Long programacionId);
+
+    @Query(
+        value = "Select prog.id, prog.fecha,  " +
+        "   to_char(prog.desde, 'HH:MM') desde, " +
+        "   to_char(prog.hasta, 'HH:MM') hasta " +
+        "FROM programacion prog " +
+        "   left join cita cit on cit.programacion_id = prog.id  " +
+        "WHERE prog.fecha=:fecha and cit.id is null ",
+        nativeQuery = true
+    )
+    List<TurnoDisponibleDTO> buscarDisponibles(LocalDate fecha);
 }
