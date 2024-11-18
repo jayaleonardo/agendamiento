@@ -13,13 +13,24 @@ import { HomeService } from './home-service';
 import moment from 'moment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ITurnoDisponible } from './turnos.model';
+import { CheckboxGroupComponent } from 'app/shared/checkbox-group/checkbox-group.component';
+import { SimpleCheckOptionComponent } from 'app/shared/simple-check-option/simple-check-option.component';
+import { CheckboxComponent } from 'app/shared/check-box/check-box.component';
 
 @Component({
   standalone: true,
   selector: 'jhi-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    SharedModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CheckboxGroupComponent,
+    SimpleCheckOptionComponent,
+    CheckboxComponent,
+  ],
 })
 export default class HomeComponent implements OnInit, OnDestroy {
   homeService = inject(HomeService);
@@ -30,17 +41,32 @@ export default class HomeComponent implements OnInit, OnDestroy {
   especialidades?: string[];
 
   especialidadSeleccionada?: string;
-  especialistaSelecionado?: IEspecialista;
+  especialistaSelecionado?: IEspecialista | null;
 
   fechaSeleccionada = model<Date | null>();
   minDate = new Date();
   fechaAux?: string;
   turnosDisponibles?: ITurnoDisponible[] | [];
+  turnoSeleccionado?: ITurnoDisponible | null;
+  continuarPaso2 = true;
+
+  citaVirtual?: any[];
 
   form1: FormGroup = new FormGroup({
     especialidad: new FormControl('', Validators.required),
     especialista: new FormControl('', Validators.required),
   });
+
+  form3: FormGroup = new FormGroup({
+    nombre: new FormControl('', Validators.required),
+    segundoNombre: new FormControl(''),
+    apellido: new FormControl('', Validators.required),
+    segundoApellido: new FormControl(''),
+    prefijo: new FormControl(''),
+    celular: new FormControl('', Validators.required),
+    videoconferencia: new FormControl(''),
+  });
+
   private readonly destroy$ = new Subject<void>();
   private readonly accountService = inject(AccountService);
   private readonly router = inject(Router);
@@ -65,6 +91,11 @@ export default class HomeComponent implements OnInit, OnDestroy {
         this.buscarEspecialista(this.especialidades[0]);
       }
     }
+
+    this.citaVirtual = [];
+    this.citaVirtual.push({ id: 'virtual', nombre: 'Deseo por Videoconferencia' });
+
+    this.continuarPaso2 = true;
   }
 
   login(): void {
@@ -120,5 +151,31 @@ export default class HomeComponent implements OnInit, OnDestroy {
       this.turnosDisponibles = body;
     }
     this.spinner.hide();
+  }
+
+  fijarTurno(turno: ITurnoDisponible): void {
+    this.turnoSeleccionado = turno;
+    this.continuarPaso2 = false;
+  }
+
+  async guardar(): Promise<void> {
+    const parametros = {
+      nombre: this.form3.value.nombre,
+      segundoNombre: this.form3.value.segundoNombre,
+      apellido: this.form3.value.apellido,
+      segundoApellido: this.form3.value.segundoApellido,
+      celular: `${this.form3.value.prefijo} ${this.form3.value.celular}`,
+      turnoId: this.turnoSeleccionado?.id,
+      virtual: this.form3.value.videoconferencia !== '' && this.form3.value.videoconferencia.length > 0,
+    };
+
+    const rta = await this.homeService.guardarPreReserva(parametros);
+    const body = rta.body ?? null;
+    if (body) {
+      this.form3.reset();
+      this.turnoSeleccionado = null;
+      this.especialistaSelecionado = null;
+      this.cargarDatos();
+    }
   }
 }

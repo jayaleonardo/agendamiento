@@ -4,6 +4,7 @@ import { ApplicationConfigService } from 'app/core/config/application-config.ser
 import { lastValueFrom } from 'rxjs';
 import { IEspecialista } from 'app/entities/especialista/especialista.model';
 import { ITurnoDisponible } from './turnos.model';
+import { ICita } from 'app/entities/cita/cita.model';
 @Injectable({ providedIn: 'root' })
 export class HomeService {
   protected http = inject(HttpClient);
@@ -37,6 +38,11 @@ export class HomeService {
     const data = this.http.post<ITurnoDisponible[]>(`${this.resourceUrl}/turnos-disponibles`, parametros, {
       observe: 'response',
     });
+    return await lastValueFrom(data);
+  }
+
+  async guardarPreReserva(datos: any): Promise<HttpResponse<ICita>> {
+    const data = this.http.post<ICita>(`${this.resourceUrl}/guardar-prereserva`, datos, { observe: 'response' });
     return await lastValueFrom(data);
   }
 }

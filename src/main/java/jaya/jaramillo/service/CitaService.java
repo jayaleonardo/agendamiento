@@ -86,4 +86,14 @@ public interface CitaService {
     );
 
     CitaDTO registrarAsistencia(Long citaId, String tarea, String estado);
+
+    CitaDTO guardarPrereserva(
+        String nombre,
+        String segundoNombre,
+        String apellido,
+        String segundoApellido,
+        String celular,
+        Long turnoId,
+        Boolean virtual
+    );
 }

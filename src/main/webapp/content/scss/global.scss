@@ -294,3 +294,21 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
 ::ng-deep .mat-datepicker-content .mat-calendar {
   height: 200px !important;
 }
+
+.turnosDisponibles li {
+  padding: 10px;
+  list-style: none;
+}
+
+.turnosDisponibles li:nth-child(even) {
+  background: #ccc;
+}
+.turnosDisponibles li:nth-child(odd) {
+  background: #fff;
+}
+
+.turnosDisponibles li:hover {
+  background: #2980b9;
+  font-weight: bold;
+  color: #fff;
+}

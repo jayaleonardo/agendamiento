@@ -23,6 +23,7 @@ import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
 import jaya.jaramillo.web.rest.peticion.ConsultarCitasRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
 import jaya.jaramillo.web.rest.peticion.GuardarCitaRequest;
+import jaya.jaramillo.web.rest.peticion.PreReservaRequest;
 import jaya.jaramillo.web.rest.peticion.RegistrarAsistenciaRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

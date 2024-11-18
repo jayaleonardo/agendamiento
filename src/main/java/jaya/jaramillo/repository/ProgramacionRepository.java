@@ -40,8 +40,8 @@ public interface ProgramacionRepository extends JpaRepository<Programacion, Long
 
     @Query(
         value = "Select prog.id, prog.fecha,  " +
-        "   to_char(prog.desde, 'HH:MM') desde, " +
-        "   to_char(prog.hasta, 'HH:MM') hasta " +
+        "   to_char(prog.desde, 'HH24:MI') desde, " +
+        "   to_char(prog.hasta, 'HH24:MI') hasta " +
         "FROM programacion prog " +
         "   left join cita cit on cit.programacion_id = prog.id  " +
         "WHERE prog.fecha=:fecha and cit.id is null ",

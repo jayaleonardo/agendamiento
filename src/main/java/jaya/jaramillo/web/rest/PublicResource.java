@@ -6,8 +6,10 @@ import jaya.jaramillo.service.EspecialistaService;
 import jaya.jaramillo.service.HorarioConsultaService;
 import jaya.jaramillo.service.PacienteService;
 import jaya.jaramillo.service.ProgramacionService;
+import jaya.jaramillo.service.dto.CitaDTO;
 import jaya.jaramillo.service.dto.EspecialistaDTO;
 import jaya.jaramillo.service.dto.TurnoDisponibleDTO;
+import jaya.jaramillo.web.rest.peticion.PreReservaRequest;
 import jaya.jaramillo.web.rest.peticion.TurnoDisponibleRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,5 +68,22 @@ public class PublicResource {
     public ResponseEntity<List<TurnoDisponibleDTO>> turnosDisponibles(@RequestBody TurnoDisponibleRequest request) {
         LOG.debug("Rest turnosDisponibles {} ", request);
         return ResponseEntity.ok().body(this.programacionService.turnosDisponibles(request.getFecha()));
+    }
+
+    @PostMapping("/guardar-prereserva")
+    public ResponseEntity<CitaDTO> guardarPrereserva(@RequestBody PreReservaRequest request) {
+        LOG.debug("Rest guardarPrereserva: {} ", request);
+        return ResponseEntity.ok()
+            .body(
+                this.citaService.guardarPrereserva(
+                        request.getNombre(),
+                        request.getSegundoNombre(),
+                        request.getApellido(),
+                        request.getSegundoApellido(),
+                        request.getCelular(),
+                        request.getTurnoId(),
+                        request.getVirtual()
+                    )
+            );
     }
 }

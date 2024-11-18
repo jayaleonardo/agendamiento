@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import jaya.jaramillo.domain.Cita;
+import jaya.jaramillo.domain.Programacion;
 import jaya.jaramillo.repository.CitaRepository;
 import jaya.jaramillo.repository.ProgramacionRepository;
 import jaya.jaramillo.service.CitaService;
@@ -16,6 +17,7 @@ import jaya.jaramillo.service.dto.PacienteDTO;
 import jaya.jaramillo.service.dto.ProgramacionDTO;
 import jaya.jaramillo.service.mapper.CitaMapper;
 import jaya.jaramillo.service.mapper.EspecialistaMapper;
+import jaya.jaramillo.service.mapper.ProgramacionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -35,17 +37,20 @@ public class CitaServiceImpl implements CitaService {
     private final CitaRepository citaRepository;
 
     private final CitaMapper citaMapper;
+    private final ProgramacionMapper programacionMapper;
     private final ProgramacionRepository programacionRepository;
     private final EspecialistaMapper especialistaMapper;
 
     public CitaServiceImpl(
         CitaRepository citaRepository,
         CitaMapper citaMapper,
+        ProgramacionMapper programacionMapper,
         ProgramacionRepository programacionRepository,
         EspecialistaMapper especialistaMapper
     ) {
         this.citaRepository = citaRepository;
         this.citaMapper = citaMapper;
+        this.programacionMapper = programacionMapper;
         this.programacionRepository = programacionRepository;
         this.especialistaMapper = especialistaMapper;
     }
@@ -176,6 +181,47 @@ public class CitaServiceImpl implements CitaService {
         CitaDTO cita = this.citaMapper.toDto(citaRepository.findById(citaId).get());
         cita.setEstado(estado);
         cita.setTarea(tarea);
+
+        Cita citaBD = this.citaRepository.save(citaMapper.toEntity(cita));
+        return this.citaMapper.toDto(citaBD);
+    }
+
+    @Override
+    public CitaDTO guardarPrereserva(
+        String nombre,
+        String segundoNombre,
+        String apellido,
+        String segundoApellido,
+        String celular,
+        Long turnoId,
+        Boolean virtual
+    ) {
+        Programacion programacion = this.programacionRepository.findById(turnoId).get();
+        Duration duracion = Duration.between(programacion.getDesde(), programacion.getHasta());
+
+        StringBuilder infoReservaLinea = new StringBuilder();
+        infoReservaLinea
+            .append("Nombre: ")
+            .append(nombre)
+            .append(", Segundo nombre: ")
+            .append(segundoNombre)
+            .append(", Apellido: ")
+            .append(apellido)
+            .append(", Segundo apellido: ")
+            .append(segundoApellido)
+            .append(", Celular: ")
+            .append(celular)
+            .append(", Videoconferencia: ")
+            .append(virtual ? "Si" : "No");
+
+        CitaDTO cita = new CitaDTO();
+        cita.setProgramacion(programacionMapper.toDto(programacion));
+        cita.setFechaCita(programacion.getFecha());
+        cita.setHoraInicio(programacion.getDesde());
+        cita.setDuracionMinutos((int) duracion.toMinutes());
+        cita.setInformacionReserva(infoReservaLinea.toString());
+        cita.setVirtual(virtual);
+        cita.setEstado("Reservada_linea");
 
         Cita citaBD = this.citaRepository.save(citaMapper.toEntity(cita));
         return this.citaMapper.toDto(citaBD);
