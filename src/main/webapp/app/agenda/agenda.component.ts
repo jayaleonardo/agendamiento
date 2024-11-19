@@ -128,7 +128,7 @@ export class AgendaComponent implements OnInit {
   confirmar(cita: ICitaData): void {
     Swal.fire({
       title: 'Confirmación de cita',
-      text: 'Desea confirmar la cita?!',
+      text: 'Ha confirmado la asistencia?',
       icon: 'info',
       showCancelButton: true,
       confirmButtonText: 'Si',
