@@ -30,9 +30,9 @@ export class CrearCitaComponent implements OnInit {
   canales?: any[];
   isSwitchOn = false;
   motivoSwitch = false;
+  estado?: string = '';
 
   form: FormGroup = new FormGroup({
-    estado: new FormControl('', Validators.required),
     paciente: new FormControl('', Validators.required),
     motivos: new FormControl('', Validators.required),
     motivoDetalle: new FormControl({ value: '', disabled: true }),
@@ -86,6 +86,14 @@ export class CrearCitaComponent implements OnInit {
 
     // en el caso que exista informacion de reserva colocar en la ui
     this.form.patchValue({ infoReserva: this.data.inforeserva });
+    this.estado = this.data.estado!;
+
+    // eslint-disable-next-line no-console
+    console.log(this.estado);
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (this.estado === null) {
+      this.estado = 'Disponible';
+    }
   }
 
   cerrarDialogo(): void {
@@ -124,7 +132,6 @@ export class CrearCitaComponent implements OnInit {
     }
 
     const datos = {
-      estado: this.form.value.estado,
       pacienteId: this.form.value.paciente,
       motivoConsulta: motivos,
       motivoDetalle: this.form.value.motivoDetalle,

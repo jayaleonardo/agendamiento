@@ -226,4 +226,13 @@ public class CitaServiceImpl implements CitaService {
         Cita citaBD = this.citaRepository.save(citaMapper.toEntity(cita));
         return this.citaMapper.toDto(citaBD);
     }
+
+    @Override
+    public CitaDTO cambiarEstado(String estado, Long citaId) {
+        Cita cita = citaRepository.findById(citaId).get();
+        cita.setEstado(estado);
+
+        Cita citaBD = citaRepository.save(cita);
+        return citaMapper.toDto(citaBD);
+    }
 }

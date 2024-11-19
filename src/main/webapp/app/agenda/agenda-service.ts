@@ -46,4 +46,14 @@ export class AgendaService {
     const data = this.http.post<ICita>(`${this.resourceUrl}/registrar-asistencia`, datos, { observe: 'response' });
     return await lastValueFrom(data);
   }
+
+  async cambiarEstado(citaId: number, estado: string): Promise<HttpResponse<ICita>> {
+    const datos = {
+      citaId,
+      estado,
+    };
+
+    const data = this.http.post<ICita>(`${this.resourceUrl}/cita-estado`, datos, { observe: 'response' });
+    return await lastValueFrom(data);
+  }
 }

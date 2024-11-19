@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrearCitaComponent } from 'app/shared/dialogos/crear-cita/crear-cita.component';
 import { lastValueFrom } from 'rxjs';
 import { RegistroAsistenciaComponent } from 'app/shared/dialogos/registro-asistencia/registro-asistencia.component';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'jhi-agenda',
@@ -24,6 +26,7 @@ export class AgendaComponent implements OnInit {
   agendaService = inject(AgendaService);
   spinner = inject(NgxSpinnerService);
   dialogService = inject(MatDialog);
+  toastr = inject(ToastrService);
 
   especialistas?: IEspecialista[];
   especialidades?: string[];
@@ -62,7 +65,7 @@ export class AgendaComponent implements OnInit {
       { id: 'Reserva', nombre: 'Reserva en línea' },
       { id: 'Disponible', nombre: 'Disponible' },
       { id: 'Cita_asignada', nombre: 'Cita asignada' },
-      { id: 'Confirmado_paciente', nombre: 'Confirmado paciente' },
+      { id: 'Confirmado', nombre: 'Confirmado paciente' },
       { id: 'Atendida', nombre: 'Atendida' },
     ];
   }
@@ -108,7 +111,7 @@ export class AgendaComponent implements OnInit {
     }
   }
 
-  async confirmar(data: ICitaData): Promise<void> {
+  async atencion(data: ICitaData): Promise<void> {
     const dialogRef = this.dialogService.open(RegistroAsistenciaComponent, {
       width: '60%',
       height: 'auto',
@@ -120,5 +123,57 @@ export class AgendaComponent implements OnInit {
     if (resultadoDialogo !== null) {
       this.buscar();
     }
+  }
+
+  confirmar(cita: ICitaData): void {
+    Swal.fire({
+      title: 'Confirmación de cita',
+      text: 'Desea confirmar la cita?!',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then(async result => {
+      if (result.value) {
+        this.spinner.show();
+        // cambiar estado de la cita
+        const rta = await this.agendaService.cambiarEstado(cita.citaid!, 'Confirmada');
+        const body = rta.body ?? null;
+        if (body) {
+          this.toastr.success('Confirmación realizada', 'Aviso');
+          this.spinner.hide();
+          this.buscar();
+        } else {
+          this.toastr.error('Error en la actualizacio1n', 'Error');
+          this.spinner.hide();
+        }
+      }
+    });
+  }
+
+  cancelar(cita: ICitaData): void {
+    Swal.fire({
+      title: 'Cancelar de cita',
+      text: 'Desea cancelar la cita?!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then(async result => {
+      if (result.value) {
+        this.spinner.show();
+        // cambiar estado de la cita
+        const rta = await this.agendaService.cambiarEstado(cita.citaid!, 'Cancelada');
+        const body = rta.body ?? null;
+        if (body) {
+          this.toastr.success('Cancelación realizada', 'Aviso');
+          this.spinner.hide();
+          this.buscar();
+        } else {
+          this.toastr.error('Error en la actualización', 'Error');
+          this.spinner.hide();
+        }
+      }
+    });
   }
 }

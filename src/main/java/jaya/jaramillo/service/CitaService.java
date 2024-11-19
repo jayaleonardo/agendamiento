@@ -96,4 +96,6 @@ public interface CitaService {
         Long turnoId,
         Boolean virtual
     );
+
+    CitaDTO cambiarEstado(String estado, Long citaId);
 }

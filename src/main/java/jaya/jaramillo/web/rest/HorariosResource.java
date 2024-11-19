@@ -20,6 +20,7 @@ import jaya.jaramillo.service.dto.HorarioConsultaDTO;
 import jaya.jaramillo.service.dto.PacienteDTO;
 import jaya.jaramillo.service.dto.TurnoEspecialidadDTO;
 import jaya.jaramillo.web.rest.peticion.BuscarTurnoRequest;
+import jaya.jaramillo.web.rest.peticion.CitaEstadoRequest;
 import jaya.jaramillo.web.rest.peticion.ConsultarCitasRequest;
 import jaya.jaramillo.web.rest.peticion.CrearProgramacionRequest;
 import jaya.jaramillo.web.rest.peticion.GuardarCitaRequest;
@@ -162,5 +163,11 @@ public class HorariosResource {
     public ResponseEntity<CitaDTO> registrarAsistencia(@RequestBody RegistrarAsistenciaRequest request) {
         LOG.debug("Resst registrarAsistencia: {} ", request);
         return ResponseEntity.ok().body(this.citaService.registrarAsistencia(request.getCitaId(), request.getTarea(), request.getEstado()));
+    }
+
+    @PostMapping("/cita-estado")
+    public ResponseEntity<CitaDTO> citaCambiarEstado(@RequestBody CitaEstadoRequest request) {
+        LOG.debug("Resst registrarAsistencia: {} ", request);
+        return ResponseEntity.ok().body(this.citaService.cambiarEstado(request.getEstado(), request.getCitaId()));
     }
 }

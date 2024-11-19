@@ -32,9 +32,7 @@
 
         <div class="col-4 label">Estado de la cita:</div>
         <div class="col-8">
-          <mat-radio-group aria-label="Select an option" formControlName="estado">
-            <mat-radio-button *ngFor="let estado of estadosCita" value="{{ estado.id }}">{{ estado.nombre }}</mat-radio-button>
-          </mat-radio-group>
+          {{ estado }}
         </div>
       </div>
 
