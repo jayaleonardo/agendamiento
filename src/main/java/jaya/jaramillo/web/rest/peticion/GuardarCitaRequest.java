@@ -11,6 +11,7 @@ public class GuardarCitaRequest {
     private String estado;
     private String tipoVisita;
     private String canalAtencion;
+    private String recordatorio;
     private String observacion;
     private String motivoConsulta;
     private String detalleConsultaVirtual;
@@ -121,6 +122,14 @@ public class GuardarCitaRequest {
 
     public void setCitaId(Long citaId) {
         this.citaId = citaId;
+    }
+
+    public String getRecordatorio() {
+        return recordatorio;
+    }
+
+    public void setRecordatorio(String recordatorio) {
+        this.recordatorio = recordatorio;
     }
 
     @Override

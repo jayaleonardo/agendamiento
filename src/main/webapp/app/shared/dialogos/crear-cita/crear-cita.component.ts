@@ -28,6 +28,7 @@ export class CrearCitaComponent implements OnInit {
   citaVirtual?: any[];
   estadosCita?: any[];
   canales?: any[];
+  recordatorios?: any[];
   isSwitchOn = false;
   motivoSwitch = false;
   estado?: string = '';
@@ -40,6 +41,7 @@ export class CrearCitaComponent implements OnInit {
     virtual: new FormControl(''),
     detallevirtual: new FormControl({ value: '', disabled: true }),
     canal: new FormControl('', Validators.required),
+    recordatorio: new FormControl('', Validators.required),
     observacion: new FormControl(''),
     infoReserva: new FormControl({ value: '', disabled: true }),
   });
@@ -61,6 +63,7 @@ export class CrearCitaComponent implements OnInit {
     this.motivos.push({ id: 'Depresion', nombre: 'Depresión' });
     this.motivos.push({ id: 'Estres', nombre: 'Estrés' });
     this.motivos.push({ id: 'Problemas_pareja', nombre: 'Problemas de pareja' });
+    this.motivos.push({ id: 'Otro', nombre: 'Otro' });
 
     this.tipoCita = [];
     this.tipoCita.push({ id: 'Primera_vez', nombre: 'Primera vez' });
@@ -73,8 +76,10 @@ export class CrearCitaComponent implements OnInit {
     this.canales.push({ id: 'Cita_online', nombre: 'Cita online' });
     this.canales.push({ id: 'Marketing_directo', nombre: 'Marketing directo' });
     this.canales.push({ id: 'Referidos', nombre: 'Referidos' });
-    this.canales.push({ id: 'Correo_electronico', nombre: 'Correo electrónico' });
-    this.canales.push({ id: 'SMS/Whatsapp', nombre: 'SMS/Whatspp' });
+
+    this.recordatorios = [];
+    this.recordatorios.push({ id: 'Correo_electronico', nombre: 'Correo electrónico' });
+    this.recordatorios.push({ id: 'SMS/Whatsapp', nombre: 'SMS/Whatspp' });
 
     this.estadosCita = [];
     this.estadosCita.push({ id: 'Disponible', nombre: 'Disponible' });
@@ -102,21 +107,24 @@ export class CrearCitaComponent implements OnInit {
 
   onCheckTipoCita(value: any[]): void {
     if (value.length > 0) {
-      this.form.get('detallevirtual')?.enable();
+      this.form.controls.detallevirtual.enable();
     } else {
-      this.form.get('detallevirtual')?.disable();
+      this.form.controls.detallevirtual.disable();
     }
   }
 
   onCheckMotivo(value: any[]): void {
-    // eslint-disable-next-line no-console
-    console.log(value);
     if (value.length > 0) {
-      const problemaPareja = value.find(val => val === 'Problemas_pareja');
-      if (problemaPareja) {
+      const otro = value.find(val => val === 'Otro');
+
+      // eslint-disable-next-line no-console
+      console.log(otro);
+      if (otro) {
+        // this.form.controls.motivoDetalle.enable();
         this.form.get('motivoDetalle')?.enable();
       }
     } else {
+      // this.form.controls.motivoDetalle.disable();
       this.form.get('motivoDetalle')?.disable();
     }
   }
@@ -138,6 +146,7 @@ export class CrearCitaComponent implements OnInit {
       virtual: esVirtual,
       detallevirtual: this.form.value.detallevirtual,
       canalAtencion: canales,
+      recordatorio: this.form.value.recordatorio,
       observacion: this.form.value.observacion,
       fechaCita: this.data.fecha,
       horaInicio: this.data.horainicio,
@@ -146,6 +155,9 @@ export class CrearCitaComponent implements OnInit {
       citaId: this.data.citaid,
       tipoVisita: tipoVisitas,
     };
+
+    // eslint-disable-next-line no-console
+    console.log(datos);
 
     const rta = await this.agendaService.guardarCita(datos);
     const body = rta.body ?? null;

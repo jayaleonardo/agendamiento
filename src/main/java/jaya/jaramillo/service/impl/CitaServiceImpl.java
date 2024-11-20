@@ -127,6 +127,7 @@ public class CitaServiceImpl implements CitaService {
         String estado,
         String tipoVisita,
         String canalAtencion,
+        String recordatorio,
         String observacion,
         String motivoConsulta,
         String detalleConsultaVirtual,
@@ -156,9 +157,10 @@ public class CitaServiceImpl implements CitaService {
         cita.setFechaCita(fechaCita);
         cita.setHoraInicio(horaInicio);
         cita.setDuracionMinutos((int) duracion.toMinutes());
-        cita.setEstado(estado);
+        cita.setEstado("Reservado");
         cita.setTipoVisita(tipoVisita);
         cita.setCanalAtencion(canalAtencion);
+        cita.setRecordatorio(recordatorio);
         cita.setObservacion(observacion);
         cita.setMotivoConsulta(motivoConsulta);
         if (motivoConsulta.equals("Problemas_pareja")) {

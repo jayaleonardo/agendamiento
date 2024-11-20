@@ -66,14 +66,7 @@
           </jhi-checkbox-group>
           <mat-form-field class="input-full-width" appearance="outline">
             <mat-label>Detalle</mat-label>
-            <input
-              matInput
-              type="text"
-              [email]="true"
-              placeholder="Ingrese detalle"
-              formControlName="motivoDetalle"
-              [disabled]="!motivoSwitch"
-            />
+            <input matInput type="text" placeholder="Ingrese detalle" formControlName="motivoDetalle" />
           </mat-form-field>
         </div>
 
@@ -101,14 +94,7 @@
           </jhi-checkbox-group>
           <mat-form-field class="input-full-width" appearance="outline">
             <mat-label>Detalle</mat-label>
-            <input
-              matInput
-              type="text"
-              [email]="true"
-              placeholder="Ingrese detalle"
-              formControlName="detallevirtual"
-              [disabled]="!isSwitchOn"
-            />
+            <input matInput type="text" placeholder="Ingrese detalle" formControlName="detallevirtual" [disabled]="!isSwitchOn" />
           </mat-form-field>
         </div>
 
@@ -123,6 +109,15 @@
               </div>
             </div>
           </jhi-checkbox-group>
+        </div>
+
+        <div class="col-4 label">Recordatorio:</div>
+        <div class="col-8">
+          <mat-radio-group aria-label="Select an option" formControlName="recordatorio">
+            <mat-radio-button *ngFor="let recordatorio of recordatorios" value="{{ recordatorio.nombre }}">{{
+              recordatorio.nombre
+            }}</mat-radio-button>
+          </mat-radio-group>
         </div>
 
         <div class="mt-2 mb-2"></div>

@@ -120,13 +120,13 @@
                     <td>{{ cita.paciente }}</td>
                     <td>{{ cita.estado }}</td>
                     <td class="text-end">
-                      <div class="btn-group" *ngIf="cita.estado === 'Disponible'">
+                      <div class="btn-group" *ngIf="cita.estado === 'Disponible' || cita.estado === 'Reservada_linea'">
                         <button mat-raised-button color="primary" (click)="asignar(cita)" type="button">Asignar</button>
                       </div>
 
                       <div
                         class="btn-group"
-                        *ngIf="cita.citaid !== null && (cita.estado === 'Disponible' || cita.estado === 'Reservada_linea')"
+                        *ngIf="cita.citaid !== null && (cita.estado === 'Reservado' || cita.estado === 'Reservada_linea')"
                       >
                         <button mat-raised-button color="primary" (click)="confirmar(cita)" type="button">Confirmar</button>
                       </div>

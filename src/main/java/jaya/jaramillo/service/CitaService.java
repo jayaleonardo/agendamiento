@@ -76,6 +76,7 @@ public interface CitaService {
         String estado,
         String tipoVisita,
         String canalAtencion,
+        String recordatorio,
         String observacion,
         String motivoConsulta,
         String detalleConsultaVirtual,
