@@ -148,6 +148,7 @@ public class HorariosResource {
                         request.getEstado(),
                         request.getTipoVisita(),
                         request.getCanalAtencion(),
+                        request.getRecordatorio(),
                         request.getObservacion(),
                         request.getMotivoConsulta(),
                         request.getDetalleConsultaVirtual(),
