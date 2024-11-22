@@ -32,9 +32,11 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5433/agendamiento
-    username: agendamiento
-    password: password
+    url: jdbc:postgresql://agendamiento-server:5433/agendamiento
+    username: ozuanwxtpq
+    password: CiT5$OsyL05bTmsH
+    #tlguipivrl
+    #sK4mI2mnkfR8kB$Q
     hikari:
       poolName: Hikari
       auto-commit: false
