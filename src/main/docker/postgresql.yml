@@ -4,8 +4,8 @@ services:
   postgresql:
     image: postgres:17.0
     volumes:
-      #- C:/postgres/:/var/lib/postgresql/data/
-      - /Users/macartuche/Documents/Propuestasproyectos/postgres17:/var/lib/postgresql/data/
+      - C:/postgres/:/var/lib/postgresql/data/
+      #- /Users/macartuche/Documents/Propuestasproyectos/postgres17:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=agendamiento
       - POSTGRES_PASSWORD=password
