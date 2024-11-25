@@ -1,42 +1,9 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="macartuche (generated)" id="1730943884373-17">
-        <addColumn tableName="programacion">
-            <column name="desde" type="timestamp(6)">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-    </changeSet>
-    <changeSet author="macartuche (generated)" id="1730943884373-18">
-        <addColumn tableName="horario_consulta">
-            <column name="desde_hora_almuerzo" type="timestamp(6)"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="macartuche (generated)" id="1730943884373-19">
-        <addColumn tableName="programacion">
-            <column name="fecha" type="date">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-    </changeSet>
-    <changeSet author="macartuche (generated)" id="1730943884373-20">
-        <addColumn tableName="programacion">
-            <column name="hasta" type="timestamp(6)">
-                <constraints nullable="false"/>
-            </column>
-        </addColumn>
-    </changeSet>
-    <changeSet author="macartuche (generated)" id="1730943884373-21">
-        <addColumn tableName="horario_consulta">
-            <column name="hasta_hora_almuerzo" type="timestamp(6)"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="macartuche (generated)" id="1730943884373-22">
-        <dropTable tableName="jhi_date_time_wrapper"/>
-    </changeSet>
-    <changeSet author="macartuche (generated)" id="1730943884373-23">
-        <dropColumn columnName="desde_hora_almuerzo" tableName="programacion"/>
-    </changeSet>
+
+
+
+
     <changeSet author="macartuche (generated)" id="1730943884373-24">
         <dropColumn columnName="dias_semana" tableName="programacion"/>
     </changeSet>

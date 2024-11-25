@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/agendamiento
-    username: agendamiento
-    password: password
+    url: jdbc:postgresql://postgreserverbd.postgres.database.azure.com:5432/agendamiento?ssl=true&sslmode=require
+    username: jljjadmin
+    password: leonardo2107@
     hikari:
       poolName: Hikari
       auto-commit: false

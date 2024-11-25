@@ -12,7 +12,7 @@ elif [ -f "$basedir/gradlew" ]; then
   installCommand="$basedir/gradlew npmSetup"
 else
   echo "Using npm installed globally"
-  exec npm "$@"
+  exec npm "$@ --legacy-peer-deps"
 fi
 
 NPM_EXE="$repodir/npm/bin/npm-cli.js"

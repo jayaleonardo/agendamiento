@@ -968,9 +968,9 @@
             <id>prod</id>
             <properties>
                 <!-- default Spring profiles -->
-                <liquibase-plugin.password>password</liquibase-plugin.password>
-                <liquibase-plugin.url>jdbc:postgresql://localhost:5432/agendamiento</liquibase-plugin.url>
-                <liquibase-plugin.username>agendamiento</liquibase-plugin.username>
+                <liquibase-plugin.password>leonardo2107@</liquibase-plugin.password>
+                <liquibase-plugin.url>jdbc:postgresql://postgreserverbd.postgres.database.azure.com:5432/agendamiento</liquibase-plugin.url>
+                <liquibase-plugin.username>jljjadmin</liquibase-plugin.username>
                 <profile.test>testprod</profile.test>
                 <spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}</spring.profiles.active>
             </properties>
@@ -1002,7 +1002,7 @@
                                 </goals>
                             </execution>
                             <execution>
-                                <id>npm install</id>
+                                <id>npm install --legacy-peer-deps</id>
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
@@ -1152,7 +1152,7 @@
                                 </goals>
                             </execution>
                             <execution>
-                                <id>npm install</id>
+                                <id>npm install --legacy-peer-deps</id>
                                 <goals>
                                     <goal>npm</goal>
                                 </goals>
@@ -1173,6 +1173,8 @@
                             </execution>
                         </executions>
                     </plugin>
+
+
                 </plugins>
             </build>
         </profile>

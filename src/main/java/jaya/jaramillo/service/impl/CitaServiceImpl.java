@@ -149,7 +149,8 @@ public class CitaServiceImpl implements CitaService {
         CitaDTO cita = null;
         if (citaId != null) {
             // buscar la cita para editarla
-            cita = this.citaMapper.toDto(citaRepository.findById(citaId).get());
+            Cita citaBD = citaRepository.findById(citaId).orElseThrow();
+            cita = this.citaMapper.toDto(citaBD);
         } else {
             cita = new CitaDTO();
         }
@@ -180,7 +181,8 @@ public class CitaServiceImpl implements CitaService {
 
     @Override
     public CitaDTO registrarAsistencia(Long citaId, String tarea, String estado) {
-        CitaDTO cita = this.citaMapper.toDto(citaRepository.findById(citaId).get());
+        Cita citaBD1 = citaRepository.findById(citaId).orElseThrow();
+        CitaDTO cita = this.citaMapper.toDto(citaBD1);
         cita.setEstado(estado);
         cita.setTarea(tarea);
 
@@ -198,7 +200,8 @@ public class CitaServiceImpl implements CitaService {
         Long turnoId,
         Boolean virtual
     ) {
-        Programacion programacion = this.programacionRepository.findById(turnoId).get();
+        Programacion programacionBD = this.programacionRepository.findById(turnoId).orElseThrow();
+        Programacion programacion = programacionBD;
         Duration duracion = Duration.between(programacion.getDesde(), programacion.getHasta());
 
         StringBuilder infoReservaLinea = new StringBuilder();
@@ -231,7 +234,8 @@ public class CitaServiceImpl implements CitaService {
 
     @Override
     public CitaDTO cambiarEstado(String estado, Long citaId) {
-        Cita cita = citaRepository.findById(citaId).get();
+        Cita citaBD1 = citaRepository.findById(citaId).orElseThrow();
+        Cita cita = citaBD1;
         cita.setEstado(estado);
 
         Cita citaBD = citaRepository.save(cita);
